@@ -1,5 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Source+Sans+3:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap');
 @import "tailwindcss";
+
+/* NOTA DE TIPOGRAFIA
+ * "Artifakt Element Book" (Autodesk, de Erik Spiekermann) é fonte proprietária:
+ * não está no Google Fonts e não tem licença aberta (OFL), então não dá para
+ * embutir legalmente no site. A combinação abaixo chega ao mesmo efeito:
+ * - Leitura longa (corpo/versículos): "Newsreader" (OFL, feita para leitura
+ *   imersiva, altura-x generosa, peso Book/300) — substitui o papel da Book.
+ * - Interface/menus (sans humanista como a Artifakt): "Source Sans 3" (OFL,
+ *   humanista da Adobe, desenho muito próximo da Artifakt Element).
+ * - Títulos/display: mantém "Crimson Pro" (identidade atual do site).
+ */
 
 :root {
   --parchment: #f7f3eb;
@@ -18,7 +29,7 @@
 }
 
 body {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: 'Newsreader', 'Crimson Pro', Georgia, serif;
   background:
     radial-gradient(circle at 8% 0%, rgba(217, 184, 102, 0.11), transparent 28rem),
     radial-gradient(circle at 92% 18%, rgba(114, 47, 55, 0.045), transparent 24rem),
@@ -29,7 +40,7 @@ body {
 }
 
 .font-sans {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Source Sans 3', 'Inter', system-ui, sans-serif;
 }
 
 ::selection {
@@ -70,12 +81,15 @@ input {
 }
 .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
 
-/* Texto bíblico */
+/* Texto bíblico — Newsreader Book para leitura longa */
 .bible-text {
-  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
-  line-height: 1.9;
+  font-family: 'Newsreader', 'Crimson Pro', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 1.9vw, 1.42rem);
+  line-height: 1.95;
   color: var(--ink);
-  letter-spacing: 0.005em;
+  letter-spacing: 0.01em;
+  max-width: 68ch;
 }
 .verse-number {
   font-size: 0.65em;

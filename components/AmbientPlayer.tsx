@@ -26,8 +26,12 @@ function createNoise(context: AudioContext, seconds = 2) {
   return buffer;
 }
 
-function createAmbientSession(track: number, volume: number): AmbientSession {
-  const context = new AudioContext();
+function createAmbientSession(
+  context: AudioContext,
+  track: number,
+  volume: number,
+  timers: { timeouts: number[]; intervals: number[] }
+): AmbientSession {
   const master = context.createGain();
   master.gain.value = volume;
   master.connect(context.destination);
@@ -37,38 +41,60 @@ function createAmbientSession(track: number, volume: number): AmbientSession {
     return { context, master, sources };
   }
 
+  // Base de ruído filtrado: chuva (agudo), floresta (médio), oceano (grave)
   const noise = context.createBufferSource();
   noise.buffer = createNoise(context);
   noise.loop = true;
   const filter = context.createBiquadFilter();
   filter.type = track === 0 ? "highpass" : "lowpass";
-  filter.frequency.value = track === 0 ? 900 : track === 1 ? 1800 : 500;
+  filter.frequency.value = track === 0 ? 1400 : track === 1 ? 900 : 400;
   const noiseGain = context.createGain();
-  noiseGain.gain.value = track === 2 ? 0.18 : 0.12;
+  noiseGain.gain.value = track === 0 ? 0.1 : track === 1 ? 0.06 : 0.22;
   noise.connect(filter).connect(noiseGain).connect(master);
   noise.start();
   sources.push(noise);
 
   if (track === 2) {
-    const swell = context.createOscillator();
-    const swellGain = context.createGain();
-    swell.type = "sine";
-    swell.frequency.value = 0.08;
-    swellGain.gain.value = 0.08;
-    swell.connect(swellGain).connect(master.gain);
-    swell.start();
-    sources.push(swell);
+    // Ondas do oceano: LFO lento modulando o ganho do ruído
+    const lfo = context.createOscillator();
+    const lfoGain = context.createGain();
+    lfo.type = "sine";
+    lfo.frequency.value = 0.07;
+    lfoGain.gain.value = 0.1;
+    lfo.connect(lfoGain).connect(noiseGain.gain);
+    lfo.start();
+    sources.push(lfo);
   }
 
   if (track === 1) {
-    const birds = context.createOscillator();
-    const birdGain = context.createGain();
-    birds.type = "sine";
-    birds.frequency.value = 520;
-    birdGain.gain.value = 0.008;
-    birds.connect(birdGain).connect(master);
-    birds.start();
-    sources.push(birds);
+    // Gorjeios de pássaros: rajadas curtas de frequência modulada, em intervalos
+    // aleatórios — bem mais natural que um tom senoidal contínuo.
+    const chirp = () => {
+      if (context.state === "closed") return;
+      const t0 = context.currentTime + 0.05;
+      const osc = context.createOscillator();
+      const g = context.createGain();
+      const base = 2200 + Math.random() * 1800; // 2,2–4 kHz
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(base, t0);
+      const notas = 2 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < notas; i++) {
+        const t = t0 + i * (0.09 + Math.random() * 0.06);
+        osc.frequency.exponentialRampToValueAtTime(base * (1.1 + Math.random() * 0.5), t + 0.05);
+        osc.frequency.exponentialRampToValueAtTime(base * (0.9 + Math.random() * 0.2), t + 0.1);
+      }
+      const dur = notas * 0.14 + 0.1;
+      g.gain.setValueAtTime(0, t0);
+      g.gain.linearRampToValueAtTime(0.035 + Math.random() * 0.02, t0 + 0.04);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      osc.connect(g).connect(master);
+      osc.start(t0);
+      osc.stop(t0 + dur + 0.05);
+      timers.timeouts.push(
+        window.setTimeout(chirp, 2500 + Math.random() * 6000)
+      );
+    };
+    timers.timeouts.push(window.setTimeout(chirp, 1200));
   }
 
   return { context, master, sources };
@@ -82,26 +108,58 @@ function stopAmbientSession(session: AmbientSession | null) {
   void session.context.close();
 }
 
+function lerPreferencias(): { volume: number; track: number } {
+  let volume = 0.4;
+  let track = 0;
+  try {
+    const v = Number(localStorage.getItem("ce-volume"));
+    if (!Number.isNaN(v) && v >= 0 && v <= 1) volume = v;
+    const t = Number(localStorage.getItem("ce-trilha"));
+    if (Number.isInteger(t) && t >= 0 && t < TRACKS.length) track = t;
+  } catch {
+    /* ignora */
+  }
+  return { volume, track };
+}
+
 export default function AmbientPlayer() {
+  const [prefs] = useState(lerPreferencias);
   const [playing, setPlaying] = useState(false);
-  const [track, setTrack] = useState(0);
-  const [volume, setVolume] = useState(0.4);
+  const [track, setTrack] = useState(prefs.track);
+  const [volume, setVolume] = useState(prefs.volume);
   const [expanded, setExpanded] = useState(false);
   const sessionRef = useRef<AmbientSession | null>(null);
+  const timersRef = useRef({ timeouts: [] as number[], intervals: [] as number[] });
 
-  useEffect(() => () => stopAmbientSession(sessionRef.current), []);
+  // Limpa tudo ao desmontar
+  useEffect(() => {
+    return () => {
+      timersRef.current.timeouts.forEach((t) => clearTimeout(t));
+      timersRef.current.intervals.forEach((i) => clearInterval(i));
+      stopAmbientSession(sessionRef.current);
+    };
+  }, []);
+
+  const limparTimers = () => {
+    timersRef.current.timeouts.forEach((t) => clearTimeout(t));
+    timersRef.current.intervals.forEach((i) => clearInterval(i));
+    timersRef.current = { timeouts: [], intervals: [] };
+  };
 
   const stop = () => {
+    limparTimers();
     stopAmbientSession(sessionRef.current);
     sessionRef.current = null;
     setPlaying(false);
   };
 
   const start = (selectedTrack = track) => {
+    limparTimers();
     stopAmbientSession(sessionRef.current);
-    const session = createAmbientSession(selectedTrack, volume);
+    const context = new AudioContext();
+    const session = createAmbientSession(context, selectedTrack, volume, timersRef.current);
     sessionRef.current = session;
-    void session.context.resume();
+    void context.resume();
     setPlaying(true);
   };
 
@@ -115,6 +173,11 @@ export default function AmbientPlayer() {
 
   const selectTrack = (selectedTrack: number) => {
     setTrack(selectedTrack);
+    try {
+      localStorage.setItem("ce-trilha", String(selectedTrack));
+    } catch {
+      /* ignora */
+    }
     if (selectedTrack === 3) {
       stop();
     } else if (playing) {
@@ -124,6 +187,11 @@ export default function AmbientPlayer() {
 
   const changeVolume = (nextVolume: number) => {
     setVolume(nextVolume);
+    try {
+      localStorage.setItem("ce-volume", String(nextVolume));
+    } catch {
+      /* ignora */
+    }
     if (sessionRef.current) {
       sessionRef.current.master.gain.value = nextVolume;
     }
