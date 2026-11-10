@@ -18,17 +18,17 @@ export default function Navbar() {
     <nav
       className="sticky top-0 z-50"
       style={{
-        background: "rgba(245, 240, 232, 0.95)",
-        backdropFilter: "blur(8px)",
+        background: "rgba(247, 243, 235, 0.96)",
+        backdropFilter: "blur(10px)",
         borderBottom: "1px solid var(--parchment-dark)",
       }}
     >
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span style={{ color: "var(--gold)", fontSize: "1.5rem" }}>✦</span>
+          <span className="h-2 w-2 rounded-full" style={{ background: "var(--gold)" }} aria-hidden />
           <span
-            className="text-xl font-semibold"
+            className="text-lg md:text-xl font-semibold tracking-[-0.02em]"
             style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
           >
             Conforto das Escrituras
@@ -36,7 +36,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex gap-6 font-sans text-sm">
+        <ul className="hidden md:flex gap-7 font-sans text-sm">
           {links.map((l) => (
             <li key={l.href}>
               <Link
@@ -44,8 +44,9 @@ export default function Navbar() {
                 style={{
                   color: pathname === l.href ? "var(--gold)" : "var(--ink-light)",
                   fontWeight: pathname === l.href ? 600 : 400,
-                  borderBottom: pathname === l.href ? "2px solid var(--gold)" : "none",
-                  paddingBottom: "2px",
+                  borderBottom: pathname === l.href ? "1px solid var(--gold)" : "1px solid transparent",
+                  paddingBottom: "5px",
+                  transition: "color 0.2s, border-color 0.2s",
                 }}
               >
                 {l.label}
@@ -56,18 +57,18 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className="md:hidden font-sans text-xl"
+          className="md:hidden font-sans text-lg"
           style={{ color: "var(--ink)" }}
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
-          {open ? "✕" : "☰"}
+          {open ? "Fechar" : "Menu"}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <ul className="md:hidden px-4 pb-4 flex flex-col gap-3 font-sans text-sm">
+        <ul className="md:hidden max-w-5xl mx-auto px-4 pb-4 pt-1 flex flex-col gap-3 font-sans text-sm">
           {links.map((l) => (
             <li key={l.href}>
               <Link

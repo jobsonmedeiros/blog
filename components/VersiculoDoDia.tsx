@@ -51,26 +51,26 @@ export default function VersiculoDoDia() {
 
   return (
     <div
-      className="rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+      className="rounded-2xl p-8 md:p-14 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
       style={{ background: "var(--ink)", color: "var(--parchment)" }}
     >
       {/* Ornamento de fundo */}
       <div
-        className="absolute inset-0 opacity-5 select-none pointer-events-none flex items-center justify-center text-9xl"
+        className="absolute -right-10 -top-20 opacity-[0.07] select-none pointer-events-none text-[14rem] leading-none"
         aria-hidden
       >
-        ✦
+        “
       </div>
 
       <p
-        className="font-sans text-xs uppercase tracking-widest mb-6"
+        className="font-sans text-xs uppercase tracking-[0.22em] mb-7"
         style={{ color: "var(--gold-light)" }}
       >
         ✦ Versículo do Dia ✦
       </p>
 
       <blockquote
-        className="text-2xl md:text-3xl leading-relaxed mb-6"
+        className="text-2xl md:text-4xl leading-[1.25] mb-7 max-w-3xl mx-auto"
         style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
       >
         &ldquo;{versiculo.texto}&rdquo;
@@ -87,7 +87,7 @@ export default function VersiculoDoDia() {
 
       <button
         onClick={copiar}
-        className="font-sans text-xs px-4 py-2 rounded-full border mt-2 transition-all"
+        className="font-sans text-xs px-4 py-2.5 rounded-full border mt-2 transition-all hover:-translate-y-px"
         style={{
           borderColor: "var(--gold)",
           color: copiado ? "var(--ink)" : "var(--gold-light)",
