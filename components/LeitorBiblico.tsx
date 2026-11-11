@@ -333,7 +333,7 @@ export default function LeitorBiblico() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full" style={{ minHeight: "70vh" }}>
+    <div className="flex flex-col md:flex-row leitor-shell" style={{ minHeight: "70vh" }}>
       {/* Barra de navegação no mobile */}
       <div className="md:hidden border-b p-3" style={{ borderColor: "var(--parchment-dark)" }}>
         <button
@@ -351,9 +351,9 @@ export default function LeitorBiblico() {
         </button>
       </div>
 
-      {/* Painel lateral: colapsável no mobile, fixo no desktop */}
+      {/* Painel lateral: colapsável no mobile, fixo com rolagem própria no desktop */}
       <aside
-        className={`${navegacaoAberta ? "block" : "hidden"} md:block md:w-72 flex-shrink-0 md:border-r overflow-y-auto`}
+        className={`${navegacaoAberta ? "block" : "hidden"} md:block md:w-72 flex-shrink-0 md:border-r md:sticky md:top-16 md:self-start md:max-h-[calc(100vh-4rem)] md:overflow-y-auto overflow-y-auto`}
         style={{
           borderColor: "var(--parchment-dark)",
           background: "var(--parchment)",
@@ -436,7 +436,7 @@ export default function LeitorBiblico() {
       </aside>
 
       {/* Área de leitura */}
-      <div className="flex-1 overflow-y-auto min-w-0">
+      <div className="flex-1 min-w-0">
         {versos.length === 0 && !carregando && !erro && (
           <div className="flex flex-col items-center justify-center h-full py-20 text-center px-6">
             <div className="text-5xl mb-4" style={{ color: "var(--parchment-dark)" }} aria-hidden>
@@ -481,7 +481,8 @@ export default function LeitorBiblico() {
 
         {versos.length > 0 && (
           <div className="p-6 md:p-10">
-            <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+            {/* Cabeçalho de leitura fixo: título + versão + fonte acompanham a rolagem */}
+            <div className="sticky top-16 z-10 -mx-6 px-6 py-3 md:-mx-10 md:px-10 flex items-center justify-between flex-wrap gap-3" style={{ background: "var(--parchment)", borderBottom: "1px solid var(--parchment-dark)" }}>
               <div>
                 <h2
                   className="text-2xl font-semibold"
@@ -489,7 +490,7 @@ export default function LeitorBiblico() {
                 >
                   {referencia}
                 </h2>
-                <p className="font-sans text-xs mt-1" style={{ color: "var(--ink-light)" }}>
+                <p className="text-xs mt-1" style={{ color: "var(--ink-light)" }}>
                   {traducao === "ACF"
                     ? "Almeida Corrigida Fiel (ACF) · texto no site"
                     : "Almeida Revista e Atualizada (ARA) · bolls.life"}
@@ -556,7 +557,8 @@ export default function LeitorBiblico() {
 
             <hr className="gold-divider mt-8" />
 
-            <div className="flex justify-between gap-3 mt-4">
+            {/* Navegação anterior/próximo fixa no rodapé da área de leitura */}
+            <div className="sticky bottom-0 z-10 -mx-6 px-6 py-3 md:-mx-10 md:px-10 flex justify-between gap-3 mt-4" style={{ background: "var(--parchment)", borderTop: "1px solid var(--parchment-dark)" }}>
               <button
                 onClick={() => navegar(-1)}
                 disabled={noInicio}

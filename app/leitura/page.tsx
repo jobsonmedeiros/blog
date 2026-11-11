@@ -22,8 +22,8 @@ export default function LeituraPage() {
       </div>
 
       <div
-        className="rounded-xl overflow-hidden border"
-        style={{ borderColor: "var(--parchment-dark)", boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }}
+        className="rounded-xl border"
+        style={{ borderColor: "var(--parchment-dark)", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", background: "var(--parchment)" }}
       >
         <LeitorBiblico />
       </div>
