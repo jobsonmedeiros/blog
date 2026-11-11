@@ -183,6 +183,8 @@ export default function AmbientPlayer() {
     } else if (playing) {
       start(selectedTrack);
     }
+    // Escolheu o som: fecha o painel sozinho (vale p/ mouse e toque)
+    setExpanded(false);
   };
 
   const changeVolume = (nextVolume: number) => {
@@ -197,8 +199,26 @@ export default function AmbientPlayer() {
     }
   };
 
+  // Fecha o painel quando o mouse sai da área (desktop) ou ao tocar fora (mobile)
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const aoTocarFora = (e: PointerEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("pointerdown", aoTocarFora);
+    return () => document.removeEventListener("pointerdown", aoTocarFora);
+  }, [expanded]);
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div
+      ref={containerRef}
+      onMouseLeave={() => setExpanded(false)}
+      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2"
+    >
       {expanded && (
         <div
           className="card w-56 p-4 animate-fadeIn"
