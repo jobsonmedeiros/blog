@@ -74,6 +74,35 @@ const LIVROS = [
 
 type Verso = { verse: number; text: string };
 
+type Traducao = "ACF" | "ARA";
+
+type LivroACF = { abbrev: string; name: string; chapters: string[][] };
+
+let acfCache: LivroACF[] | null = null;
+
+// ACF (Almeida Corrigida Fiel): texto local em /public/biblia-acf.json.
+// Funciona offline depois do primeiro carregamento.
+async function buscarACF(lIdx: number, cap: number): Promise<Verso[]> {
+  if (!acfCache) {
+    const res = await fetch("/biblia-acf.json");
+    if (!res.ok) throw new Error("Bíblia local indisponível");
+    acfCache = (await res.json()) as LivroACF[];
+  }
+  const textos = acfCache[lIdx]?.chapters?.[cap - 1];
+  if (!textos || textos.length === 0) throw new Error("Capítulo vazio");
+  return textos.map((text, i) => ({ verse: i + 1, text: text.trim() }));
+}
+
+// ARA (Almeida Revista e Atualizada): API online bolls.life, sem chave.
+async function buscarARA(lIdx: number, cap: number): Promise<Verso[]> {
+  const l = LIVROS[lIdx];
+  const res = await fetch(`https://bolls.life/get-text/ARA/${l.id}/${cap}/`);
+  if (!res.ok) throw new Error("Capítulo não encontrado");
+  const data: Verso[] = await res.json();
+  if (!Array.isArray(data) || data.length === 0) throw new Error("Capítulo vazio");
+  return data.map((v) => ({ verse: v.verse, text: v.text.trim() }));
+}
+
 function normalizar(s: string) {
   return s
     .toLowerCase()
@@ -81,57 +110,57 @@ function normalizar(s: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function lerEstadoInicial(): { fonte: number; livro: number; cap: number } {
+function lerEstadoInicial(): { fonte: number; livro: number; cap: number; traducao: Traducao } {
   let fonte = 21;
-  let livro = 0;
-  let cap = 1;
+  let traducao: Traducao = "ACF";
   try {
     const f = Number(localStorage.getItem("ce-fonte"));
     if (f >= 14 && f <= 28) fonte = f;
+    const t = localStorage.getItem("ce-traducao");
+    if (t === "ARA" || t === "ACF") traducao = t;
+    // Posição salva tem prioridade; primeira visita abre em 1 João 1 (NT).
+    if (localStorage.getItem("ce-livro") === null) {
+      return { fonte, livro: 61, cap: 1, traducao };
+    }
     const idx = Number(localStorage.getItem("ce-livro"));
     const c = Number(localStorage.getItem("ce-cap"));
     if (Number.isInteger(idx) && idx >= 0 && idx < LIVROS.length) {
-      livro = idx;
-      cap = Number.isInteger(c) && c >= 1 && c <= LIVROS[idx].caps ? c : 1;
+      const cap = Number.isInteger(c) && c >= 1 && c <= LIVROS[idx].caps ? c : 1;
+      return { fonte, livro: idx, cap, traducao };
     }
   } catch {
     /* localStorage indisponível: segue com o padrão */
   }
-  return { fonte, livro, cap };
+  return { fonte, livro: 61, cap: 1, traducao };
 }
 
 export default function LeitorBiblico() {
   const [inicial] = useState(lerEstadoInicial);
   const [livroIdx, setLivroIdx] = useState(inicial.livro);
   const [capitulo, setCapitulo] = useState(inicial.cap);
-  // Capítulo inicial: se há posição salva, carrega direto no estado inicial
-  // via lazy initializer assíncrono disfarçado — na prática, primeiro render
-  // mostra "selecione" e o efeito abaixo busca o capítulo salvo.
+  // Primeira visita abre em 1 João 1; posição salva tem prioridade.
   const [versos, setVersos] = useState<Verso[]>([]);
-  const [carregando, setCarregando] = useState(inicial.livro !== 0 || inicial.cap !== 1);
+  const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
   const [fonte, setFonte] = useState(inicial.fonte);
+  const [traducao, setTraducao] = useState<Traducao>(inicial.traducao);
   const [painel, setPainel] = useState<"livros" | "caps">("livros");
+  const [atAberto, setAtAberto] = useState(false);
+  const [ntAberto, setNtAberto] = useState(true);
   const [busca, setBusca] = useState("");
   const [navegacaoAberta, setNavegacaoAberta] = useState(false);
 
   const livro = LIVROS[livroIdx];
   const referencia = versos.length > 0 ? `${livro.nome} ${capitulo}` : "";
 
-  // Carrega o capítulo salvo na primeira montagem (fetch inline para
-  // evitar dependência antes da declaração de `carregar`)
+  // Carrega o capítulo inicial (1 João 1 ou posição salva) na tradução salva.
   useEffect(() => {
-    if (inicial.livro === 0 && inicial.cap === 1) return;
-    const l = LIVROS[inicial.livro];
-    fetch(`https://bolls.life/get-text/ARA/${l.id}/${inicial.cap}/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Capítulo não encontrado");
-        return res.json() as Promise<Verso[]>;
-      })
-      .then((data) => {
-        if (!Array.isArray(data) || data.length === 0) throw new Error("Capítulo vazio");
-        setVersos(data.map((v) => ({ verse: v.verse, text: v.text.trim() })));
-      })
+    const buscar: Promise<Verso[]> =
+      inicial.traducao === "ACF"
+        ? buscarACF(inicial.livro, inicial.cap)
+        : buscarARA(inicial.livro, inicial.cap);
+    buscar
+      .then((vs) => setVersos(vs))
       .catch(() => setErro("Não foi possível carregar o capítulo. Verifique sua conexão."))
       .finally(() => setCarregando(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,24 +185,30 @@ export default function LeitorBiblico() {
     }
   };
 
-  const carregar = async (lIdx: number, cap: number) => {
-    const l = LIVROS[lIdx];
+  const carregar = async (lIdx: number, cap: number, trad: Traducao = traducao) => {
     setCarregando(true);
     setErro("");
     setVersos([]);
     try {
-      // bolls.life — Almeida Revista e Atualizada (ARA), sem chave
-      const res = await fetch(`https://bolls.life/get-text/ARA/${l.id}/${cap}/`);
-      if (!res.ok) throw new Error("Capítulo não encontrado");
-      const data: Verso[] = await res.json();
-      if (!Array.isArray(data) || data.length === 0) throw new Error("Capítulo vazio");
-      setVersos(data.map((v) => ({ verse: v.verse, text: v.text.trim() })));
+      const versosNovos = trad === "ACF" ? await buscarACF(lIdx, cap) : await buscarARA(lIdx, cap);
+      setVersos(versosNovos);
       salvarPosicao(lIdx, cap);
     } catch {
       setErro("Não foi possível carregar o capítulo. Verifique sua conexão.");
     } finally {
       setCarregando(false);
     }
+  };
+
+  const trocarTraducao = (t: Traducao) => {
+    if (t === traducao) return;
+    setTraducao(t);
+    try {
+      localStorage.setItem("ce-traducao", t);
+    } catch {
+      /* ignora */
+    }
+    void carregar(livroIdx, capitulo, t);
   };
 
   const selecionarLivro = (idx: number) => {
@@ -241,41 +276,61 @@ export default function LeitorBiblico() {
   const noFim =
     livroIdx === LIVROS.length - 1 && capitulo >= livro.caps && versos.length > 0;
 
-  const renderLista = (lista: typeof LIVROS, titulo: string) => (
-    <div key={titulo}>
-      <p
-        className="font-sans text-xs uppercase tracking-widest px-2 py-1 mt-1"
-        style={{ color: "var(--gold)" }}
-      >
-        {titulo} · {lista.length}
-      </p>
-      {lista.length === 0 && (
-        <p className="font-sans text-sm px-3 py-2" style={{ color: "var(--ink-light)" }}>
-          Nenhum livro encontrado.
-        </p>
-      )}
-      {lista.map((l) => {
-        const idx = LIVROS.indexOf(l);
-        const ativo = livroIdx === idx;
-        return (
-          <button
-            key={l.id}
-            onClick={() => selecionarLivro(idx)}
-            aria-current={ativo ? "true" : undefined}
-            className="w-full text-left px-3 py-1.5 rounded font-sans text-sm transition-colors"
-            style={{
-              background: ativo ? "var(--parchment-dark)" : "transparent",
-              color: ativo ? "var(--gold)" : "var(--ink)",
-              fontWeight: ativo ? 600 : 400,
-            }}
-          >
-            {l.nome}
-            <span style={{ color: "var(--ink-light)", fontSize: "0.75em" }}> · {l.caps} cap.</span>
-          </button>
-        );
-      })}
-    </div>
-  );
+  // Marcador recolhível de testamento (Antigo/Novo). Com busca ativa, abre sozinho.
+  const renderMarcador = (
+    lista: typeof LIVROS,
+    titulo: string,
+    aberto: boolean,
+    alternar: () => void
+  ) => {
+    const expandido = termo ? lista.length > 0 : aberto;
+    return (
+      <div key={titulo}>
+        <button
+          onClick={alternar}
+          aria-expanded={expandido}
+          className="w-full flex items-center justify-between px-2 py-2 mt-1 rounded font-sans text-xs uppercase tracking-widest transition-colors"
+          style={{ color: "var(--gold)", background: expandido ? "rgba(169,120,24,0.08)" : "transparent" }}
+        >
+          <span>
+            {titulo} · {lista.length}
+          </span>
+          <span aria-hidden style={{ fontSize: "0.9em" }}>
+            {expandido ? "▾" : "▸"}
+          </span>
+        </button>
+        {expandido && (
+          <div>
+            {lista.length === 0 && (
+              <p className="font-sans text-sm px-3 py-2" style={{ color: "var(--ink-light)" }}>
+                Nenhum livro encontrado.
+              </p>
+            )}
+            {lista.map((l) => {
+              const idx = LIVROS.indexOf(l);
+              const ativo = livroIdx === idx;
+              return (
+                <button
+                  key={l.id}
+                  onClick={() => selecionarLivro(idx)}
+                  aria-current={ativo ? "true" : undefined}
+                  className="w-full text-left px-3 py-1.5 rounded font-sans text-sm transition-colors"
+                  style={{
+                    background: ativo ? "var(--parchment-dark)" : "transparent",
+                    color: ativo ? "var(--gold)" : "var(--ink)",
+                    fontWeight: ativo ? 600 : 400,
+                  }}
+                >
+                  {l.nome}
+                  <span style={{ color: "var(--ink-light)", fontSize: "0.75em" }}> · {l.caps} cap.</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="flex flex-col md:flex-row h-full" style={{ minHeight: "70vh" }}>
@@ -343,8 +398,8 @@ export default function LeitorBiblico() {
                 }}
               />
             </div>
-            {renderLista(at, "Antigo Testamento")}
-            {renderLista(nt, "Novo Testamento")}
+            {renderMarcador(at, "Antigo Testamento", atAberto, () => setAtAberto((v) => !v))}
+            {renderMarcador(nt, "Novo Testamento", ntAberto, () => setNtAberto((v) => !v))}
           </div>
         )}
 
@@ -435,8 +490,32 @@ export default function LeitorBiblico() {
                   {referencia}
                 </h2>
                 <p className="font-sans text-xs mt-1" style={{ color: "var(--ink-light)" }}>
-                  Almeida Revista e Atualizada (ARA) · bolls.life
+                  {traducao === "ACF"
+                    ? "Almeida Corrigida Fiel (ACF) · texto no site"
+                    : "Almeida Revista e Atualizada (ARA) · bolls.life"}
                 </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-sans text-xs" style={{ color: "var(--ink-light)" }}>
+                  Versão:
+                </span>
+                {(["ACF", "ARA"] as const).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => trocarTraducao(t)}
+                    aria-pressed={traducao === t}
+                    title={t === "ACF" ? "Almeida Corrigida Fiel" : "Almeida Revista e Atualizada"}
+                    className="font-sans text-xs px-2.5 py-1 rounded-full border transition-colors"
+                    style={{
+                      borderColor: "var(--gold)",
+                      background: traducao === t ? "var(--gold)" : "transparent",
+                      color: traducao === t ? "white" : "var(--gold)",
+                      fontWeight: traducao === t ? 600 : 400,
+                    }}
+                  >
+                    {t}
+                  </button>
+                ))}
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-sans text-xs" style={{ color: "var(--ink-light)" }}>
