@@ -7,79 +7,79 @@ export const metadata: Metadata = {
 
 const ARTIGOS = [
   {
-    id: "introducao-salmos",
-    categoria: "Poesia Bíblica",
-    titulo: "Introdução ao Livro dos Salmos",
+    id: "sete-dispensacoes",
+    categoria: "Dispensações",
+    titulo: "As Sete Dispensações: o Plano de Deus Através das Eras",
     resumo:
-      "O livro dos Salmos é a maior coleção de poesia e hinos do Antigo Testamento. Com 150 salmos organizados em cinco livros, expressa toda a gama de emoções humanas diante de Deus — louvor, lamento, gratidão, arrependimento e esperança.",
-    autor: "Equipe Editorial",
-    leitura: "5 min",
-    emoji: "🎵",
-  },
-  {
-    id: "sermao-monte",
-    categoria: "Ensino de Jesus",
-    titulo: "O Sermão do Monte: Uma Vida Transformada",
-    resumo:
-      "Em Mateus 5-7, Jesus apresenta o manifesto do Reino de Deus. As Bem-aventuranças não são meros conselhos morais, mas uma descrição do caráter formado em quem vive sob o reinado de Cristo — uma vida radicalmente diferente dos padrões do mundo.",
-    autor: "Equipe Editorial",
-    leitura: "7 min",
-    emoji: "⛰️",
-  },
-  {
-    id: "fe-obras",
-    categoria: "Teologia Prática",
-    titulo: "Fé e Obras: A Tensão em Tiago e Paulo",
-    resumo:
-      "À primeira vista, Paulo e Tiago parecem contradizer-se sobre o papel da fé e das obras na salvação. Uma leitura contextual, porém, revela duas perspectivas complementares: Paulo defende que somos justificados pela fé, não pelas obras da lei; Tiago mostra que uma fé genuína inevitavelmente produz frutos.",
-    autor: "Equipe Editorial",
+      "Deus trata com o homem de modos distintos em cada era — Inocência, Consciência, Governo, Promessa, Lei, Graça e Reino. Entender essa divisão (2 Tm 2:15) desfaz confusões e mostra que a salvação sempre foi pela fé, mas a responsabilidade do homem muda em cada dispensação.",
+    autor: "J. N. Darby",
     leitura: "8 min",
-    emoji: "⚖️",
+    emoji: "📜",
   },
   {
-    id: "oracao-senhor",
-    categoria: "Vida de Oração",
-    titulo: "A Oração do Senhor: Modelo de Comunhão",
+    id: "assembleia-misterio",
+    categoria: "A Assembleia",
+    titulo: "A Assembleia: o Mistério Revelado a Paulo",
     resumo:
-      "O Pai-Nosso (Mt 6:9-13) não é uma fórmula mágica, mas um modelo de como nos aproximarmos de Deus. Cada petição revela uma dimensão da relação do crente com o Pai — adoração, submissão, dependência, perdão e proteção.",
-    autor: "Equipe Editorial",
+      "A Assembleia (o Corpo de Cristo) não existia no Antigo Testamento: foi um mistério escondido e revelado a Paulo (Ef 3). Não é organização humana nem clero e leigos — é um organismo vivo, reunido só ao Nome do Senhor, com Cristo no meio.",
+    autor: "William Kelly",
+    leitura: "7 min",
+    emoji: "⛪",
+  },
+  {
+    id: "arrebatamento-vinda",
+    categoria: "Profecia",
+    titulo: "O Arrebatamento e a Vinda: Duas Fases Distintas",
+    resumo:
+      "Os irmãos ensinam a distinção entre Cristo vindo PARA os Seus (arrebatamento, 1 Ts 4) e vindo COM os Seus (manifestação em glória, Jd 14). Confundir as duas fases embaralha Israel com a Assembleia e a Graça com o Reino.",
+    autor: "F. W. Grant",
+    leitura: "7 min",
+    emoji: "🎺",
+  },
+  {
+    id: "separacao-ceia",
+    categoria: "Vida Cristã",
+    titulo: "Separação do Mundo e a Ceia do Senhor",
+    resumo:
+      "Separados do mal e separados para Deus: a mesa do Senhor (1 Co 10–11) é o centro da comunhão dos santos. Exame próprio, simplicidade e santidade — sem mundanismo — marcam o andar de quem espera o Senhor.",
+    autor: "C. H. Mackintosh",
     leitura: "6 min",
-    emoji: "🙏",
+    emoji: "🍞",
   },
 ];
 
 const LIVROS = [
   {
-    titulo: "A Bíblia Fala Hoje",
-    autor: "John R. W. Stott",
-    desc: "Série de comentários acessíveis para o leitor moderno, com sólida base exegética e aplicação prática.",
+    titulo: "Sinopse dos Livros da Bíblia",
+    autor: "J. N. Darby",
+    desc: "Comentário corrido de Gênesis a Apocalipse pelo fundador do movimento dos Irmãos — base do ensino dispensacional.",
     emoji: "📗",
     tipo: "Comentário",
   },
   {
-    titulo: "Conheça a Bíblia Toda",
-    autor: "Mark Finley",
-    desc: "Um guia introdutório para percorrer as Escrituras do Gênesis ao Apocalipse com clareza e propósito.",
+    titulo: "Notas sobre o Pentateuco",
+    autor: "C. H. Mackintosh",
+    desc: "Clássico devocional e doutrinário sobre os cinco livros de Moisés, lido há gerações nas assembleias.",
     emoji: "📘",
-    tipo: "Introdução",
+    tipo: "Estudo",
   },
   {
-    titulo: "O Deus que Está Lá",
-    autor: "Francis Schaeffer",
-    desc: "Resposta filosófica e bíblica ao secularismo moderno, mostrando a relevância da fé cristã no pensamento contemporâneo.",
+    titulo: "A Igreja de Deus",
+    autor: "William Kelly",
+    desc: "Exposição sobre a Assembleia como Corpo de Cristo, sua ruína nas mãos dos homens e o caminho dos que se reúnem ao Nome do Senhor.",
     emoji: "📙",
-    tipo: "Apologética",
+    tipo: "Eclesiologia",
   },
   {
-    titulo: "Ensinamentos de Jesus",
-    autor: "Autores Vários",
-    desc: "Coletânea de estudos temáticos sobre os principais ensinamentos de Jesus nos evangelhos.",
+    titulo: "A Bíblia Numérica",
+    autor: "F. W. Grant",
+    desc: "Estudo do simbolismo numérico das Escrituras e da estrutura dispensacional da revelação.",
     emoji: "📕",
     tipo: "Estudo",
   },
 ];
 
-const CATEGORIAS = ["Todos", "Poesia Bíblica", "Ensino de Jesus", "Teologia Prática", "Vida de Oração"];
+const CATEGORIAS = ["Todos", "Dispensações", "A Assembleia", "Profecia", "Vida Cristã"];
 
 export default function EstudosPage() {
   return (
