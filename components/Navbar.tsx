@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const links = [
   { href: "/", label: "Início" },
-  { href: "/leitura", label: "Leitura" },
+  { href: "/leitura", label: "Bíblias" },
   { href: "/versiculo", label: "Versículo do Dia" },
   { href: "/estudos", label: "Estudos" },
 ];
