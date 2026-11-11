@@ -180,6 +180,10 @@ export default function LeitorBiblico() {
     setLivroIdx(idx);
     setCapitulo(1);
     setPainel("caps");
+    // Trocar de livro tem que trocar o texto na hora: carrega o capítulo 1
+    // do livro novo (antes só trocava a aba, e o texto antigo ficava na tela).
+    void carregar(idx, 1);
+    setNavegacaoAberta(false);
   };
 
   const selecionarCapitulo = (cap: number) => {
