@@ -88,7 +88,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
 
       <h1
         className="text-4xl mb-3 leading-tight"
-        style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 600 }}
+        style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}
       >
         {artigo.titulo}
       </h1>
@@ -106,7 +106,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
             className="text-xl leading-relaxed"
             style={{
               color: "var(--ink)",
-              fontFamily: "'Crimson Pro', serif",
+              fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif",
               fontStyle: paragrafo.startsWith('"') ? "italic" : "normal",
             }}
           >

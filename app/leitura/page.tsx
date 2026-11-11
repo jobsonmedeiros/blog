@@ -11,7 +11,7 @@ export default function LeituraPage() {
       <div className="text-center mb-8">
         <h1
           className="text-4xl mb-2"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 300 }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 300 }}
         >
           📖 Leitura das Escrituras
         </h1>

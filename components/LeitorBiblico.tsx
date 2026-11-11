@@ -387,7 +387,7 @@ export default function LeitorBiblico() {
             <div className="text-5xl mb-4" style={{ color: "var(--parchment-dark)" }} aria-hidden>
               📖
             </div>
-            <p className="text-2xl mb-2" style={{ color: "var(--ink-light)", fontFamily: "'Crimson Pro', serif" }}>
+            <p className="text-2xl mb-2" style={{ color: "var(--ink-light)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
               Selecione um livro e capítulo
             </p>
             <p className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
@@ -430,7 +430,7 @@ export default function LeitorBiblico() {
               <div>
                 <h2
                   className="text-2xl font-semibold"
-                  style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+                  style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
                 >
                   {referencia}
                 </h2>

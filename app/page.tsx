@@ -10,7 +10,7 @@ export default function HomePage() {
         <div className="mx-auto mb-6 h-px w-16 bg-[var(--gold)] opacity-70" aria-hidden />
         <h1
           className="text-5xl md:text-7xl mb-5 leading-[0.98] tracking-[-0.045em]"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 300 }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 300 }}
         >
           Conforto das Escrituras
         </h1>
@@ -51,7 +51,7 @@ export default function HomePage() {
             <span className="text-2xl opacity-80" aria-hidden>{card.emoji}</span>
             <h2
               className="text-xl font-semibold"
-              style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+              style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
             >
               {card.title}
             </h2>
@@ -73,7 +73,7 @@ export default function HomePage() {
         className="rounded-2xl p-8 md:p-12 text-center shadow-[0_14px_35px_rgba(45,33,27,0.15)]"
         style={{ background: "var(--ink)", color: "var(--parchment)" }}
       >
-        <p className="text-2xl mb-3" style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic" }}>
+        <p className="text-2xl mb-3" style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic" }}>
           &ldquo;Pois a palavra de Deus é viva e eficaz…&rdquo;
         </p>
         <p className="font-sans text-sm mb-4" style={{ color: "var(--gold-light)" }}>Hebreus 4:12</p>

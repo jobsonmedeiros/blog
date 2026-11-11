@@ -29,7 +29,7 @@ export default function Navbar() {
           <span className="h-2 w-2 rounded-full" style={{ background: "var(--gold)" }} aria-hidden />
           <span
             className="text-lg md:text-xl font-semibold tracking-[-0.02em]"
-            style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+            style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
           >
             Conforto das Escrituras
           </span>

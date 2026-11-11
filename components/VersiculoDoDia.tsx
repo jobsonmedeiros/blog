@@ -71,7 +71,7 @@ export default function VersiculoDoDia() {
 
       <blockquote
         className="text-2xl md:text-4xl leading-[1.25] mb-7 max-w-3xl mx-auto"
-        style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
+        style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
       >
         &ldquo;{versiculo.texto}&rdquo;
       </blockquote>

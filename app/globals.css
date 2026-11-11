@@ -3,13 +3,16 @@
 
 /* NOTA DE TIPOGRAFIA
  * "Artifakt Element Book" (Autodesk, de Erik Spiekermann) é fonte proprietária:
- * não está no Google Fonts e não tem licença aberta (OFL), então não dá para
- * embutir legalmente no site. A combinação abaixo chega ao mesmo efeito:
- * - Leitura longa (corpo/versículos): "Newsreader" (OFL, feita para leitura
- *   imersiva, altura-x generosa, peso Book/300) — substitui o papel da Book.
- * - Interface/menus (sans humanista como a Artifakt): "Source Sans 3" (OFL,
- *   humanista da Adobe, desenho muito próximo da Artifakt Element).
- * - Títulos/display: mantém "Crimson Pro" (identidade atual do site).
+ * não está no Google Fonts e não tem licença aberta, então o site NÃO distribui
+ * nenhum arquivo dela. A estratégia aqui é "use se você tem":
+ * - A pilha de fontes pede 'Artifakt Element Book' primeiro — quem tem instalada
+ *   (ex.: via pacote da Autodesk no Windows/Office) vê o texto nela, igual ao Word.
+ * - Quem não tem cai nos fallbacks livres: "Newsreader" (serifada de leitura,
+ *   OFL) no corpo bíblico e "Source Sans 3" (humanista da Adobe, OFL, desenho
+ *   próximo da Artifakt) na interface.
+ * - Títulos/display: "Crimson Pro" (identidade atual do site).
+ * Nenhum @font-face nem download: só referência a fonte local do visitante,
+ * o que não viola a licença.
  */
 
 :root {
@@ -29,7 +32,7 @@
 }
 
 body {
-  font-family: 'Newsreader', 'Crimson Pro', Georgia, serif;
+  font-family: 'Artifakt Element Book', 'Artifakt Element', 'Newsreader', 'Crimson Pro', Georgia, serif;
   background:
     radial-gradient(circle at 8% 0%, rgba(217, 184, 102, 0.11), transparent 28rem),
     radial-gradient(circle at 92% 18%, rgba(114, 47, 55, 0.045), transparent 24rem),
@@ -40,7 +43,7 @@ body {
 }
 
 .font-sans {
-  font-family: 'Source Sans 3', 'Inter', system-ui, sans-serif;
+  font-family: 'Artifakt Element', 'Artifakt Element Book', 'Source Sans 3', 'Inter', system-ui, sans-serif;
 }
 
 ::selection {
@@ -81,9 +84,9 @@ input {
 }
 .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
 
-/* Texto bíblico — Newsreader Book para leitura longa */
+/* Texto bíblico — Artifakt Book (se instalada) ou Newsreader */
 .bible-text {
-  font-family: 'Newsreader', 'Crimson Pro', Georgia, serif;
+  font-family: 'Artifakt Element Book', 'Artifakt Element', 'Newsreader', 'Crimson Pro', Georgia, serif;
   font-weight: 400;
   font-size: clamp(1.2rem, 1.9vw, 1.42rem);
   line-height: 1.95;

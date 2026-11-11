@@ -88,7 +88,7 @@ export default function EstudosPage() {
       <div className="text-center mb-10">
         <h1
           className="text-4xl mb-2"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 300 }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 300 }}
         >
           📚 Espaço de Estudos
         </h1>
@@ -103,7 +103,7 @@ export default function EstudosPage() {
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <h2
             className="text-2xl"
-            style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+            style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
           >
             Artigos & Reflexões
           </h2>
@@ -138,13 +138,13 @@ export default function EstudosPage() {
               </div>
               <h3
                 className="text-xl"
-                style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 600 }}
+                style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}
               >
                 {a.titulo}
               </h3>
               <p
                 className="text-base leading-relaxed flex-1"
-                style={{ color: "var(--ink-light)", fontFamily: "'Crimson Pro', serif" }}
+                style={{ color: "var(--ink-light)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
               >
                 {a.resumo}
               </p>
@@ -168,7 +168,7 @@ export default function EstudosPage() {
       <section className="mt-10">
         <h2
           className="text-2xl mb-6"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
         >
           Indicações de Leitura
         </h2>
@@ -180,7 +180,7 @@ export default function EstudosPage() {
                 <div className="flex items-center gap-2 mb-1">
                   <h3
                     className="text-lg"
-                    style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 600 }}
+                    style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}
                   >
                     {l.titulo}
                   </h3>
@@ -196,7 +196,7 @@ export default function EstudosPage() {
                 </p>
                 <p
                   className="text-base leading-relaxed"
-                  style={{ color: "var(--ink-light)", fontFamily: "'Crimson Pro', serif" }}
+                  style={{ color: "var(--ink-light)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
                 >
                   {l.desc}
                 </p>
@@ -213,7 +213,7 @@ export default function EstudosPage() {
       >
         <p
           className="text-2xl mb-2"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontStyle: "italic" }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic" }}
         >
           Quer contribuir com um artigo ou sugestão de leitura?
         </p>

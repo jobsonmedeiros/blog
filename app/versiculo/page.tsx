@@ -32,7 +32,7 @@ export default function VersiculoPage() {
       <div className="text-center mb-10">
         <h1
           className="text-4xl mb-2"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 300 }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 300 }}
         >
           🕊️ Versículo do Dia
         </h1>
@@ -48,7 +48,7 @@ export default function VersiculoPage() {
       <section className="mt-14">
         <h2
           className="text-2xl mb-6 text-center"
-          style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif" }}
+          style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
         >
           Reflexões Breves
         </h2>
@@ -57,13 +57,13 @@ export default function VersiculoPage() {
             <article key={i} className="card p-6">
               <h3
                 className="text-xl mb-3"
-                style={{ color: "var(--ink)", fontFamily: "'Crimson Pro', serif", fontWeight: 600 }}
+                style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}
               >
                 {r.titulo}
               </h3>
               <p
                 className="text-lg leading-relaxed mb-3"
-                style={{ color: "var(--ink-light)", fontFamily: "'Crimson Pro', serif" }}
+                style={{ color: "var(--ink-light)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
               >
                 {r.texto}
               </p>
