@@ -217,7 +217,7 @@ export default function AmbientPlayer() {
     <div
       ref={containerRef}
       onMouseLeave={() => setExpanded(false)}
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2"
+      className="fixed right-5 z-40 flex flex-col items-end gap-2 bottom-24 md:bottom-6"
     >
       {expanded && (
         <div
