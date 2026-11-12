@@ -6,7 +6,7 @@ Página de leitura e estudo das Sagradas Escrituras, desenvolvida com **Next.js 
 
 - 📖 **Bíblias** – Navegação por livros e capítulos com ACF local e ARA via bolls.life, com indicação das fontes
 - 🕊️ **Versículo do Dia** – Rotação automática de 31 versículos curados
-- ♫ **Música para leitura** – Chuva, floresta, oceano e instrumental contemplativo original em loop; acesso ao player do [Hinar.io](https://hinar.io)
+- ♫ **Música para leitura** – Chuva, floresta, oceano, instrumental contemplativo original e a playlist do [Hinar.io](https://hinar.io), iniciando em `001 — Aba, Pai`, avançando com o botão ou automaticamente ao terminar e retornando ao início depois da última faixa disponível
 - 📚 **Espaço de Estudos** – Artigos, reflexões e indicações de leitura
 - 📱 **Responsivo** – Funciona em celular e desktop
 
@@ -17,6 +17,8 @@ Página de leitura e estudo das Sagradas Escrituras, desenvolvida com **Next.js 
 - [bible-api.com](https://bible-api.com/) – API bíblica gratuita
 - [Sociedade Bíblica do Brasil](https://www.sbb.org.br/biblia/) – referência institucional para as traduções bíblicas
 - [Hinar.io](https://hinar.io) – repertório e player de músicas cristãs
+
+As faixas do player são catalogadas a partir das páginas oficiais do Hinar.io. O arquivo [public/hinar-playlist.json](./public/hinar-playlist.json) preserva o título, a página de origem e o endereço do áudio instrumental de cada faixa disponível no catálogo, incluindo `001 — Aba, Pai` e `212 — Deus Cuidará de Ti`.
 
 ## Como rodar localmente
 

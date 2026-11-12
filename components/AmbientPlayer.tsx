@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import hinarPlaylist from "../public/hinar-playlist.json";
 
 const TRACKS = [
   { label: "Chuva suave", emoji: "🌧️" },
@@ -10,18 +11,7 @@ const TRACKS = [
   { label: "Silêncio", emoji: "🕊️" },
 ];
 
-const HINAR_TRACKS = [
-  {
-    title: "A Nós Tens Agora, Senhor",
-    pageUrl: "https://hinar.io/101-nos-tens-agora",
-    audioUrl: "https://hinar.io/_uploads/instrumental/587a495a05b729836a992d98ba26a500_101.mp3",
-  },
-  {
-    title: "Bom Amigo",
-    pageUrl: "https://hinar.io/102-bom-amigo",
-    audioUrl: "https://hinar.io/_uploads/instrumental/008878cb6657f16b4530208eab8f7042_102.mp3",
-  },
-];
+const HINAR_TRACKS = hinarPlaylist;
 
 type AmbientSession = {
   context: AudioContext;
@@ -254,6 +244,11 @@ export default function AmbientPlayer() {
     }
   };
 
+  const advanceHinarTrack = () => {
+    hinarShouldPlayRef.current = hinarPlaying;
+    setHinarIndex((index) => (index + 1) % HINAR_TRACKS.length);
+  };
+
   // Fecha o painel quando o mouse sai da área (desktop) ou ao tocar fora (mobile)
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -313,7 +308,6 @@ export default function AmbientPlayer() {
           <audio
             ref={hinarAudioRef}
             controls
-            loop
             preload="none"
             src={hinarTrack.audioUrl}
             onPlay={() => {
@@ -321,18 +315,16 @@ export default function AmbientPlayer() {
               setHinarPlaying(true);
             }}
             onPause={() => setHinarPlaying(false)}
+            onEnded={advanceHinarTrack}
             className="w-full mb-3"
             aria-label="Instrumental do Hinar.io"
           />
           <p className="font-sans text-[11px] leading-relaxed mb-3" style={{ color: "var(--ink-light)" }}>
-            “{hinarTrack.title}” · instrumental. O player permanece disponível enquanto você navega pelo site.
+            Hino {String(hinarTrack.number).padStart(3, "0")} · “{hinarTrack.title}” · instrumental. O player permanece disponível enquanto você navega pelo site.
           </p>
           <button
             type="button"
-            onClick={() => {
-              hinarShouldPlayRef.current = hinarPlaying;
-              setHinarIndex((index) => (index + 1) % HINAR_TRACKS.length);
-            }}
+            onClick={advanceHinarTrack}
             className="font-sans text-xs px-3 py-1.5 rounded-full border mb-3"
             style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
           >
