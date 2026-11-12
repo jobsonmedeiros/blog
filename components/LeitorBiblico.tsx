@@ -76,19 +76,26 @@ type Verso = { verse: number; text: string };
 
 type Traducao = "ACF" | "ARA";
 
-type LivroACF = { abbrev: string; name: string; chapters: string[][] };
+const acfCache = new Map<number, Promise<string[][]>>();
 
-let acfCache: LivroACF[] | null = null;
-
-// ACF (Almeida Corrigida Fiel): texto local em /public/biblia-acf.json.
-// Funciona offline depois do primeiro carregamento.
-async function buscarACF(lIdx: number, cap: number): Promise<Verso[]> {
-  if (!acfCache) {
-    const res = await fetch("/biblia-acf.json");
-    if (!res.ok) throw new Error("Bíblia local indisponível");
-    acfCache = (await res.json()) as LivroACF[];
+// ACF (Almeida Corrigida Fiel): um arquivo por livro em /public/biblia/acf/<índice>.json,
+// para baixar só o livro aberto (~12–220 KB) em vez da Bíblia inteira (4 MB).
+function carregarLivroACF(lIdx: number): Promise<string[][]> {
+  let livro = acfCache.get(lIdx);
+  if (!livro) {
+    livro = fetch(`/biblia/acf/${lIdx}.json`).then((res) => {
+      if (!res.ok) throw new Error("Bíblia local indisponível");
+      return res.json() as Promise<string[][]>;
+    });
+    livro.catch(() => acfCache.delete(lIdx));
+    acfCache.set(lIdx, livro);
   }
-  const textos = acfCache[lIdx]?.chapters?.[cap - 1];
+  return livro;
+}
+
+async function buscarACF(lIdx: number, cap: number): Promise<Verso[]> {
+  const capitulos = await carregarLivroACF(lIdx);
+  const textos = capitulos[cap - 1];
   if (!textos || textos.length === 0) throw new Error("Capítulo vazio");
   return textos.map((text, i) => ({ verse: i + 1, text: text.trim() }));
 }
@@ -493,7 +500,7 @@ export default function LeitorBiblico() {
                 <p className="text-xs mt-1" style={{ color: "var(--ink-light)" }}>
                   {traducao === "ACF" ? (
                     <>
-                      Almeida Corrigida Fiel (ACF) · texto local · fonte: /public/biblia-acf.json
+                      Almeida Corrigida Fiel (ACF) · texto local · carregado por livro
                     </>
                   ) : (
                     <>

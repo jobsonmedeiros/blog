@@ -1,4 +1,5 @@
 import VersiculoDoDia from "@/components/VersiculoDoDia";
+import CatalogoTemasVersiculos from "@/components/CatalogoTemasVersiculos";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -43,6 +44,8 @@ export default function VersiculoPage() {
       </div>
 
       <VersiculoDoDia />
+
+      <CatalogoTemasVersiculos />
 
       {/* Reflexões */}
       <section className="mt-14">

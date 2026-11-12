@@ -36,10 +36,18 @@ const VERSICULOS = [
   { texto: "Eu sou o caminho, a verdade e a vida.", ref: "João 14:6" },
 ];
 
+const IMAGENS_VERSICULOS = [
+  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85",
+];
+
 export default function VersiculoDoDia() {
   const hoje = new Date().getDate(); // 1-31
   const idx = (hoje - 1) % VERSICULOS.length;
   const versiculo = VERSICULOS[idx];
+  const imagem = IMAGENS_VERSICULOS[idx % IMAGENS_VERSICULOS.length];
 
   const [copiado, setCopiado] = useState(false);
 
@@ -52,7 +60,12 @@ export default function VersiculoDoDia() {
   return (
     <div
       className="rounded-2xl p-8 md:p-14 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
-      style={{ background: "var(--ink)", color: "var(--parchment)" }}
+      style={{
+        color: "var(--parchment)",
+        backgroundImage: `linear-gradient(135deg, rgba(24, 31, 36, 0.9), rgba(24, 31, 36, 0.62)), url("${imagem}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* Ornamento de fundo */}
       <div
