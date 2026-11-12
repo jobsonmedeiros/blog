@@ -3,948 +3,1106 @@
     "number": 1,
     "title": "aba pai",
     "pageUrl": "https://hinar.io/001-aba-pai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a392bcd07118f23305afb90575306ad0_001.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a392bcd07118f23305afb90575306ad0_001.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/8393ac22bbc1473430b45bb94b012a40_H001%20-%20Aba,%20Pai.mp3"
   },
   {
     "number": 2,
     "title": "noite escura",
     "pageUrl": "https://hinar.io/002-noite-escura",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/85702162feac648a83afc8e6749f7bec_002.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/85702162feac648a83afc8e6749f7bec_002.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cd55c5bbd163a079dafdefaa62d711d3_H002%20-%20Noite%20Escura.mp3"
   },
   {
     "number": 3,
     "title": "juntos adoremos",
     "pageUrl": "https://hinar.io/003-juntos-adoremos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6f73067eaed9fcc352239c61036097d0_003.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6f73067eaed9fcc352239c61036097d0_003.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/2ec5c057b7f428a20bce8003218b6a3f_H003%20-%20Juntos%20Adoremos.mp3"
   },
   {
     "number": 4,
     "title": "jesus senhor amado",
     "pageUrl": "https://hinar.io/004-jesus-senhor-amado!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/31683c15dd2900ae334cdf039d45200f_004.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/31683c15dd2900ae334cdf039d45200f_004.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/71badcb8decda8dc2bc778d999486023_H004%20-%20Jesus,%20Senhor%20Amado!.mp3"
   },
   {
     "number": 5,
     "title": "hoje lembrando",
     "pageUrl": "https://hinar.io/005-hoje-lembrando",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/879dcc2cf1c4a8cf79d7cc621db829a1_005.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/879dcc2cf1c4a8cf79d7cc621db829a1_005.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/550ffc6509f6942d7ad570305108c2c6_H005%20-%20Hoje%20Lembrando.mp3"
   },
   {
     "number": 6,
     "title": "nesta ceia nos juntamos",
     "pageUrl": "https://hinar.io/006-nesta-ceia-nos-juntamos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/77fec1ebbca3cc9ccc0c31ae2f49ce28_006.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/77fec1ebbca3cc9ccc0c31ae2f49ce28_006.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a156182b196fa79fe9f4f9aef0e3ec76_H006%20-%20Nesta%20Ceia%20nos%20Juntamos.mp3"
   },
   {
     "number": 7,
     "title": "imensa graça",
     "pageUrl": "https://hinar.io/007-imensa-graça!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/114edd74ec41e9c59b69be11894e8457_007.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/114edd74ec41e9c59b69be11894e8457_007.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/6800d8f4274fc188d21db2507df5402b_H007%20-%20Imensa%20Gra%C3%A7a!.mp3"
   },
   {
     "number": 8,
     "title": "levantado foi jesus",
     "pageUrl": "https://hinar.io/008-levantado-foi-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/591491974b1382fa906dd445f9e93697_008.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/591491974b1382fa906dd445f9e93697_008.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a6eccfa71a4ebfef15386741f65b7b9a_H008%20-%20Levantado%20Foi%20Jesus.mp3"
   },
   {
     "number": 9,
     "title": "ao senhor jesus louvemos",
     "pageUrl": "https://hinar.io/009-ao-senhor-jesus-louvemos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/7e783e2082792ce169584e047566802e_009.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/7e783e2082792ce169584e047566802e_009.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f8b92fa4fc7b9536642e498c9eae0c75_H009%20-%20Ao%20Senhor%20Jesus%20Louvemos.mp3"
   },
   {
     "number": 10,
     "title": "substituição",
     "pageUrl": "https://hinar.io/010-substituição",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/9f6479d5e9921ed38ed9eb5ca7235893_010.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/9f6479d5e9921ed38ed9eb5ca7235893_010.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/2d4599ee56969e249bb6d87c906d4ec4_H010%20-%20Substitui%C3%A7%C3%A3o.mp3"
   },
   {
     "number": 11,
     "title": "qual irmãos reunidos",
     "pageUrl": "https://hinar.io/011-qual-irmãos-reunidos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b8a265adf9291fce69db66ffc5cc6304_011.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b8a265adf9291fce69db66ffc5cc6304_011.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a812d18ea38c015438b71ac74526f4df_H011%20-%20Qual%20Irm%C3%A3os%20Reunidos.mp3"
   },
   {
     "number": 12,
     "title": "o grande motivo",
     "pageUrl": "https://hinar.io/012-o-grande-motivo-",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6d660c2c3ad1941045d69686537a531f_012.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6d660c2c3ad1941045d69686537a531f_012.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/df48560b48c039f1fcf558f64679c2ea_H012%20-%20O%20Grande%20Motivo.mp3"
   },
   {
     "number": 13,
     "title": "ao que vive",
     "pageUrl": "https://hinar.io/013-ao-que-vive",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8c34ed9ca2ab058c50e3f271c91d07c6_013.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8c34ed9ca2ab058c50e3f271c91d07c6_013.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/fb82bc804b0dbf6caf5a176c4259e597_H013%20-%20Ao%20Que%20Vive.mp3"
   },
   {
     "number": 14,
     "title": "sacrifício excelso",
     "pageUrl": "https://hinar.io/014-sacrifício-excelso",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e34bb916b85509ebb76f93a6cda81f87_014.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e34bb916b85509ebb76f93a6cda81f87_014.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/62b4769fd1f3030965ce34e316ab3748_H014%20-%20Sacrif%C3%ADcio%20Excelso.mp3"
   },
   {
     "number": 15,
     "title": "rosto divino",
     "pageUrl": "https://hinar.io/015-rosto-divino",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/5af3f497dd6cb7d5885be6795c2a3a1c_015.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/5af3f497dd6cb7d5885be6795c2a3a1c_015.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/33cfc77b33ddd82497ba3f49412c2c59_H015%20-%20Rosto%20Divino.mp3"
   },
   {
     "number": 16,
     "title": "pontífice real",
     "pageUrl": "https://hinar.io/016-pontífice-real",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d1bd7805213fb0e57ef852b92a301168_016.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d1bd7805213fb0e57ef852b92a301168_016.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/76fe77c6b60da5098b6403929fb776de_H016%20-%20Pont%C3%ADfice%20Real.mp3"
   },
   {
     "number": 17,
     "title": "a dura cruz",
     "pageUrl": "https://hinar.io/017-a-dura-cruz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/95bae2b6d68938150a24e068cabd5797_017.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/95bae2b6d68938150a24e068cabd5797_017.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/0693db4c8f8b9879a9ec3c274a19378b_H017%20-%20A%20Dura%20Cruz.mp3"
   },
   {
     "number": 18,
     "title": "tua palavra",
     "pageUrl": "https://hinar.io/018-tua-palavra",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/2f90fbf2165f94cdd30db1f0f1337ff7_018.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/2f90fbf2165f94cdd30db1f0f1337ff7_018.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/520976b744a4e9a683f5b49f63a9446d_H018%20-%20A%20Tua%20Palavra,%20%C3%93%20Senhor.mp3"
   },
   {
     "number": 19,
     "title": "o sangue derramado",
     "pageUrl": "https://hinar.io/019-o-sangue-derramado",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a53ca496d4e5e7a7ae44499f082cf523_Hino%20019%20-%20A%20Ti%20Para%20Sempre%20Seja%20o%20Louvor%20-%20Melbourne_%20Dismis.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a53ca496d4e5e7a7ae44499f082cf523_Hino%20019%20-%20A%20Ti%20Para%20Sempre%20Seja%20o%20Louvor%20-%20Melbourne_%20Dismis.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7973e294a47258e94811609d5d7f489d_H019%20-%20A%20Ti%20Para%20Sempre%20Seja%20o%20Louvor.mp3"
   },
   {
     "number": 20,
     "title": "remissão",
     "pageUrl": "https://hinar.io/020-remissão",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/453419b720dff782093c7e5eb5c6313e_020.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/453419b720dff782093c7e5eb5c6313e_020.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/58b4d4909f998d1023f354327e42d339_Hino%20020%20-%20Remiss%C3%A3o.mp3"
   },
   {
     "number": 21,
     "title": "a cruz de cristo",
     "pageUrl": "https://hinar.io/021-a-cruz-de-cristo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c4cb7493c378c43ce4b2ac5b2ad35d5b_021.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c4cb7493c378c43ce4b2ac5b2ad35d5b_021.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/366929f9e71051283e5eebf1509f1b86_H021%20-%20A%20Cruz%20de%20Cristo.mp3"
   },
   {
     "number": 22,
     "title": "adoramos ó cordeiro",
     "pageUrl": "https://hinar.io/022-adoramos-ó-cordeiro!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/931a58a311d9b6cc9e6fc2a9b7068c21_022.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/931a58a311d9b6cc9e6fc2a9b7068c21_022.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a51fd978f86fa54a54aa2dfe9d7bb972_H022%20-%20Te%20Adoramos,%20%C3%93%20Cordeiro!.mp3"
   },
   {
     "number": 23,
     "title": "teu amor tenaz",
     "pageUrl": "https://hinar.io/023-teu-amor-tenaz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/1b93cab1246d905749e0dcc02398e9a5_023.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/1b93cab1246d905749e0dcc02398e9a5_023.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/0130b7d58935ab8d071817e76cdf05d5_Hino%20023%20-%20Teu%20Amor%20Tenaz.mp3"
   },
   {
     "number": 24,
     "title": "porque tanto amou",
     "pageUrl": "https://hinar.io/024-porque-tanto-amou!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/691e1efb013ca80b539766bbf6a3cec6_024.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/691e1efb013ca80b539766bbf6a3cec6_024.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b132c3947e4133a34fb0d19ce17362aa_H024%20-%20Porque%20Tanto%20Amou!.mp3"
   },
   {
     "number": 25,
     "title": "ninguém mais",
     "pageUrl": "https://hinar.io/025-ninguém-mais",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8854904d204cbb2bb5318532ce887997_025.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8854904d204cbb2bb5318532ce887997_025.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/286b7ee648810b514f8b49effc01bc71_H025%20-%20Ningu%C3%A9m%20Mais.mp3"
   },
   {
     "number": 26,
     "title": "tua cruz",
     "pageUrl": "https://hinar.io/026-tua-cruz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/4c4015aeae0b5f25c0e09adc577a6e77_026.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/4c4015aeae0b5f25c0e09adc577a6e77_026.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/4060860fe09f89cf524e41ce77a59c8c_H026%20-%20Tua%20Cruz.mp3"
   },
   {
     "number": 27,
     "title": "o amor divino",
     "pageUrl": "https://hinar.io/027-o-amor-divino",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/214b625979593a934a4e82999259f50d_027.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/214b625979593a934a4e82999259f50d_027.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/273f4df812b7219d512d1bba9489799c_H027%20-%20O%20Amor%20Divino.mp3"
   },
   {
     "number": 28,
     "title": "o amor de deus pai",
     "pageUrl": "https://hinar.io/028-o-amor-de-deus-pai!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/546e8dc03ce48a9039ca6880f2a5b91d_028.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/546e8dc03ce48a9039ca6880f2a5b91d_028.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/4dbb583aa855517b1183a9b191d0af84_Hino%20028%20-%20Oh!%20Que%20Amor%20Teve%20Deus%20Pai!.mp3"
   },
   {
     "number": 29,
     "title": "a mensagem da cruz",
     "pageUrl": "https://hinar.io/029-a-mensagem-da-cruz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ec9ab71eef8ec54653dc540980efd662_029.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ec9ab71eef8ec54653dc540980efd662_029.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/5864734fe118599abd8423642dbc6192_Hino%20029%20-%20A%20Mensagem%20da%20Cruz.mp3"
   },
   {
     "number": 30,
     "title": "amor glorioso",
     "pageUrl": "https://hinar.io/030-amor-glorioso",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a996e12ad6023d211ab10ee82b7277aa_030.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a996e12ad6023d211ab10ee82b7277aa_030.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f0bd080fa10186b5b9b4dd864b09b271_H030%20%20-%20Amor%20Glorioso.mp3"
   },
   {
     "number": 31,
     "title": "alvos mais que a neve",
     "pageUrl": "https://hinar.io/031-alvos-mais-que-a-neve!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/93c8405895b9fd6c8a920588931e0731_031.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/93c8405895b9fd6c8a920588931e0731_031.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/c3bb1e801f8fb9ec9e86aefad3f42e79_H031%20-%20Alvos,%20Mais%20Que%20a%20Neve!.mp3"
   },
   {
     "number": 32,
     "title": "rico nome",
     "pageUrl": "https://hinar.io/032-rico-nome!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a40bb3d1e46a7273b5836b76528dc2dc_032.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a40bb3d1e46a7273b5836b76528dc2dc_032.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/98584ca699f939b4e95594800c0f2b9e_H032%20-%20Jesus,%20Que%20Rico%20Nome!.mp3"
   },
   {
     "number": 33,
     "title": "deus e pai a ti louvamos",
     "pageUrl": "https://hinar.io/033-deus-e-pai-a-ti-louvamos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/09c657fc2d25e4c584430ca8f913cf4d_033.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/09c657fc2d25e4c584430ca8f913cf4d_033.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b6e6b2cc645864946cf7ad0e48599ea9_H033%20-%20Deus%20e%20Pai%20a%20Ti%20Louvamos.mp3"
   },
   {
     "number": 34,
     "title": "estrela da manhã",
     "pageUrl": "https://hinar.io/034-estrela-da-manhã",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/126f60fd019b366099ccc00fe9ac3c25_034.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/126f60fd019b366099ccc00fe9ac3c25_034.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/400980e176dd61fe1f35f051d28ccea4_H034%20-%20Jesus,%20Estrela%20da%20Manh%C3%A3.mp3"
   },
   {
     "number": 35,
     "title": "palácios de marfim",
     "pageUrl": "https://hinar.io/035-palácios-de-marfim",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/023e83803be2c866be39392ced229881_035.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/023e83803be2c866be39392ced229881_035.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/873ce82262821006abfe6a71814e039a_H035%20-%20Pal%C3%A1cios%20de%20Marfim.mp3"
   },
   {
     "number": 36,
     "title": "o nome do amado",
     "pageUrl": "https://hinar.io/036-o-nome-do-amado!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8f24a30ba27be60685dec2f9866fdedb_036.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8f24a30ba27be60685dec2f9866fdedb_036.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ff0a0652c5f8f87fa8417ab016a9efb8_H036%20-%20Teu%20Nome,%20%C3%93%20Amado!.mp3"
   },
   {
     "number": 37,
     "title": "rocha eterna",
     "pageUrl": "https://hinar.io/037-rocha-eterna",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/7747cc4cbadfccce107b8d310b97fe91_037.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/7747cc4cbadfccce107b8d310b97fe91_037.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/53f0e88f4989d7795585962f90e0e703_H037%20-%20Rocha%20Eterna.mp3"
   },
   {
     "number": 38,
     "title": "o véu rasgado",
     "pageUrl": "https://hinar.io/038-o-véu-rasgado",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/397a19f57fab81ee7e28e202d38cc072_038.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/397a19f57fab81ee7e28e202d38cc072_038.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/362c6461ac4c6db6e8dd7f4145d653f8_Hino%20038%20-%20Rasgou.mp3"
   },
   {
     "number": 39,
     "title": "ao nosso deus e pai",
     "pageUrl": "https://hinar.io/039-ao-nosso-deus-e-pai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/dc71f9a3c6fd0f0fd28786037024f808_039.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/dc71f9a3c6fd0f0fd28786037024f808_039.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/9b98e06b0cd163931aee00a7cdc8271b_H039%20-%20Ao%20Nosso%20Deus%20e%20Pai.mp3"
   },
   {
     "number": 40,
     "title": "senhor te adoramos",
     "pageUrl": "https://hinar.io/040-senhor-te-adoramos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/1bec559368b847a656cd4e1be69dfdfe_040.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/1bec559368b847a656cd4e1be69dfdfe_040.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/5ca5b75ca8f35231515a5eaa7e954531_H040%20-%20Senhor,%20Te%20Adoramos.mp3"
   },
   {
     "number": 41,
     "title": "louvamos te Ó pai",
     "pageUrl": "https://hinar.io/041-louvamos-te-Ó-pai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/dcb238e0cc11a3dd71f1c84ca9bef982_041.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/dcb238e0cc11a3dd71f1c84ca9bef982_041.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/9d8991d0ef76077bca0e8ef5ca02b9b7_H041%20-%20Louvamos-Te,%20%C3%93%20Deus!.mp3"
   },
   {
     "number": 42,
     "title": "a deus seja a glória",
     "pageUrl": "https://hinar.io/042-a-deus-seja-a-glória",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/cbee2438818611d7c54bbbc75e045cd7_042.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/cbee2438818611d7c54bbbc75e045cd7_042.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/1a93eaa464d9f13dedbb3772ba810545_H042%20-%20A%20Deus%20Seja%20a%20Gl%C3%B3ria.mp3"
   },
   {
     "number": 43,
     "title": "santo santo santo",
     "pageUrl": "https://hinar.io/043-santo-santo-santo!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d4e6d8487ca52dd2287016ef5689bed0_043.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d4e6d8487ca52dd2287016ef5689bed0_043.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/48fcd9a8c7de709643113fd56fc34e2c_H043%20-%20Santo,%20Santo,%20Santo!.mp3"
   },
   {
     "number": 44,
     "title": "glória ao cordeiro",
     "pageUrl": "https://hinar.io/044-glória-ao-cordeiro",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a08fa5b157b67d9900d3e70e77d40f06_044.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a08fa5b157b67d9900d3e70e77d40f06_044.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/8b23ff190878390f7c542819756811ca_Hino%20044%20-%20Gl%C3%B3ria%20ao%20Cordeiro.mp3"
   },
   {
     "number": 45,
     "title": "ao que está sentado",
     "pageUrl": "https://hinar.io/045-ao-que-está-sentado",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/26c18baa7c0f219c4a5aa41af26b214f_045.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/26c18baa7c0f219c4a5aa41af26b214f_045.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/6ade7f448ea282f374857d74f7f32ce6_H045%20-%20Ao%20Que%20Est%C3%A1%20Sentado.mp3"
   },
   {
     "number": 46,
     "title": "amor sublime",
     "pageUrl": "https://hinar.io/046-amor-sublime",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ab7e27cc804a0b7268e5a71c9d724f6e_046.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ab7e27cc804a0b7268e5a71c9d724f6e_046.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/659871d7cc3f4824399ed481ca1f9c77_H046%20-%20Amor%20Sublime.mp3"
   },
   {
     "number": 47,
     "title": "tema encantador",
     "pageUrl": "https://hinar.io/047-tema-encantador",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b3c99c0155d2bbb0041a532ac5b11933_047.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b3c99c0155d2bbb0041a532ac5b11933_047.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/0e1f24590aa94e8305831bae984b8da2_H047%20-%20Tema%20Encantador.mp3"
   },
   {
     "number": 48,
     "title": "terno salvador",
     "pageUrl": "https://hinar.io/048-terno-salvador",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6c5151f40bc783e49339271a7462376a_048.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6c5151f40bc783e49339271a7462376a_048.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/806eaac2fdab9a6477057af5e9961b42_Hino%20048%20-%20Terno%20Salvador%20-%20Meet%20Me%20There,%20Be%20In%20Time%20(De%20Mi%20Tierno%20Salvador).mp3"
   },
   {
     "number": 49,
     "title": "nosso tema",
     "pageUrl": "https://hinar.io/049-nosso-tema",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c4617f66f6335604e7682a6f0317c633_H49%20-%20Nosso%20Tema.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c4617f66f6335604e7682a6f0317c633_H49%20-%20Nosso%20Tema.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/71af768e08fa3359a44397921ab0f36a_Hino%20049%20-%20Nosso%20Tema.mp3"
   },
   {
     "number": 50,
     "title": "o amor de jesus",
     "pageUrl": "https://hinar.io/050-o-amor-de-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/84953d62b41ad6ded3450a0673bc4f7c_050.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/84953d62b41ad6ded3450a0673bc4f7c_050.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/5f481b74953f75aaa6c5c7d57d4f97f9_Hino%20050%20-%20O%20Amor%20de%20Jesus.mp3"
   },
   {
     "number": 51,
     "title": "grata memória",
     "pageUrl": "https://hinar.io/051-grata-memória",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c6f516b010e10d32c05add44d1a32000_051.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c6f516b010e10d32c05add44d1a32000_051.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/10b9ee8e39138e993e880a2feb19f8aa_Hino%20051%20-%20Grata%20Mem%C3%B3ria.mp3"
   },
   {
     "number": 52,
     "title": "promessa de deus",
     "pageUrl": "https://hinar.io/052-promessa-de-deus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/05c723ef4db19e3163b9d98088aa5a65_052.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/05c723ef4db19e3163b9d98088aa5a65_052.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/118e73aa947f3d19af8e30338b47be42_Hino%20052%20-%20Promessa%20de%20Deus.mp3"
   },
   {
     "number": 53,
     "title": "hoje remidos",
     "pageUrl": "https://hinar.io/053-hoje-remidos!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/acb77ec7047599fc81f415f75d0fa2bb_053.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/acb77ec7047599fc81f415f75d0fa2bb_053.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/bc98b2bb4f4ef1b642d3b3b35b2c79d8_Hino%20053%20-%20Hoje%20Remidos!.mp3"
   },
   {
     "number": 54,
     "title": "cristo ressuscitou",
     "pageUrl": "https://hinar.io/054-cristo-ressuscitou",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/1ed2c2ba24c623c828372d71cbc11753_Hino%20054%20-%20Cristo%20J%C3%A1%20Ressuscitou%20-%20Worgan,%20Easter%20Hymn%20%28Chris.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/1ed2c2ba24c623c828372d71cbc11753_Hino%20054%20-%20Cristo%20J%C3%A1%20Ressuscitou%20-%20Worgan,%20Easter%20Hymn%20%28Chris.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ccc9a2e1a95163197a9919ef6f92074d_Hino%20054%20-%20Cristo%20J%C3%A1%20Ressuscitou.mp3"
   },
   {
     "number": 55,
     "title": "amor divino e terno",
     "pageUrl": "https://hinar.io/055-amor-divino-e-terno!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/18927f422944fd3b48202ae3bfa814b5_055.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/18927f422944fd3b48202ae3bfa814b5_055.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7cc2da0b91ef5ab91d68a33154cb6e67_Hino%20055%20-%20Oh!%20Que%20Amor%20Divino!.mp3"
   },
   {
     "number": 56,
     "title": "rompe a aurora",
     "pageUrl": "https://hinar.io/056-rompe-a-aurora",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/789ea8419c9088e574000fc829241bc4_056.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/789ea8419c9088e574000fc829241bc4_056.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/6180c9308da7e94c4b10be730618a908_Hino%20056%20-%20Rompe%20a%20Aurora.mp3"
   },
   {
     "number": 57,
     "title": "a cristo contemplamos",
     "pageUrl": "https://hinar.io/057-a-cristo-contemplamos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/2d6383c4fcc13dc0c170cd13eed6791a_057.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/2d6383c4fcc13dc0c170cd13eed6791a_057.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f7d7775b3b35e0d97b96dfdb4b6ac153_Hino%20057%20-%20Te%20Contemplamos.mp3"
   },
   {
     "number": 58,
     "title": "graças por teu padecer",
     "pageUrl": "https://hinar.io/058-graças-por-teu-padecer",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/35902fe135aa513737b37b406f8d045c_058.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/35902fe135aa513737b37b406f8d045c_058.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7f194f467b2a6710c7be5a7067f34593_Hino%20058%20-%20Gra%C3%A7as%20Por%20Teu%20Padecer.mp3"
   },
   {
     "number": 59,
     "title": "somente em teu louvor",
     "pageUrl": "https://hinar.io/059-somente-em-teu-louvor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ad5315fd1940d9a8da7cb879923ef2ca_059.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ad5315fd1940d9a8da7cb879923ef2ca_059.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ddc5b48e5c7817d161f60841b102af31_Hino%20059%20-%20Somente%20Em%20Teu%20Louvor.mp3"
   },
   {
     "number": 60,
     "title": "teu nome Ó jesus",
     "pageUrl": "https://hinar.io/060-teu-nome-Ó-jesus!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c6f54bafdf086b23c1581057bbb6efcb_060.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c6f54bafdf086b23c1581057bbb6efcb_060.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/582329d2e44e832b79d96656bc6d1d2d_Hino%20060%20-%20Teu%20Nome,%20%C3%93%20Jesus!.mp3"
   },
   {
     "number": 61,
     "title": "humilhação e exaltação",
     "pageUrl": "https://hinar.io/061-humilhação-e-exaltação",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c52be21b28ea6a038f1f5e1f3ccdfa41_Hino%20061%20-%20Te%20Humilhaste,%20Senhor%20-%20Duke%20Street%20%28Te%20Anonadaste.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c52be21b28ea6a038f1f5e1f3ccdfa41_Hino%20061%20-%20Te%20Humilhaste,%20Senhor%20-%20Duke%20Street%20%28Te%20Anonadaste.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7e436fd59d72c414e6d69bfafa128c31_Hino%20061%20-%20Te%20Humilhaste,%20Senhor.mp3"
   },
   {
     "number": 62,
     "title": "não a nós seja a glória",
     "pageUrl": "https://hinar.io/062-não-a-nós-seja-a-glória",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/937cc88148add45423f7d42ec3ab60d4_062.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/937cc88148add45423f7d42ec3ab60d4_062.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/50058ae66cfeb87b180d62938f5cbe5e_Hino%20062%20-%20N%C3%A3o%20a%20N%C3%B3s%20Seja%20a%20Gl%C3%B3ria.mp3"
   },
   {
     "number": 63,
     "title": "a cristo coroai",
     "pageUrl": "https://hinar.io/063-a-cristo-coroai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/cd77f88ad3c2fbd7738e0fbd713929af_063.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/cd77f88ad3c2fbd7738e0fbd713929af_063.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/6c1fae9abe5cafb2d579ef4889e98678_Hino%20063%20-%20A%20Cristo%20Coroai.mp3"
   },
   {
     "number": 64,
     "title": "exaltado em glória",
     "pageUrl": "https://hinar.io/064-exaltado-em-glória",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/cfb60306907823e27beaa5d09e8a754f_064.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/cfb60306907823e27beaa5d09e8a754f_064.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/420d3c7bb6fce72db356b91da4d734fe_Hino%20064%20-%20Exaltado%20Na%20Eterna%20Gl%C3%B3ria.mp3"
   },
   {
     "number": 65,
     "title": "coro santo",
     "pageUrl": "https://hinar.io/065-coro-santo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/586798b67e918249e2c08096e9c2e259_065.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/586798b67e918249e2c08096e9c2e259_065.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b5ea8ac7bd1011a4ab34a06c31e9deb0_Hino%20065%20-%20Coro%20Santo.mp3"
   },
   {
     "number": 66,
     "title": "nos altos céus",
     "pageUrl": "https://hinar.io/066-nos-altos-céus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/0999fdaeb2ec9377e07af0e765463457_066.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/0999fdaeb2ec9377e07af0e765463457_066.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/1332fbbc3d60a8fa6ad62564d9b61959_Hino%20066%20-%20Nos%20Altos%20C%C3%A9us.mp3"
   },
   {
     "number": 67,
     "title": "aleluia ressurgiu",
     "pageUrl": "https://hinar.io/067-aleluia-ressurgiu!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8dd7d7fdad93986c85fc1e6db13d9a0a_067.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8dd7d7fdad93986c85fc1e6db13d9a0a_067.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/be325c33297bcbea122db88a1cbc16c0_Hino%20067%20-%20Aleluia,%20Ressurgiu!.mp3"
   },
   {
     "number": 68,
     "title": "cordeiro imaculado",
     "pageUrl": "https://hinar.io/068-cordeiro-imaculado",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6b8442feb24b941570c79b5ace0572f4_Hino%20068%20-%20Cordeiro%20Imaculado%20-%20Confidence.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6b8442feb24b941570c79b5ace0572f4_Hino%20068%20-%20Cordeiro%20Imaculado%20-%20Confidence.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/13dd6b8608097dcf3264531948b2c8e2_Hino%20068%20-%20Cordeiro%20Imaculado.mp3"
   },
   {
     "number": 69,
     "title": "nosso cordial louvor",
     "pageUrl": "https://hinar.io/069-nosso-cordial-louvor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/5d79945ae7dde841a620dbdd276b451e_069.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/5d79945ae7dde841a620dbdd276b451e_069.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/4036208f010415f46f37bdee834f7acd_Hino%20069%20-%20Nosso%20Cordial%20Louvor.mp3"
   },
   {
     "number": 70,
     "title": "glória damos a jesus",
     "pageUrl": "https://hinar.io/070-glória-damos-a-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/76fc785a9ff82c283afd6a52b76066d2_070.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/76fc785a9ff82c283afd6a52b76066d2_070.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a13c75a96fce88dc422db746a6899e97_Hino%20070%20-%20Gl%C3%B3ria%20Damos%20a%20Jesus.mp3"
   },
   {
     "number": 71,
     "title": "louvamos te jesus",
     "pageUrl": "https://hinar.io/071-louvamos-te-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/40276b5cbae345f3020960ae643eb5ee_071.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/40276b5cbae345f3020960ae643eb5ee_071.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/2d38656f57392bdd11ea9ba65f785034_Hino%20071%20-%20Te%20Louvamos%20Jesus.mp3"
   },
   {
     "number": 72,
     "title": "Ó deus e pai",
     "pageUrl": "https://hinar.io/072-Ó-deus-e-pai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6d2e06ad177251bcf85ccb5b24507cc7_072.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6d2e06ad177251bcf85ccb5b24507cc7_072.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/298adc49dfca1e3bcdcf0ba85fd985b0_Hino%20072%20-%20%C3%93%20Deus%20e%20Pai.mp3"
   },
   {
     "number": 73,
     "title": "a ti que morreste",
     "pageUrl": "https://hinar.io/073-a-ti-que-morreste",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c21a55c6192f8b71b0422a8aab453e65_073.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c21a55c6192f8b71b0422a8aab453e65_073.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f8ed96f4b8e477a847094a0113c4b42d_Hino%20073%20-%20A%20Ti%20Que%20Morreste.mp3"
   },
   {
     "number": 74,
     "title": "nome sem igual",
     "pageUrl": "https://hinar.io/074-nome-sem-igual",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/98388e7374ba67c0336111c3cef85524_074.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/98388e7374ba67c0336111c3cef85524_074.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/c7d6cceda94aad3fe538c69d827053fe_Hino%20074%20-%20Nome%20Sem%20Igual.mp3"
   },
   {
     "number": 75,
     "title": "adorado salvador",
     "pageUrl": "https://hinar.io/075-adorado-salvador",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/0fdd3fd5f5effd4a2684e2d6a5ea9517_075.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/0fdd3fd5f5effd4a2684e2d6a5ea9517_075.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b3c59c890eabb7d11f329fcd21e43b10_Hino%20075%20-%20Adorado%20Salvador.mp3"
   },
   {
     "number": 76,
     "title": "até à cruz",
     "pageUrl": "https://hinar.io/076-até-à-cruz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e31e3e7e979f6732e859b976bb074bd5_076.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e31e3e7e979f6732e859b976bb074bd5_076.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/e35982978d563dbb4d45867920e0eb5f_Hino%20076%20-%20At%C3%A9%20a%20Cruz.mp3"
   },
   {
     "number": 77,
     "title": "recordação",
     "pageUrl": "https://hinar.io/077-recordação",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/dac1736f1310226ecbb117c673602f65_077.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/dac1736f1310226ecbb117c673602f65_077.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ddb3c8a97544724b1e16e6c989f16db5_Hino%20077%20-%20Recorda%C3%A7%C3%A3o%20do%20Teu%20Amor.mp3"
   },
   {
     "number": 78,
     "title": "morreste por nós",
     "pageUrl": "https://hinar.io/078-morreste-por-nós",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/59a1fe1953adba8f72e7a0799af745f6_078.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/59a1fe1953adba8f72e7a0799af745f6_078.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ad9ffbc0a8f5ce83a037c8d5f96446ac_Hino%20078%20-%20Morreste%20Tu%20Por%20N%C3%B3s.mp3"
   },
   {
     "number": 79,
     "title": "meditação sublime",
     "pageUrl": "https://hinar.io/079-meditação-sublime",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/03f3dc7119f5377691fff3fb54541273_079.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/03f3dc7119f5377691fff3fb54541273_079.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/19276d7067e5c19cc6b95cdb25d14124_Hino%20079%20-%20Medita%C3%A7%C3%A3o%20Sublime.mp3"
   },
   {
     "number": 80,
     "title": "cristo ressuscitou",
     "pageUrl": "https://hinar.io/080-cristo-ressuscitou!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/0d0a6e4e1688c644091713adcb80242c_080.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/0d0a6e4e1688c644091713adcb80242c_080.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b415180f3ad4b3532fd4acbb6a7b6060_Hino%20080%20-%20Aleluia!%20Cristo%20Ressuscitou!.mp3"
   },
   {
     "number": 81,
     "title": "ao nome excelso",
     "pageUrl": "https://hinar.io/081-ao-nome-excelso",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/bb30fc490e5e93c04f0ecc346da53cc6_081.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/bb30fc490e5e93c04f0ecc346da53cc6_081.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/89e63041c088c15aa8417c381241eea0_Hino%20081%20-%20Ao%20Nome%20Excelso.mp3"
   },
   {
     "number": 82,
     "title": "oh quão ensanguentada",
     "pageUrl": "https://hinar.io/082-oh!-quão-ensanguentada!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/68dbc3900b58b5634eeed1310fba91a3_082.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/68dbc3900b58b5634eeed1310fba91a3_082.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7c0ccce824cffcbe9faa1326718ba694_Hino%20082%20-%20Oh!%20Qu%C3%A3o%20Ensanguentada!.mp3"
   },
   {
     "number": 83,
     "title": "cantai enfim cantai",
     "pageUrl": "https://hinar.io/083-cantai-enfim-cantai",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b5a5efe1f5fe3ded6560655bb64a659a_083%20-%20Cantai,%20Enfim%20Cantai.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b5a5efe1f5fe3ded6560655bb64a659a_083%20-%20Cantai,%20Enfim%20Cantai.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7268d19d980f61e83eda41f4e432a767_083%20-%20Cantai%20Enfim,%20Cantai!.mp3"
   },
   {
     "number": 84,
     "title": "o valor do sangue",
     "pageUrl": "https://hinar.io/084-o-valor-do-sangue",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/869e3ce510cbecedae3c7ab49aff0422_H84%20-%20O%20Valor%20do%20Sangue.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/869e3ce510cbecedae3c7ab49aff0422_H84%20-%20O%20Valor%20do%20Sangue.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/883da8c56a241dc7704b8c78bd9851ca_084%20-%20O%20Valor%20do%20Sangue.mp3"
   },
   {
     "number": 85,
     "title": "a senda de jesus",
     "pageUrl": "https://hinar.io/085-a-senda-de-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ef1fd45da1fe6c4e1a150a5de21d51b2_H85%20-%20A%20Senda%20de%20Jesus.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ef1fd45da1fe6c4e1a150a5de21d51b2_H85%20-%20A%20Senda%20de%20Jesus.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/4d6d4fadf92ff18bd1617ad3080a5cf2_085%20-%20A%20Senda%20de%20Jesus.mp3"
   },
   {
     "number": 86,
     "title": "a morte ele venceu",
     "pageUrl": "https://hinar.io/086-a-morte-ele-venceu-",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6d449bfa38032b5bd3c8f17fc4e4cd92_H86%20-%20A%20Morte%20Ele%20Venceu.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6d449bfa38032b5bd3c8f17fc4e4cd92_H86%20-%20A%20Morte%20Ele%20Venceu.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f256079be5dcd141931a3471a8d4be69_086%20-%20A%20Morte%20Ele%20Venceu.mp3"
   },
   {
     "number": 87,
     "title": "bendito amor de deus",
     "pageUrl": "https://hinar.io/087-bendito-amor-de-deus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/5dac8814a3917a1e22d3b0638dd6cd96_H87%20-%20Bendito%20Amor%20de%20Deus.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/5dac8814a3917a1e22d3b0638dd6cd96_H87%20-%20Bendito%20Amor%20de%20Deus.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a64274c8fca1a723660a704612157e68_087%20-%20Bendito%20Amor%20de%20Deus.mp3"
   },
   {
     "number": 88,
     "title": "nós filhos te louvamos",
     "pageUrl": "https://hinar.io/088-nós-filhos-te-louvamos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e7b5ca07cf01cfccb2516d7980362819_H88%20-%20N%C3%B3s%20Filhos,%20Te%20Louvamos.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e7b5ca07cf01cfccb2516d7980362819_H88%20-%20N%C3%B3s%20Filhos,%20Te%20Louvamos.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/89760e50f9a115c0df117efcf0520e0c_H088%20-%20N%C3%B3s%20Filhos,%20Te%20Louvamos.mp3"
   },
   {
     "number": 89,
     "title": "o plano eterno de deus",
     "pageUrl": "https://hinar.io/089-o-plano-eterno-de-deus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a5f405434751a5b175864c7034031990_H89%20-%20O%20Plano%20Eterno%20de%20Deus.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a5f405434751a5b175864c7034031990_H89%20-%20O%20Plano%20Eterno%20de%20Deus.mp3",
+    "cantadoUrl": null
   },
   {
     "number": 90,
     "title": "para sempre",
     "pageUrl": "https://hinar.io/090-para-sempre",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e1269ed8ccf474b952ce89433b32a951_H90%20-%20Para%20Sempre.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e1269ed8ccf474b952ce89433b32a951_H90%20-%20Para%20Sempre.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/740aad0e75422fadaa92ed39b1bb07d5_H090%20-%20Para%20Sempre.mp3"
   },
   {
     "number": 91,
     "title": "seu nome ao ecoar",
     "pageUrl": "https://hinar.io/091-seu-nome-ao-ecoar",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6bdb9d1baeeed3f6055479e709de0b74_H91%20-%20Seu%20Nome%20ao%20Ecoar.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6bdb9d1baeeed3f6055479e709de0b74_H91%20-%20Seu%20Nome%20ao%20Ecoar.mp3",
+    "cantadoUrl": null
   },
   {
     "number": 92,
     "title": "homem se fez",
     "pageUrl": "https://hinar.io/092-homem-se-fez",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/28041b32ab9b687bfbe6fd29ef393dd6_H92%20-%20Homem%20Se%20Fez.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/28041b32ab9b687bfbe6fd29ef393dd6_H92%20-%20Homem%20Se%20Fez.mp3",
+    "cantadoUrl": null
   },
   {
     "number": 93,
     "title": "fonte da vida eterna",
     "pageUrl": "https://hinar.io/093-fonte-da-vida-eterna",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a746f3663037f5beb6a5bd9a78cc6e8f_H93%20-%20Fonte%20da%20Vida%20Eterna.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a746f3663037f5beb6a5bd9a78cc6e8f_H93%20-%20Fonte%20da%20Vida%20Eterna.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f19b6dbb76088267075bd2409cb5d050_H093%20-%20Fonte%20da%20Vida%20Eterna.mp3"
   },
   {
     "number": 94,
     "title": "príncipe da paz",
     "pageUrl": "https://hinar.io/094-príncipe-da-paz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c723bd516bb2757222ea8da44aad451c_H94%20-%20Pr%C3%ADncipe%20da%20Paz.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c723bd516bb2757222ea8da44aad451c_H94%20-%20Pr%C3%ADncipe%20da%20Paz.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cc06057a40b39052e1644979c0803746_H094%20-%20Pr%C3%ADncipe%20da%20Paz.mp3"
   },
   {
     "number": 95,
     "title": "aflito ferido e oprimido",
     "pageUrl": "https://hinar.io/095-aflito-ferido-e-oprimido",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/43fa7cf10a29786aee89109d5bbb396b_Hino%2095%20-%20Ferido,%20Aflito%20e%20Oprimido_1.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/43fa7cf10a29786aee89109d5bbb396b_Hino%2095%20-%20Ferido,%20Aflito%20e%20Oprimido_1.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/03a2093ed738d954805e2daff316ef48_H095%20-%20Aflito,%20Ferido%20e%20Oprimido.mp3"
   },
   {
     "number": 101,
     "title": "nos tens agora",
     "pageUrl": "https://hinar.io/101-nos-tens-agora",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/587a495a05b729836a992d98ba26a500_101.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/587a495a05b729836a992d98ba26a500_101.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/10ade8484802fe63af4070644e2c5e06_Hino%20101%20-%20A%20N%C3%B3s%20Tens%20Agora,%20Senhor.mp3"
   },
   {
     "number": 102,
     "title": "bom amigo",
     "pageUrl": "https://hinar.io/102-bom-amigo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/008878cb6657f16b4530208eab8f7042_102.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/008878cb6657f16b4530208eab8f7042_102.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/474ab6a11164782f35fb27c4db76bb08_Hino%20102%20-%20Bom%20Amigo.mp3"
   },
   {
     "number": 103,
     "title": "doce comunhão",
     "pageUrl": "https://hinar.io/103-doce-comunhão",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ebe91ca797455f81473e2a774535f0d8_103.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ebe91ca797455f81473e2a774535f0d8_103.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/2a57756c99dd20897b71780d0950f815_Hino%20103%20-%20Doce%20Comunh%C3%A3o.mp3"
   },
   {
     "number": 104,
     "title": "cada momento",
     "pageUrl": "https://hinar.io/104-cada-momento",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/157b864d98c23240380880f31a23b1a5_104.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/157b864d98c23240380880f31a23b1a5_104.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/b79032c49a47ebb65c814289e1c0dbda_Hino%20104%20-%20Cada%20Momento.mp3"
   },
   {
     "number": 105,
     "title": "nossa voz em oração",
     "pageUrl": "https://hinar.io/105-nossa-voz-em-oração",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c37ddf2c9907383d6dff4d75dc871b50_105.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c37ddf2c9907383d6dff4d75dc871b50_105.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cc6a049c045cee2b993238277a29364c_Hino%20105%20-%20Quando%20a%20Ti%20Nos%20Achegamos.mp3"
   },
   {
     "number": 106,
     "title": "a ti Ó pai em oração",
     "pageUrl": "https://hinar.io/106-a-ti-Ó-pai-em-oração",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8c9d41825d5edcc9f123e370adc5273b_106.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8c9d41825d5edcc9f123e370adc5273b_106.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cfb52a7bf938138ddc9b33d1462f59b1_Hino%20106%20-%20A%20Ti,%20%C3%93%20Pai,%20Em%20Ora%C3%A7%C3%A3o.mp3"
   },
   {
     "number": 107,
     "title": "deus proverá",
     "pageUrl": "https://hinar.io/107-deus-proverá",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/fd84266f71f57806401c10d48e06b8ed_107.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/fd84266f71f57806401c10d48e06b8ed_107.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ad55996fbec75b32b5741e3bc17cfd59_Hino%20107%20-%20Deus%20Prover%C3%A1.mp3"
   },
   {
     "number": 108,
     "title": "louvores damos",
     "pageUrl": "https://hinar.io/108-louvores-damos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d83df9ab5d90d4039e420ea0d3805ad4_108.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d83df9ab5d90d4039e420ea0d3805ad4_108.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/426a02baa9276df5fcae7d30f946bd71_Hino%20108%20-%20Doce%20Consolo.mp3"
   },
   {
     "number": 109,
     "title": "escutar tua voz",
     "pageUrl": "https://hinar.io/109-escutar-tua-voz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/013c43e1265f2e704d90c1b4a668cd7b_109.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/013c43e1265f2e704d90c1b4a668cd7b_109.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/5125b615e29f733467c8ddcf44792dbb_Hino%20109%20-%20Qu%C3%A3o%20Bom%20Escutar%20Tua%20Voz!.mp3"
   },
   {
     "number": 110,
     "title": "mais de ti jesus",
     "pageUrl": "https://hinar.io/110-mais-de-ti-jesus",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a8c3cf0964d267d8f33ad31b60e450dd_110.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a8c3cf0964d267d8f33ad31b60e450dd_110.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/38f163495b9d3abf55527d78fcbaf61d_Hino%20110%20-%20Mais%20de%20Jesus.mp3"
   },
   {
     "number": 111,
     "title": "pão sem par",
     "pageUrl": "https://hinar.io/111-pão-sem-par",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b7f4512ae5ac6e1eaa15bb7071de3319_111.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b7f4512ae5ac6e1eaa15bb7071de3319_111.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ad674986b5ff89e5e48fe45316ee4a3f_Hino%20111%20-%20P%C3%A3o%20Sem%20Par.mp3"
   },
   {
     "number": 112,
     "title": "com mil línguas",
     "pageUrl": "https://hinar.io/112-com-mil-línguas",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6ba112f396d406a34fef6768284ea57d_112.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6ba112f396d406a34fef6768284ea57d_112.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/65080b296503d0da9c503852be17cd6a_Hino%20112%20-%20Com%20Mil%20L%C3%ADnguas%20-%20Azmon%20(O%20For%20a%20Thousand%20Tongues%20to%20Sing).mp3"
   },
   {
     "number": 113,
     "title": "nosso bom salvador",
     "pageUrl": "https://hinar.io/113-nosso-bom-salvador",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/4e0fd20e654e4471ad1b49c051644d71_113.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/4e0fd20e654e4471ad1b49c051644d71_113.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/41f6663a13d41d79e3ee51fed98a1326_Hino%20113%20-%20Nosso%20Bom%20Salvador.mp3"
   },
   {
     "number": 114,
     "title": "primeiro amor",
     "pageUrl": "https://hinar.io/114-primeiro-amor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b723ad54c0676b3bcffb5ce812982394_114.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b723ad54c0676b3bcffb5ce812982394_114.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/3b13a18521e58a5493d6028adb7f7cbd_Hino%20114%20-%20Primeiro%20Amor.mp3"
   },
   {
     "number": 115,
     "title": "perto mais perto",
     "pageUrl": "https://hinar.io/115-perto-mais-perto",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/58ff375e9232c450e37f9a55f05622da_115.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/58ff375e9232c450e37f9a55f05622da_115.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/47a91c2b2d2137f05e3b9b7219eac8f1_Hino%20115%20-%20Perto,%20Mais%20Perto.mp3"
   },
   {
     "number": 116,
     "title": "mais perto",
     "pageUrl": "https://hinar.io/116-mais-perto",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/663181afa7e5f5c4f130e64ff18c177a_116.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/663181afa7e5f5c4f130e64ff18c177a_116.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/45e822707afff6b87dab8ce84ea05f87_Hino%20116%20-%20Mais%20Perto.mp3"
   },
   {
     "number": 117,
     "title": "quão doce paz",
     "pageUrl": "https://hinar.io/117-quão-doce-paz!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/875401eb4a361dc647cc0a702bbc7e86_117.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/875401eb4a361dc647cc0a702bbc7e86_117.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/bbf56301cbe8aea7a2d4f4084ad676a1_Hino%20117%20-%20Paz,%20Paz,%20Qu%C3%A3o%20Doce%20Paz!.mp3"
   },
   {
     "number": 118,
     "title": "faze o que queres",
     "pageUrl": "https://hinar.io/118-faze-o-que-queres",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/366c042a0d519380e8958ba20f2f9eee_118.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/366c042a0d519380e8958ba20f2f9eee_118.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7e6e01adcadf7ae808426640a3c551f4_Hino%20118%20-%20Faze%20o%20Que%20Queres.mp3"
   },
   {
     "number": 119,
     "title": "peregrinos",
     "pageUrl": "https://hinar.io/119-peregrinos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d13f48c33ce1bcf6ac68c0971da6118b_119.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d13f48c33ce1bcf6ac68c0971da6118b_119.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/9076368313b7dd3302ce2615d7735132_Hino%20119%20-%20Peregrinos.mp3"
   },
   {
     "number": 120,
     "title": "nosso pastor",
     "pageUrl": "https://hinar.io/120-nosso-pastor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/439b3bed0937a881ef0277f9ea1fc998_120%20-%20Nosso%20Pastor%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/439b3bed0937a881ef0277f9ea1fc998_120%20-%20Nosso%20Pastor%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/d2be75937d26d7055f279d0db045060c_120%20-%20Nosso%20Pastor%20-%20cantado.mp3"
   },
   {
     "number": 121,
     "title": "ensina nos",
     "pageUrl": "https://hinar.io/121-ensina-nos",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ddf2d98f552cb05d571bde4c82f8b05d_121%20-%20Ensina-nos%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ddf2d98f552cb05d571bde4c82f8b05d_121%20-%20Ensina-nos%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/393bcfea12806827b63a3fca1b218c09_121%20-%20Ensina-nos%20-%20cantado.mp3"
   },
   {
     "number": 122,
     "title": "paciente e fiel pastor",
     "pageUrl": "https://hinar.io/122-paciente-e-fiel-pastor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/1473d6af2a0dc1ca65dbed985c7da22d_122%20-%20Paciente%20e%20Fiel%20Pastor%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/1473d6af2a0dc1ca65dbed985c7da22d_122%20-%20Paciente%20e%20Fiel%20Pastor%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/516587c7c1c5ea4f23a3c0625ae6feed_H122%20-%20Eq.mp3"
   },
   {
     "number": 123,
     "title": "manancial de todo gozo",
     "pageUrl": "https://hinar.io/123-manancial-de-todo-gozo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/126bfdadccf27ad909a8a96ca18fddc8_123.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/126bfdadccf27ad909a8a96ca18fddc8_123.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/bb17f15a70c43981f6971c1bcc53e923_Hino%20123%20-%20Manancial%20de%20Todo%20Gozo.mp3"
   },
   {
     "number": 124,
     "title": "precioso nome",
     "pageUrl": "https://hinar.io/124-precioso-nome",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ed58780bfe14b3bee5c40fa0bcaaeb88_124.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ed58780bfe14b3bee5c40fa0bcaaeb88_124.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/17b751dc5ed6d55a64b99a7e175e572b_Hino%20124%20-%20Precioso%20Nome.mp3"
   },
   {
     "number": 125,
     "title": "firmeza",
     "pageUrl": "https://hinar.io/125-firmeza",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/9c7fda7c251c28d50b57c1d0bc4bca3d_Hino%20125%20-%20Firmeza%20-%20On%20Christ%20The%20Solid%20Rock.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/9c7fda7c251c28d50b57c1d0bc4bca3d_Hino%20125%20-%20Firmeza%20-%20On%20Christ%20The%20Solid%20Rock.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/abc2741c18b41c67d0ac9e85873a7df4_Hino%20125%20-%20Firmeza.mp3"
   },
   {
     "number": 126,
     "title": "vem nos guiar",
     "pageUrl": "https://hinar.io/126-vem-nos-guiar",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d739bd9469f53cdc111148dbdbba11d1_126.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d739bd9469f53cdc111148dbdbba11d1_126.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/3b63625d4b787541331fdcc8b1725bdd_Hino%20126%20-%20Vem,%20Senhor,%20Vem%20Nos%20Guiar.mp3"
   },
   {
     "number": 127,
     "title": "toma nos senhor",
     "pageUrl": "https://hinar.io/127-toma-nos-senhor",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/32229a8e84290cb1b50ea34860313c7b_127.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/32229a8e84290cb1b50ea34860313c7b_127.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/42793bb5470b7cbde38bbc1443dea40d_Hino%20127%20-%20Toma.mp3"
   },
   {
     "number": 128,
     "title": "deus nos guarde",
     "pageUrl": "https://hinar.io/128-deus-nos-guarde",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8e1cb00c515d3fb3659315b23ea778d9_2dc33650233c0b2920c5c88b41185f86_213.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8e1cb00c515d3fb3659315b23ea778d9_2dc33650233c0b2920c5c88b41185f86_213.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/9df7c2f640dabd670838374cd9d331d5_b79322f25d397b5a99dba6a334fc8308_Hino%20213%20-%20Deus%20Nos%20Guarde.mp3"
   },
   {
     "number": 129,
     "title": "obedecer",
     "pageUrl": "https://hinar.io/129-obedecer",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8dd6ce426341376579b49af32ffde399_129.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8dd6ce426341376579b49af32ffde399_129.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/3d6601559f4e1ab9a468de9705ba36c7_Hino%20129%20-%20Obedecer.mp3"
   },
   {
     "number": 130,
     "title": "tua senda Ó mestre",
     "pageUrl": "https://hinar.io/130-tua-senda-Ó-mestre",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/377f10860d3dd674ea971591c15ab9e6_130.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/377f10860d3dd674ea971591c15ab9e6_130.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/4bd7a514ec19da504559d482aca7c4f6_Hino%20130%20-%20Tua%20Senda,%20%C3%93%20Mestre.mp3"
   },
   {
     "number": 131,
     "title": "cristo está conosco",
     "pageUrl": "https://hinar.io/131-cristo-está-conosco",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e4ae0cf7d748a08b6958ef97f538f3bc_131.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e4ae0cf7d748a08b6958ef97f538f3bc_131.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/a527e5a2858d7267bf052bb068c30ac4_Hino%20131%20-%20Cristo%20Est%C3%A1%20Conosco.mp3"
   },
   {
     "number": 132,
     "title": "para qualquer parte",
     "pageUrl": "https://hinar.io/132-para-qualquer-parte",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/7d53862adb8e8accde1d5e3c91e86c30_132.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/7d53862adb8e8accde1d5e3c91e86c30_132.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ffe03f9f20e06245c55275709f8a2ea2_Hino%20132%20-%20Para%20Qualquer%20Parte.mp3"
   },
   {
     "number": 133,
     "title": "nossa canção aceita",
     "pageUrl": "https://hinar.io/133-nossa-canção-aceita",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/ec41e0a8774e49504cd2b24f047def2c_133.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/ec41e0a8774e49504cd2b24f047def2c_133.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/539b6c9543648cb73fd6d7589a009477_Hino%20133%20-%20Nossa%20Can%C3%A7%C3%A3o%20Hoje%20Aceita.mp3"
   },
   {
     "number": 134,
     "title": "fé a vitória É",
     "pageUrl": "https://hinar.io/134-fé-a-vitória-É",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/3d9c619d04de639c3147fa0aee8e4957_134.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/3d9c619d04de639c3147fa0aee8e4957_134.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ff7a7d6fb27c3bd8c23eae066dd5bf94_Hino%20134%20-%20F%C3%A9,%20A%20Vit%C3%B3ria%20%C3%89.mp3"
   },
   {
     "number": 135,
     "title": "desperta Ó santo",
     "pageUrl": "https://hinar.io/135-desperta-Ó-santo!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/5c362c7c6ddcc59f96bdd7b4a73ff156_135.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/5c362c7c6ddcc59f96bdd7b4a73ff156_135.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/e08541209e8089c5bf82bf0a57f02fd7_Hino%20135%20-%20Desperta,%20%C3%93%20Santo!.mp3"
   },
   {
     "number": 136,
     "title": "estai firmes",
     "pageUrl": "https://hinar.io/136-estai-firmes!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/3f5027a9d402d5da5167af1dd3deb1d2_136.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/3f5027a9d402d5da5167af1dd3deb1d2_136.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/f4b4be722478f592e67e084a81217217_Hino%20136%20-%20Estai%20Por%20Cristo%20Firmes!%20-%20Geibel%20(Stand%20Up%20For%20Jesus).mp3"
   },
   {
     "number": 137,
     "title": "quando formos chamados",
     "pageUrl": "https://hinar.io/137-quando-formos-chamados",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/d2feb59cd874c2c356534e4fc7ec98bb_137.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/d2feb59cd874c2c356534e4fc7ec98bb_137.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/fe52bd4d43dbe2a3e497c257c7691d54_Hino%20137%20-%20Quando%20N%C3%B3s%20Formos%20Chamados%20-%20When%20The%20Roll%20Is%20Called%20Up%20Younder.mp3"
   },
   {
     "number": 138,
     "title": "indo à pátria",
     "pageUrl": "https://hinar.io/138-indo-à-pátria",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/eca4bafe3a1b35bf74028a869abee49f_138%20-%20Indo%20%C3%A0%20P%C3%A1tria%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/eca4bafe3a1b35bf74028a869abee49f_138%20-%20Indo%20%C3%A0%20P%C3%A1tria%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/009a17dd52fc5302956bc7b5cc23b077_138%20-%20Indo%20%C3%A0%20P%C3%A1tria%20-%20cantado.mp3"
   },
   {
     "number": 139,
     "title": "junto a ti",
     "pageUrl": "https://hinar.io/139-junto-a-ti",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/a5a2edcf0d94eac4dec5d51f3e9a67f4_139%20-%20Junto%20a%20Ti%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/a5a2edcf0d94eac4dec5d51f3e9a67f4_139%20-%20Junto%20a%20Ti%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/9bc4961795a49177363210c4d4644946_139%20-%20Junto%20a%20Ti%20-%20cantado.mp3"
   },
   {
     "number": 140,
     "title": "não haverá tribulação",
     "pageUrl": "https://hinar.io/140-não-haverá-tribulação",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6a9b7d87d3f47a6f64ff4431dfc3402b_140%20-%20N%C3%A3o%20Haver%C3%A1%20Tribula%C3%A7%C3%A3o%20-%20instrumental.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6a9b7d87d3f47a6f64ff4431dfc3402b_140%20-%20N%C3%A3o%20Haver%C3%A1%20Tribula%C3%A7%C3%A3o%20-%20instrumental.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cdb105a25d679f66b085707bf661a956_140%20-%20N%C3%A3o%20Haver%C3%A1%20Tribula%C3%A7%C3%A3o%20-%20cantado.mp3"
   },
   {
     "number": 141,
     "title": "face a face",
     "pageUrl": "https://hinar.io/141-face-a-face",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/16e5ce617da2b8e3edca696fa67cfa8a_141.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/16e5ce617da2b8e3edca696fa67cfa8a_141.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/ac56ad96df28b2c5791851b2dbbe9711_Hino%20141%20-%20Face%20a%20Face.mp3"
   },
   {
     "number": 142,
     "title": "luz na escuridão",
     "pageUrl": "https://hinar.io/142-luz-na-escuridão",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/32a4462daf0654be366d1575f15f432a_142.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/32a4462daf0654be366d1575f15f432a_142.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/1a199843cd54c4a3e70f274a2f2d8cc4_Hino%20142%20-%20Em%20Trevas%20Foi%20Nosso%20Viver.mp3"
   },
   {
     "number": 143,
     "title": "em breve jesus virá",
     "pageUrl": "https://hinar.io/143-em-breve-jesus-virá",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/0aebd9e52755ef74c6231e32e3d2f1dc_143.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/0aebd9e52755ef74c6231e32e3d2f1dc_143.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/932da2519f3d48b554e4a22afd927b27_Hino%20143%20-%20Jesus,%20Em%20Breve%20H%C3%A1s%20de%20Vir.mp3"
   },
   {
     "number": 144,
     "title": "Ó jesus bom pastor",
     "pageUrl": "https://hinar.io/144-Ó-jesus-bom-pastor!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/575065b42f0a6122276f18cea3652f99_144.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/575065b42f0a6122276f18cea3652f99_144.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/82aa0f0eac53db0edd9d0b79db5290c0_Hino%20144%20-%20Oh!%20Jesus,%20Bom%20Pastor!.mp3"
   },
   {
     "number": 145,
     "title": "sempre sempre",
     "pageUrl": "https://hinar.io/145-sempre-sempre",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/3f61b14af161ee5900a563c1bb9747f3_145.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/3f61b14af161ee5900a563c1bb9747f3_145.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/3271ea63afa381d4cb8028e074f99862_Hino%20145%20-%20Sempre,%20Sempre.mp3"
   },
   {
     "number": 146,
     "title": "um lar mui feliz",
     "pageUrl": "https://hinar.io/146-um-lar-mui-feliz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/4bca572c3d326b84faa88462e0de7fe6_146.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/4bca572c3d326b84faa88462e0de7fe6_146.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/3b8adb12e28ab9b9b3dc7ed142709e2b_Hino%20146%20-%20H%C3%A1%20Um%20Lar%20Mui%20Feliz.mp3"
   },
   {
     "number": 147,
     "title": "doce paz",
     "pageUrl": "https://hinar.io/147-doce-paz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/41f5c43ca1279696c05fc33f911453ed_147.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/41f5c43ca1279696c05fc33f911453ed_147.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/64566ec06f17e82882f1b439fbd472ee_Hino%20147%20-%20Doce%20Paz.mp3"
   },
   {
     "number": 148,
     "title": "nos levarás ao lar",
     "pageUrl": "https://hinar.io/148-nos-levarás-ao-lar",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/76d20fd9da82d5b26ef1e365ec7847b6_148.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/76d20fd9da82d5b26ef1e365ec7847b6_148.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/af288a73618030a70fa23ef7097da051_Hino%20148%20-%20Nos%20Levar%C3%A1s%20ao%20Lar.mp3"
   },
   {
     "number": 149,
     "title": "tu nos guias sempre",
     "pageUrl": "https://hinar.io/149-tu-nos-guias-sempre",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/4ec4d3f7fa133c2a5aa1a2c4d378fb23_149.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/4ec4d3f7fa133c2a5aa1a2c4d378fb23_149.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/32912bd17c6ae56d0fa0e4c77bdaa388_Hino%20149%20-%20Tu,%20Senhor,%20Nos%20Guias%20Sempre.mp3"
   },
   {
     "number": 150,
     "title": "quão grande És tu",
     "pageUrl": "https://hinar.io/150-quão-grande-És-tu!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/c1e51b215b078ad8ca16d1183b5b8ac8_150%20-%20Qu%C3%A3o%20Grande%20%C3%89s%20Tu!.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/c1e51b215b078ad8ca16d1183b5b8ac8_150%20-%20Qu%C3%A3o%20Grande%20%C3%89s%20Tu!.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/005320ebc088f5f5d825ef90c99a83b8_150%20-%20Qu%C3%A3o%20Grande%20%C3%89s%20Tu!.mp3"
   },
   {
     "number": 151,
     "title": "confiar em cristo",
     "pageUrl": "https://hinar.io/151-confiar-em-cristo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/56578adec5c25f9c0d633f866fd412af_H151%20-%20Confiar%20em%20Cristo.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/56578adec5c25f9c0d633f866fd412af_H151%20-%20Confiar%20em%20Cristo.mp3",
+    "cantadoUrl": null
   },
   {
     "number": 201,
     "title": "graça sublime",
     "pageUrl": "https://hinar.io/201-graça-sublime!",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/9421c131785a375719e0ae1b9f0c9852_201.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/9421c131785a375719e0ae1b9f0c9852_201.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/80e46b07d532ccce8b1d2f760523b60b_Hino%20201%20-%20Oh!%20Gra%C3%A7a%20Sublime!.mp3"
   },
   {
     "number": 202,
     "title": "mais além do sol",
     "pageUrl": "https://hinar.io/202-mais-além-do-sol",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/6f7bc7a81644976bbda9ceb7b3f820fe_202.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/6f7bc7a81644976bbda9ceb7b3f820fe_202.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/d6ecd4fc980c3f9b230e7e7cba499fc3_Hino%20202%20-%20Mais%20Al%C3%A9m%20do%20Sol.mp3"
   },
   {
     "number": 203,
     "title": "já salvo sou",
     "pageUrl": "https://hinar.io/203-já-salvo-sou",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/e3322f4f155dbe3646549ee50e61c2bf_203.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/e3322f4f155dbe3646549ee50e61c2bf_203.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/7b0c867273a720c08d4b588f0f200b4e_Hino%20203%20-%20J%C3%A1%20Salvo%20Sou.mp3"
   },
   {
     "number": 204,
     "title": "doce certeza",
     "pageUrl": "https://hinar.io/204-doce-certeza",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/f3c865521c6d72626d66b7f3398bef8d_204.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/f3c865521c6d72626d66b7f3398bef8d_204.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/333252ec001d48c44f049a28297c469f_Hino%20204%20-%20Doce%20Certeza.mp3"
   },
   {
     "number": 205,
     "title": "achei um bom amigo",
     "pageUrl": "https://hinar.io/205-achei-um-bom-amigo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/8d850b0a90722f937a119c4dbe917e1a_205.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/8d850b0a90722f937a119c4dbe917e1a_205.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/8be38975ea158b58d8011c0a1ef98340_Hino%20205%20-%20Achei%20Um%20Bom%20Amigo.mp3"
   },
   {
     "number": 206,
     "title": "livre estou",
     "pageUrl": "https://hinar.io/206-livre-estou",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/01439d4bf7ff301f3011b47fd824e8be_206.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/01439d4bf7ff301f3011b47fd824e8be_206.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/6e40b77619528d0d0156560eb5d60598_Hino%20206%20-%20Livre%20Estou.mp3"
   },
   {
     "number": 207,
     "title": "novas alegres",
     "pageUrl": "https://hinar.io/207-novas-alegres",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/f992cfa747acf0f534e43b18979bc50a_207.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/f992cfa747acf0f534e43b18979bc50a_207.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/1fd4144352bcdc74b18701c20030cfd6_Hino%20207%20-%20Novas%20Alegres.mp3"
   },
   {
     "number": 208,
     "title": "longe de gloriar me",
     "pageUrl": "https://hinar.io/208-longe-de-gloriar-me",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/b160e45cb933fb8801053afc889eabae_208.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/b160e45cb933fb8801053afc889eabae_208.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/cba54f6d6241f5c1c4b45bd0457676d6_Hino%20208%20-%20Longe%20Esteja%20de%20Mim%20Gloriar.mp3"
   },
   {
     "number": 209,
     "title": "a voz de cristo",
     "pageUrl": "https://hinar.io/209-a-voz-de-cristo",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/846855f563f8a6f9747f1f55af887b89_209.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/846855f563f8a6f9747f1f55af887b89_209.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/00233a0625f97f827da04e448f631f9e_Hino%20209%20-%20A%20Voz%20de%20Cristo.mp3"
   },
   {
     "number": 210,
     "title": "meu salvador",
     "pageUrl": "https://hinar.io/210-meu-salvador",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/38a827560bd04faee28aaf32dfe55f55_210.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/38a827560bd04faee28aaf32dfe55f55_210.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/e0c7f63a7f0595216a4b3e30a9a2bb20_Hino%20210%20-%20Meu%20Salvador.mp3"
   },
   {
     "number": 211,
     "title": "sou feliz",
     "pageUrl": "https://hinar.io/211-sou-feliz",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/7c30f7f30be8ddae08b73c880154adf9_211.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/7c30f7f30be8ddae08b73c880154adf9_211.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/2e117b8cc290ec3f7b3612d8d74fc87d_Hino%20211%20-%20Sou%20Feliz.mp3"
   },
   {
     "number": 212,
     "title": "deus cuidará de ti",
     "pageUrl": "https://hinar.io/212-deus-cuidará-de-ti",
-    "audioUrl": "https://hinar.io/_uploads/instrumental/0430d148428a8bda57e7a271187e90ea_212.mp3"
+    "audioUrl": "https://hinar.io/_uploads/instrumental/0430d148428a8bda57e7a271187e90ea_212.mp3",
+    "cantadoUrl": "https://hinar.io/_uploads/cantados/010c568cfbf97791a3cb5390111b4795_Hino%20212%20-%20Deus%20Cuidar%C3%A1%20de%20Ti.mp3"
   }
 ]

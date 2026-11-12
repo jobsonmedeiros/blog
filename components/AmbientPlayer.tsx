@@ -3,7 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import hinarPlaylist from "../public/hinar-playlist.json";
 
-type HinarTrack = { number: number; title: string; pageUrl: string; audioUrl: string };
+type HinarTrack = {
+  number: number;
+  title: string;
+  pageUrl: string;
+  audioUrl: string;
+  cantadoUrl: string | null;
+};
 
 const HINAR_TRACKS: HinarTrack[] = hinarPlaylist;
 
@@ -16,6 +22,7 @@ const AMBIENTES = [
 
 // "hinar" toca os hinos instrumentais; números 0–3 são os sons gerados no navegador.
 type Fonte = "hinar" | 0 | 1 | 2 | 3;
+type TipoAudio = "cantado" | "instrumental";
 
 type AmbientSession = {
   context: AudioContext;
@@ -164,6 +171,7 @@ function Icone({ nome }: { nome: "play" | "pause" | "prev" | "next" }) {
 
 export default function AmbientPlayer() {
   const [fonte, setFonte] = useState<Fonte>("hinar");
+  const [tipoAudio, setTipoAudio] = useState<TipoAudio>("cantado");
   const [volume, setVolume] = useState(0.5);
   const [hinarIndex, setHinarIndex] = useState(0);
   const [tocando, setTocando] = useState(false);
@@ -179,6 +187,8 @@ export default function AmbientPlayer() {
   const tocarAoTrocarRef = useRef(false);
 
   const hino = HINAR_TRACKS[hinarIndex];
+  const audioUrl = tipoAudio === "cantado" && hino.cantadoUrl ? hino.cantadoUrl : hino.audioUrl;
+  const cantadoDisponivel = Boolean(hino.cantadoUrl);
 
   // Restaura preferências só no cliente, evitando diferença entre servidor e navegador.
   /* eslint-disable react-hooks/set-state-in-effect -- localStorage só existe após a hidratação */
@@ -189,8 +199,6 @@ export default function AmbientPlayer() {
       const f = localStorage.getItem("ce-fonte-musica");
       if (f === "hinar") setFonte("hinar");
       else if (f !== null && ["0", "1", "2", "3"].includes(f)) setFonte(Number(f) as Fonte);
-      const h = Number(localStorage.getItem("ce-hino"));
-      if (Number.isInteger(h) && h >= 0 && h < HINAR_TRACKS.length) setHinarIndex(h);
     } catch {
       /* ignora */
     }
@@ -209,11 +217,13 @@ export default function AmbientPlayer() {
   // Ao trocar de hino, toca automaticamente se o anterior estava tocando.
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !tocarAoTrocarRef.current) return;
+    if (!audio) return;
+    audio.load();
+    if (!tocarAoTrocarRef.current) return;
     tocarAoTrocarRef.current = false;
     void tocarHinar();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hinarIndex]);
+  }, [hinarIndex, tipoAudio]);
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
@@ -222,18 +232,11 @@ export default function AmbientPlayer() {
 
   useEffect(() => {
     if (!aberto) return;
-    const aoTocarFora = (e: PointerEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setAberto(false);
-      }
-    };
     const aoTeclar = (e: KeyboardEvent) => {
       if (e.key === "Escape") setAberto(false);
     };
-    document.addEventListener("pointerdown", aoTocarFora);
     document.addEventListener("keydown", aoTeclar);
     return () => {
-      document.removeEventListener("pointerdown", aoTocarFora);
       document.removeEventListener("keydown", aoTeclar);
     };
   }, [aberto]);
@@ -305,6 +308,13 @@ export default function AmbientPlayer() {
     });
   };
 
+  const trocarTipoAudio = (novoTipo: TipoAudio) => {
+    if (novoTipo === "cantado" && !cantadoDisponivel) return;
+    tocarAoTrocarRef.current = tocando && fonte === "hinar";
+    setTipoAudio(novoTipo);
+    salvar("ce-tipo-audio", novoTipo);
+  };
+
   const mudarVolume = (novo: number) => {
     setVolume(novo);
     salvar("ce-volume", String(novo));
@@ -323,12 +333,16 @@ export default function AmbientPlayer() {
   return (
     <div
       ref={containerRef}
+      onMouseLeave={() => setAberto(false)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setAberto(false);
+      }}
       className="fixed right-5 z-40 flex flex-col items-end gap-2 bottom-24 md:bottom-6"
     >
       {/* Sempre montado: a música continua ao fechar o painel e ao navegar entre páginas. */}
       <audio
         ref={audioRef}
-        src={hino.audioUrl}
+        src={audioUrl}
         preload="none"
         onPlay={() => setTocando(true)}
         onPause={() => {
@@ -365,7 +379,7 @@ export default function AmbientPlayer() {
           id="painel-musica"
           role="dialog"
           aria-label="Música para leitura"
-          className="card w-72 p-4 animate-fadeIn"
+          className="card w-[min(22rem,calc(100vw-2rem))] max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain p-4 animate-fadeIn"
           style={{ background: "rgba(245,240,232,0.98)", border: "1px solid var(--parchment-dark)" }}
         >
           <p
@@ -395,6 +409,39 @@ export default function AmbientPlayer() {
             <p className="font-sans text-xs leading-snug mb-2 capitalize" style={{ color: "var(--ink)" }}>
               {String(hino.number).padStart(3, "0")} · {hino.title}
             </p>
+
+            <div className="flex gap-2 mb-2" aria-label="Versão do hino">
+              <button
+                type="button"
+                onClick={() => trocarTipoAudio("cantado")}
+                disabled={!cantadoDisponivel}
+                aria-pressed={tipoAudio === "cantado" && cantadoDisponivel}
+                className="font-sans text-xs px-2 py-1 rounded border"
+                style={{
+                  borderColor: "var(--gold)",
+                  color: tipoAudio === "cantado" && cantadoDisponivel ? "white" : "var(--gold)",
+                  background:
+                    tipoAudio === "cantado" && cantadoDisponivel ? "var(--gold)" : "transparent",
+                  opacity: cantadoDisponivel ? 1 : 0.45,
+                }}
+              >
+                Cantado
+              </button>
+              <button
+                type="button"
+                onClick={() => trocarTipoAudio("instrumental")}
+                aria-pressed={tipoAudio === "instrumental" || !cantadoDisponivel}
+                className="font-sans text-xs px-2 py-1 rounded border"
+                style={{
+                  borderColor: "var(--gold)",
+                  color: tipoAudio === "instrumental" || !cantadoDisponivel ? "white" : "var(--gold)",
+                  background:
+                    tipoAudio === "instrumental" || !cantadoDisponivel ? "var(--gold)" : "transparent",
+                }}
+              >
+                Instrumental
+              </button>
+            </div>
 
             <label htmlFor="progresso-hino" className="sr-only">
               Posição do hino
