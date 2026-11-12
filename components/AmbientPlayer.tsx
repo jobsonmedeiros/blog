@@ -6,7 +6,21 @@ const TRACKS = [
   { label: "Chuva suave", emoji: "🌧️" },
   { label: "Floresta", emoji: "🌿" },
   { label: "Oceano", emoji: "🌊" },
+  { label: "Instrumental contemplativo", emoji: "🎹" },
   { label: "Silêncio", emoji: "🕊️" },
+];
+
+const HINAR_TRACKS = [
+  {
+    title: "A Nós Tens Agora, Senhor",
+    pageUrl: "https://hinar.io/101-nos-tens-agora",
+    audioUrl: "https://hinar.io/_uploads/instrumental/587a495a05b729836a992d98ba26a500_101.mp3",
+  },
+  {
+    title: "Bom Amigo",
+    pageUrl: "https://hinar.io/102-bom-amigo",
+    audioUrl: "https://hinar.io/_uploads/instrumental/008878cb6657f16b4530208eab8f7042_102.mp3",
+  },
 ];
 
 type AmbientSession = {
@@ -37,7 +51,32 @@ function createAmbientSession(
   master.connect(context.destination);
   const sources: AudioScheduledSourceNode[] = [];
 
+  if (track === 4) {
+    return { context, master, sources };
+  }
+
   if (track === 3) {
+    // Motivo instrumental original, suave e sem arquivo externo: repete a cada 8 s.
+    const notas = [261.63, 329.63, 392, 523.25, 392, 329.63];
+    const tocarMotivo = () => {
+      if (context.state === "closed") return;
+      const inicio = context.currentTime + 0.05;
+      notas.forEach((frequencia, index) => {
+        const oscilador = context.createOscillator();
+        const ganho = context.createGain();
+        const inicioNota = inicio + index * 1.25;
+        oscilador.type = "sine";
+        oscilador.frequency.value = frequencia;
+        ganho.gain.setValueAtTime(0.0001, inicioNota);
+        ganho.gain.exponentialRampToValueAtTime(0.045, inicioNota + 0.08);
+        ganho.gain.exponentialRampToValueAtTime(0.0001, inicioNota + 1.1);
+        oscilador.connect(ganho).connect(master);
+        oscilador.start(inicioNota);
+        oscilador.stop(inicioNota + 1.15);
+      });
+    };
+    tocarMotivo();
+    timers.intervals.push(window.setInterval(tocarMotivo, 7500));
     return { context, master, sources };
   }
 
@@ -129,7 +168,12 @@ export default function AmbientPlayer() {
   const [volume, setVolume] = useState(prefs.volume);
   const [expanded, setExpanded] = useState(false);
   const sessionRef = useRef<AmbientSession | null>(null);
+  const hinarAudioRef = useRef<HTMLAudioElement | null>(null);
+  const hinarShouldPlayRef = useRef(false);
+  const [hinarIndex, setHinarIndex] = useState(0);
+  const [hinarPlaying, setHinarPlaying] = useState(false);
   const timersRef = useRef({ timeouts: [] as number[], intervals: [] as number[] });
+  const hinarTrack = HINAR_TRACKS[hinarIndex];
 
   // Limpa tudo ao desmontar
   useEffect(() => {
@@ -139,6 +183,16 @@ export default function AmbientPlayer() {
       stopAmbientSession(sessionRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    const audio = hinarAudioRef.current;
+    if (!audio) return;
+    audio.load();
+    if (hinarShouldPlayRef.current) {
+      void audio.play().catch(() => setHinarPlaying(false));
+      hinarShouldPlayRef.current = false;
+    }
+  }, [hinarIndex]);
 
   const limparTimers = () => {
     timersRef.current.timeouts.forEach((t) => clearTimeout(t));
@@ -156,6 +210,7 @@ export default function AmbientPlayer() {
   const start = (selectedTrack = track) => {
     limparTimers();
     stopAmbientSession(sessionRef.current);
+    hinarAudioRef.current?.pause();
     const context = new AudioContext();
     const session = createAmbientSession(context, selectedTrack, volume, timersRef.current);
     sessionRef.current = session;
@@ -166,7 +221,7 @@ export default function AmbientPlayer() {
   const toggle = () => {
     if (playing) {
       stop();
-    } else if (track !== 3) {
+    } else if (track !== 4) {
       start();
     }
   };
@@ -178,7 +233,7 @@ export default function AmbientPlayer() {
     } catch {
       /* ignora */
     }
-    if (selectedTrack === 3) {
+    if (selectedTrack === 4) {
       stop();
     } else if (playing) {
       start(selectedTrack);
@@ -225,7 +280,7 @@ export default function AmbientPlayer() {
           style={{ background: "rgba(245,240,232,0.98)", border: "1px solid var(--parchment-dark)" }}
         >
           <p className="font-sans text-xs font-semibold mb-3" style={{ color: "var(--ink-light)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-            Som Ambiente
+            Música para leitura
           </p>
           <div className="flex flex-col gap-1 mb-3">
             {TRACKS.map((item, index) => (
@@ -243,6 +298,46 @@ export default function AmbientPlayer() {
               </button>
             ))}
           </div>
+          <a
+            href={hinarTrack.pageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm inline-flex items-center gap-1 mb-2"
+            style={{ color: "var(--gold)", textDecoration: "underline", fontWeight: 600 }}
+          >
+            Conheça o Hinar.io ↗
+          </a>
+          <p className="font-sans text-xs leading-relaxed mb-2" style={{ color: "var(--ink-light)" }}>
+            Escute um instrumental do Hinar.io sem sair desta página:
+          </p>
+          <audio
+            ref={hinarAudioRef}
+            controls
+            loop
+            preload="none"
+            src={hinarTrack.audioUrl}
+            onPlay={() => {
+              stop();
+              setHinarPlaying(true);
+            }}
+            onPause={() => setHinarPlaying(false)}
+            className="w-full mb-3"
+            aria-label="Instrumental do Hinar.io"
+          />
+          <p className="font-sans text-[11px] leading-relaxed mb-3" style={{ color: "var(--ink-light)" }}>
+            “{hinarTrack.title}” · instrumental. O player permanece disponível enquanto você navega pelo site.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              hinarShouldPlayRef.current = hinarPlaying;
+              setHinarIndex((index) => (index + 1) % HINAR_TRACKS.length);
+            }}
+            className="font-sans text-xs px-3 py-1.5 rounded-full border mb-3"
+            style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
+          >
+            Próxima música →
+          </button>
           <div className="flex items-center gap-2">
             <span className="font-sans text-xs" style={{ color: "var(--ink-light)" }} aria-hidden>🔊</span>
             <input
@@ -259,7 +354,7 @@ export default function AmbientPlayer() {
         </div>
       )}
       <div className="flex gap-2">
-        {track !== 3 && (
+        {track !== 4 && (
           <button
             onClick={toggle}
             title={playing ? "Pausar som ambiente" : "Tocar som ambiente"}

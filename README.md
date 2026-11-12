@@ -4,9 +4,9 @@ Página de leitura e estudo das Sagradas Escrituras, desenvolvida com **Next.js 
 
 ## Funcionalidades
 
-- 📖 **Leitor Bíblico** – Navegação por livros e capítulos com API gratuita (Almeida)
+- 📖 **Bíblias** – Navegação por livros e capítulos com ACF local e ARA via bolls.life, com indicação das fontes
 - 🕊️ **Versículo do Dia** – Rotação automática de 31 versículos curados
-- ♫ **Som Ambiente** – Player flutuante com chuva, floresta e oceano
+- ♫ **Música para leitura** – Chuva, floresta, oceano e instrumental contemplativo original em loop; acesso ao player do [Hinar.io](https://hinar.io)
 - 📚 **Espaço de Estudos** – Artigos, reflexões e indicações de leitura
 - 📱 **Responsivo** – Funciona em celular e desktop
 
@@ -15,6 +15,8 @@ Página de leitura e estudo das Sagradas Escrituras, desenvolvida com **Next.js 
 - [Next.js 15](https://nextjs.org/) – Framework React
 - [Tailwind CSS](https://tailwindcss.com/) – Estilos
 - [bible-api.com](https://bible-api.com/) – API bíblica gratuita
+- [Sociedade Bíblica do Brasil](https://www.sbb.org.br/biblia/) – referência institucional para as traduções bíblicas
+- [Hinar.io](https://hinar.io) – repertório e player de músicas cristãs
 
 ## Como rodar localmente
 

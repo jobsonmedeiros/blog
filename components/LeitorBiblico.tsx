@@ -491,9 +491,18 @@ export default function LeitorBiblico() {
                   {referencia}
                 </h2>
                 <p className="text-xs mt-1" style={{ color: "var(--ink-light)" }}>
-                  {traducao === "ACF"
-                    ? "Almeida Corrigida Fiel (ACF) · texto no site"
-                    : "Almeida Revista e Atualizada (ARA) · bolls.life"}
+                  {traducao === "ACF" ? (
+                    <>
+                      Almeida Corrigida Fiel (ACF) · texto local · fonte: /public/biblia-acf.json
+                    </>
+                  ) : (
+                    <>
+                      Almeida Revista e Atualizada (ARA) · bolls.life ·{" "}
+                      <a href="https://www.sbb.org.br/biblia/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", textDecoration: "underline" }}>
+                        SBB ↗
+                      </a>
+                    </>
+                  )}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -543,6 +552,29 @@ export default function LeitorBiblico() {
                 </button>
               </div>
             </div>
+
+            <details className="mt-4 rounded-lg px-4 py-3" style={{ background: "var(--surface)", border: "1px solid var(--parchment-dark)" }}>
+              <summary className="font-sans text-sm cursor-pointer" style={{ color: "var(--gold)", fontWeight: 600 }}>
+                Como traduzir esta página no navegador
+              </summary>
+              <div className="font-sans text-sm leading-relaxed mt-3" style={{ color: "var(--ink-light)" }}>
+                <p>
+                  Se você estiver lendo uma fonte em outro idioma, use o tradutor integrado do navegador: no Chrome, clique no ícone de tradução ao lado da barra de endereço ou clique com o botão direito na página e escolha <strong>Traduzir para português</strong>. No celular, abra o menu do navegador e toque em <strong>Traduzir</strong>.
+                </p>
+                <p className="mt-2">
+                  Também é possível selecionar apenas um trecho, clicar com o botão direito e traduzir a seleção. A tradução é feita pelo navegador e pode variar; para estudar um termo, confira o contexto e as fontes originais.
+                </p>
+                <a
+                  href="https://support.google.com/chrome/answer/173424"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2"
+                  style={{ color: "var(--gold)", textDecoration: "underline" }}
+                >
+                  Instruções oficiais do Chrome ↗
+                </a>
+              </div>
+            </details>
 
             <hr className="gold-divider" />
 

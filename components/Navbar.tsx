@@ -18,9 +18,10 @@ export default function Navbar() {
     <nav
       className="sticky top-0 z-50"
       style={{
-        background: "rgba(247, 243, 235, 0.96)",
-        backdropFilter: "blur(10px)",
+        background: "var(--parchment)",
+        isolation: "isolate",
         borderBottom: "1px solid var(--parchment-dark)",
+        boxShadow: "0 2px 12px rgba(67, 45, 28, 0.05)",
       }}
     >
       <div className="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">

@@ -2,7 +2,7 @@ import LeitorBiblico from "@/components/LeitorBiblico";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Leitura Bíblica | Conforto das Escrituras",
+  title: "Bíblias | Conforto das Escrituras",
 };
 
 export default function LeituraPage() {
@@ -13,10 +13,10 @@ export default function LeituraPage() {
           className="text-4xl mb-2"
           style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 300 }}
         >
-          📖 Leitura das Escrituras
+          📖 Bíblias
         </h1>
         <p className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
-          Escolha o livro e capítulo no painel ao lado • Use o botão ♫ para som ambiente
+          Escolha a tradução, o livro e o capítulo • Use o botão ♫ para música de leitura
         </p>
         <hr className="gold-divider w-32 mx-auto" />
       </div>
