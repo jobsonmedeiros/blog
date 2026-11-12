@@ -68,23 +68,55 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* Sobre o blog */}
-      <section
-        className="rounded-2xl p-8 md:p-12 text-center shadow-[0_14px_35px_rgba(45,33,27,0.15)]"
-        style={{ background: "var(--ink)", color: "var(--parchment)" }}
-      >
-        <p className="text-2xl mb-3" style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic" }}>
-          &ldquo;Pois a palavra de Deus é viva e eficaz…&rdquo;
-        </p>
-        <p className="font-sans text-sm mb-4" style={{ color: "var(--gold-light)" }}>Hebreus 4:12</p>
-        <a
-          href="https://confortodasescrituras.blogspot.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary inline-block"
+      {/* Comunidade e estudos */}
+      <section className="grid md:grid-cols-2 gap-5">
+        <div
+          className="rounded-2xl p-7 md:p-8 shadow-[0_14px_35px_rgba(45,33,27,0.15)]"
+          style={{ background: "var(--ink)", color: "var(--parchment)" }}
         >
-          Visitar o Blog ↗
-        </a>
+          <p className="text-3xl mb-3" aria-hidden>f</p>
+          <h2
+            className="text-2xl mb-2"
+            style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
+          >
+            Grupo no Facebook
+          </h2>
+          <p className="font-sans text-sm leading-relaxed mb-5" style={{ color: "var(--gold-light)" }}>
+            Participe da comunidade e ajude a compartilhar a Palavra de Deus.
+          </p>
+          <a
+            href="https://www.facebook.com/groups/evangelhodeverdade"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-block"
+          >
+            Entrar no grupo ↗
+          </a>
+        </div>
+
+        <div
+          className="rounded-2xl p-7 md:p-8 card"
+          style={{ background: "var(--surface)" }}
+        >
+          <p className="text-3xl mb-3" aria-hidden>✎</p>
+          <h2
+            className="text-2xl mb-2"
+            style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}
+          >
+            Blog de estudos
+          </h2>
+          <p className="font-sans text-sm leading-relaxed mb-5" style={{ color: "var(--ink-light)" }}>
+            Leia conteúdos e estudos para aprofundar seu conhecimento das Escrituras.
+          </p>
+          <a
+            href="https://confortodasescrituras.blogspot.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-block"
+          >
+            Visitar o blog ↗
+          </a>
+        </div>
       </section>
 
     </div>
