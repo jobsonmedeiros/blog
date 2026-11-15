@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { getPublishedArticle, type CmsArticle } from "@/lib/articles";
 
 type FonteExterna = { nome: string; url: string };
 type Artigo = {
@@ -192,13 +195,16 @@ const ARTIGOS: Record<string, Artigo> = {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const artigo = ARTIGOS[id];
-  return { title: artigo ? `${artigo.titulo} | Estudos` : "Artigo não encontrado" };
+  const artigoPublicado = artigo ? null : await getPublishedArticle(id);
+  return { title: artigo ? `${artigo.titulo} | Estudos` : artigoPublicado ? `${artigoPublicado.title} | Estudos` : "Artigo não encontrado" };
 }
 
 export default async function ArtigoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const artigo = ARTIGOS[id];
-  if (!artigo) notFound();
+  const artigoPublicado = artigo ? null : await getPublishedArticle(id);
+  if (!artigo && !artigoPublicado) notFound();
+  if (artigoPublicado) return <CmsArticlePage article={artigoPublicado} />;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-10">
@@ -302,6 +308,30 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
           Ir para leitura →
         </Link>
       </div>
+    </div>
+  );
+}
+
+function CmsArticlePage({ article }: { article: CmsArticle }) {
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-10">
+      <Link href="/estudos" className="font-sans text-sm mb-6 inline-block" style={{ color: "var(--gold)" }}>
+        ← Voltar aos Estudos
+      </Link>
+      <div className="inline-block font-sans text-xs px-3 py-1 rounded-full mb-4" style={{ background: "var(--parchment-dark)", color: "var(--gold)" }}>
+        {article.category}
+      </div>
+      <h1 className="text-4xl mb-3 leading-tight" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}>
+        {article.title}
+      </h1>
+      <p className="font-sans text-sm mb-6" style={{ color: "var(--ink-light)" }}>
+        {article.author} • {article.reading_time} de leitura
+      </p>
+      <hr className="gold-divider" />
+      <div className="mt-6 prose prose-lg" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
+      </div>
+      <hr className="gold-divider mt-10" />
     </div>
   );
 }

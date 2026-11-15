@@ -1,7 +1,10 @@
 import Link from "next/link";
 import VersiculoDoDia from "@/components/VersiculoDoDia";
+import { getPublishedArticles } from "@/lib/articles";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const artigosRecentes = (await getPublishedArticles()).slice(0, 3);
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-14 md:py-20">
 
@@ -67,6 +70,33 @@ export default function HomePage() {
           </Link>
         ))}
       </section>
+
+      {artigosRecentes.length > 0 && (
+        <section className="mb-16">
+          <div className="flex items-end justify-between gap-4 mb-5">
+            <div>
+              <p className="font-sans text-xs uppercase tracking-[0.12em]" style={{ color: "var(--gold)" }}>Novos textos</p>
+              <h2 className="text-3xl mt-1" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+                Artigos recentes
+              </h2>
+            </div>
+            <Link href="/estudos" className="font-sans text-sm" style={{ color: "var(--gold)" }}>Ver todos →</Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {artigosRecentes.map((artigo) => (
+              <Link key={artigo.id} href={`/estudos/${artigo.slug}`} className="card p-5 flex flex-col gap-3 no-underline">
+                <span className="text-2xl">{artigo.emoji}</span>
+                <span className="font-sans text-xs" style={{ color: "var(--gold)" }}>{artigo.category}</span>
+                <h3 className="text-xl leading-tight" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+                  {artigo.title}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed" style={{ color: "var(--ink-light)" }}>{artigo.excerpt}</p>
+                <span className="font-sans text-sm mt-auto" style={{ color: "var(--gold)" }}>Ler artigo →</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Comunidade e estudos */}
       <section className="grid md:grid-cols-2 gap-5">

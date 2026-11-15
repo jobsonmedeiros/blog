@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPublishedArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Estudos | Conforto das Escrituras",
@@ -169,7 +170,9 @@ const LIVROS = [
 
 const CATEGORIAS = ["Todos", "Dispensações", "A Assembleia", "Israel e a Assembleia", "Profecia", "Interpretação", "Vida Cristã"];
 
-export default function EstudosPage() {
+export default async function EstudosPage() {
+  const artigosPublicados = await getPublishedArticles();
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       {/* Header */}
@@ -209,6 +212,32 @@ export default function EstudosPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
+          {artigosPublicados.map((a) => (
+            <Link
+              key={a.id}
+              href={`/estudos/${a.slug}`}
+              className="card p-6 flex flex-col gap-3 no-underline"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-2xl">{a.emoji}</span>
+                <span className="font-sans text-xs px-2 py-0.5 rounded-full" style={{ background: "var(--parchment-dark)", color: "var(--gold)" }}>
+                  {a.category}
+                </span>
+              </div>
+              <h3 className="text-xl" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontWeight: 600 }}>
+                {a.title}
+              </h3>
+              <p className="text-base leading-relaxed flex-1" style={{ color: "var(--ink-light)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+                {a.excerpt}
+              </p>
+              <div className="flex items-center justify-between mt-2">
+                <span className="font-sans text-xs" style={{ color: "var(--ink-light)" }}>
+                  {a.author} • {a.reading_time} de leitura
+                </span>
+                <span className="font-sans text-sm" style={{ color: "var(--gold)" }}>Ler →</span>
+              </div>
+            </Link>
+          ))}
           {ARTIGOS.map((a) => (
             <Link
               key={a.id}

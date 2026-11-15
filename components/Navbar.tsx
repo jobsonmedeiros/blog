@@ -8,6 +8,7 @@ const links = [
   { href: "/leitura", label: "Bíblias" },
   { href: "/versiculo", label: "Versículo do Dia" },
   { href: "/estudos", label: "Estudos" },
+  { href: "/login", label: "Área do autor" },
 ];
 
 export default function Navbar() {
