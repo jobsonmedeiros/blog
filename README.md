@@ -67,6 +67,6 @@ Acesse `http://localhost:3000` para visualizar o site e `http://localhost:3000/l
 2. Nas configurações do projeto na Vercel, adicione as mesmas variáveis de ambiente definidas no `.env.example` (`NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
 3. Clique em **Deploy** – a Vercel detectará automaticamente o Next.js e publicará o site.
 
-## Blog Oficial
+## Blog
 
 👉 [Blog]([https://://blogspot.com](https://confortodasescrituras.blogspot.com/))
