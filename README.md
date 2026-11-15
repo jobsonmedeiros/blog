@@ -69,4 +69,4 @@ Acesse `http://localhost:3000` para visualizar o site e `http://localhost:3000/l
 
 ## Blog Oficial
 
-👉 [://blogspot.com](https://://blogspot.com)
+👉 [Blog]([https://://blogspot.com](https://confortodasescrituras.blogspot.com/))
