@@ -328,7 +328,7 @@ function CmsArticlePage({ article }: { article: CmsArticle }) {
         {article.author} • {article.reading_time} de leitura
       </p>
       <hr className="gold-divider" />
-      <div className="mt-6 prose prose-lg" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+      <div className="article-content mt-6">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
       </div>
       <hr className="gold-divider mt-10" />

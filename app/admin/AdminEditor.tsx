@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -23,6 +23,63 @@ export default function AdminEditor({ initialArticles, email }: Props) {
   const [preview, setPreview] = useState(false);
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+
+  function insertAroundSelection(before: string, after: string, fallback: string) {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+    const { selectionStart: start, selectionEnd: end } = textarea;
+    const selected = form.content.slice(start, end) || fallback;
+    const nextContent = `${form.content.slice(0, start)}${before}${selected}${after}${form.content.slice(end)}`;
+    setForm((current) => ({ ...current, content: nextContent }));
+    requestAnimationFrame(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + before.length, start + before.length + selected.length);
+    });
+  }
+
+  function insertBlock(prefix: string) {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+    const { selectionStart: start, selectionEnd: end } = textarea;
+    const selected = form.content.slice(start, end);
+    const replacement = selected
+      ? selected.split("\n").map((line) => `${prefix}${line}`).join("\n")
+      : prefix;
+    const lineStart = form.content.lastIndexOf("\n", start - 1) + 1;
+    const insertAt = selected ? start : lineStart;
+    const nextContent = `${form.content.slice(0, insertAt)}${replacement}${form.content.slice(selected ? end : insertAt)}`;
+    setForm((current) => ({ ...current, content: nextContent }));
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const selection = insertAt + prefix.length;
+      if (selected) textarea.setSelectionRange(selection, selection + selected.length);
+      else textarea.setSelectionRange(selection, selection);
+    });
+  }
+
+  function insertLink() {
+    const url = window.prompt("Cole o endereço do link:", "https://");
+    if (!url) return;
+    insertAroundSelection("[", `](${url})`, "texto do link");
+  }
+
+  function insertImage() {
+    const url = window.prompt("Cole o endereço público da imagem:", "https://");
+    if (!url) return;
+    const alt = window.prompt("Descreva a imagem para acessibilidade:", "Descrição da imagem");
+    if (alt === null) return;
+    const textarea = contentRef.current;
+    if (!textarea) return;
+    const { selectionStart: start, selectionEnd: end } = textarea;
+    const markdown = `![${alt}](${url})`;
+    const nextContent = `${form.content.slice(0, start)}${markdown}${form.content.slice(end)}`;
+    setForm((current) => ({ ...current, content: nextContent }));
+    requestAnimationFrame(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + markdown.length, start + markdown.length);
+    });
+  }
 
   function editArticle(article: CmsArticle) {
     setForm({ ...article, published: Boolean(article.published_at) });
@@ -134,11 +191,23 @@ export default function AdminEditor({ initialArticles, email }: Props) {
               <button type="button" onClick={() => setPreview(!preview)} className="font-sans text-xs" style={{ color: "var(--gold)" }}>{preview ? "Editar" : "Pré-visualizar"}</button>
             </div>
             {preview ? (
-              <div className="min-h-72 rounded-lg border p-4 prose" style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}>
+              <div className="article-content min-h-72 rounded-lg border p-5" style={{ borderColor: "var(--parchment-dark)" }}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{form.content || "*Comece a escrever seu artigo...*"}</ReactMarkdown>
               </div>
             ) : (
-              <textarea id="content" required rows={18} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder={"# Título do artigo\\n\\nEscreva aqui usando **Markdown**..."} className="w-full rounded-lg border px-3 py-2.5 bg-white font-mono text-sm leading-relaxed" style={{ borderColor: "var(--parchment-dark)" }} />
+              <>
+                <div role="toolbar" aria-label="Formatação do artigo" className="flex flex-wrap gap-2 rounded-t-lg border border-b-0 p-2 bg-[#f7f3eb]" style={{ borderColor: "var(--parchment-dark)" }}>
+                  <ToolbarButton label="Negrito" onClick={() => insertAroundSelection("**", "**", "texto em negrito")}><strong>B</strong></ToolbarButton>
+                  <ToolbarButton label="Itálico" onClick={() => insertAroundSelection("*", "*", "texto em itálico")}><em>I</em></ToolbarButton>
+                  <ToolbarButton label="Título" onClick={() => insertBlock("## ")}>H2</ToolbarButton>
+                  <ToolbarButton label="Link" onClick={insertLink}>Link</ToolbarButton>
+                  <ToolbarButton label="Imagem por endereço" onClick={insertImage}>Imagem</ToolbarButton>
+                  <ToolbarButton label="Citação" onClick={() => insertBlock("> ")}>❝</ToolbarButton>
+                  <ToolbarButton label="Lista" onClick={() => insertBlock("- ")}>Lista</ToolbarButton>
+                </div>
+                <textarea ref={contentRef} id="content" required rows={18} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder={"# Título do artigo\\n\\nEscreva aqui; selecione um trecho e use os botões de formatação."} className="w-full rounded-b-lg border px-3 py-2.5 bg-white font-mono text-sm leading-relaxed" style={{ borderColor: "var(--parchment-dark)" }} />
+                <p className="font-sans text-xs mt-1" style={{ color: "var(--ink-light)" }}>Para inserir uma imagem, use o endereço público dela (URL).</p>
+              </>
             )}
           </div>
           <label className="font-sans text-sm flex items-center gap-2" style={{ color: "var(--ink-light)" }}>
@@ -175,5 +244,13 @@ export default function AdminEditor({ initialArticles, email }: Props) {
         </aside>
       </div>
     </div>
+  );
+}
+
+function ToolbarButton({ label, onClick, children }: { label: string; onClick: () => void; children: ReactNode }) {
+  return (
+    <button type="button" aria-label={label} title={label} onMouseDown={(event) => event.preventDefault()} onClick={onClick} className="min-w-9 h-9 px-2 rounded-md border bg-white font-sans text-sm hover:bg-[#fffaf0]" style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}>
+      {children}
+    </button>
   );
 }
