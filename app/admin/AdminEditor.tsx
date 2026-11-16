@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { authClient } from "@/lib/auth/client";
-import { createSlug, type CmsArticle } from "@/lib/article-utils";
+import type { CmsArticle } from "@/lib/article-utils";
 
 type Props = { initialArticles: CmsArticle[]; email: string };
 type FormState = Omit<CmsArticle, "id" | "slug" | "published_at"> & { id?: string; published: boolean };
