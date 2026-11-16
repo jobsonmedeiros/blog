@@ -5,6 +5,25 @@ export default function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-14 md:py-20">
 
+      {/* Header com Login */}
+      <header className="flex justify-between items-center mb-12 pb-4 border-b border-[var(--gold)]/20">
+        <span className="font-sans text-sm text-[var(--ink-light)]">
+          Conforto das Escrituras
+        </span>
+        
+        <Link 
+          href="/login" 
+          className="font-sans text-sm font-medium text-[var(--ink)] hover:text-[var(--gold)] transition-colors flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+          Admin
+        </Link>
+      </header>
+
       {/* Hero */}
       <section className="text-center mb-16 animate-fadeIn">
         <div className="mx-auto mb-6 h-px w-16 bg-[var(--gold)] opacity-70" aria-hidden />
