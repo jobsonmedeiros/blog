@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useRef, useState, type ReactNode } from "react";
+import { FormEvent, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -10,6 +10,7 @@ import { createSlug, type CmsArticle } from "@/lib/article-utils";
 
 type Props = { initialArticles: CmsArticle[]; email: string };
 type FormState = Omit<CmsArticle, "id" | "slug" | "published_at"> & { id?: string; published: boolean };
+type InsertDialog = "link" | "image" | null;
 
 const emptyForm: FormState = {
   title: "", category: "Reflexão", author: "Conforto das Escrituras", reading_time: "5 min",
@@ -24,6 +25,11 @@ export default function AdminEditor({ initialArticles, email }: Props) {
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
   const contentRef = useRef<HTMLTextAreaElement>(null);
+  const pendingSelection = useRef({ start: 0, end: 0 });
+  const [insertDialog, setInsertDialog] = useState<InsertDialog>(null);
+  const [insertUrl, setInsertUrl] = useState("");
+  const [insertAlt, setInsertAlt] = useState("Descrição da imagem");
+  const [insertError, setInsertError] = useState("");
 
   function insertAroundSelection(before: string, after: string, fallback: string) {
     const textarea = contentRef.current;
@@ -58,23 +64,73 @@ export default function AdminEditor({ initialArticles, email }: Props) {
     });
   }
 
-  function insertLink() {
-    const url = window.prompt("Cole o endereço do link:", "https://");
-    if (!url) return;
-    insertAroundSelection("[", `](${url})`, "texto do link");
+  function continueMarkdownList(event: ReactKeyboardEvent<HTMLTextAreaElement>) {
+    const textarea = event.currentTarget;
+    if (event.key !== "Enter" || event.shiftKey || textarea.selectionStart !== textarea.selectionEnd) return;
+    const cursor = textarea.selectionStart;
+    const lineStart = form.content.lastIndexOf("\n", cursor - 1) + 1;
+    const beforeCursor = form.content.slice(lineStart, cursor);
+    const match = beforeCursor.match(/^(\s*)([-*+]|(\d+)\.)\s+(.*)$/);
+    if (!match) return;
+
+    event.preventDefault();
+    const [, indent, bullet, orderedNumber, itemText] = match;
+    if (!itemText.trim()) {
+      const nextContent = `${form.content.slice(0, lineStart)}${form.content.slice(cursor)}`;
+      setForm((current) => ({ ...current, content: nextContent }));
+      requestAnimationFrame(() => {
+        textarea.focus();
+        textarea.setSelectionRange(lineStart, lineStart);
+      });
+      return;
+    }
+
+    const nextMarker = orderedNumber ? `${Number(orderedNumber) + 1}.` : bullet;
+    const insertion = `\n${indent}${nextMarker} `;
+    const nextContent = `${form.content.slice(0, cursor)}${insertion}${form.content.slice(cursor)}`;
+    setForm((current) => ({ ...current, content: nextContent }));
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const nextCursor = cursor + insertion.length;
+      textarea.setSelectionRange(nextCursor, nextCursor);
+    });
   }
 
-  function insertImage() {
-    const url = window.prompt("Cole o endereço público da imagem:", "https://");
-    if (!url) return;
-    const alt = window.prompt("Descreva a imagem para acessibilidade:", "Descrição da imagem");
-    if (alt === null) return;
+  function openInsertDialog(kind: Exclude<InsertDialog, null>) {
     const textarea = contentRef.current;
     if (!textarea) return;
     const { selectionStart: start, selectionEnd: end } = textarea;
-    const markdown = `![${alt}](${url})`;
+    pendingSelection.current = { start, end };
+    setInsertUrl("https://");
+    setInsertError("");
+    setInsertDialog(kind);
+  }
+
+  function closeInsertDialog() {
+    setInsertDialog(null);
+    setInsertError("");
+  }
+
+  function applyInsert() {
+    if (!insertDialog) return;
+    let parsedUrl: URL;
+    try {
+      parsedUrl = new URL(insertUrl.trim());
+      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") throw new Error("URL inválida");
+    } catch {
+      setInsertError("Informe um endereço válido começando com https://.");
+      return;
+    }
+    const textarea = contentRef.current;
+    if (!textarea) return;
+    const { start, end } = pendingSelection.current;
+    const selectedText = form.content.slice(start, end);
+    const markdown = insertDialog === "link"
+      ? `[${selectedText || "texto do link"}](${parsedUrl.href})`
+      : `![${insertAlt.trim() || "Descrição da imagem"}](${parsedUrl.href})`;
     const nextContent = `${form.content.slice(0, start)}${markdown}${form.content.slice(end)}`;
     setForm((current) => ({ ...current, content: nextContent }));
+    closeInsertDialog();
     requestAnimationFrame(() => {
       textarea.focus();
       textarea.setSelectionRange(start + markdown.length, start + markdown.length);
@@ -195,19 +251,43 @@ export default function AdminEditor({ initialArticles, email }: Props) {
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{form.content || "*Comece a escrever seu artigo...*"}</ReactMarkdown>
               </div>
             ) : (
-              <>
-                <div role="toolbar" aria-label="Formatação do artigo" className="flex flex-wrap gap-2 rounded-t-lg border border-b-0 p-2 bg-[#f7f3eb]" style={{ borderColor: "var(--parchment-dark)" }}>
+              <div className="relative">
+                <div role="toolbar" aria-label="Formatação do artigo" className="flex flex-nowrap gap-1 overflow-x-auto rounded-t-lg border border-b-0 p-1.5 bg-[#f7f3eb]" style={{ borderColor: "var(--parchment-dark)", scrollbarWidth: "none" }}>
                   <ToolbarButton label="Negrito" onClick={() => insertAroundSelection("**", "**", "texto em negrito")}><strong>B</strong></ToolbarButton>
                   <ToolbarButton label="Itálico" onClick={() => insertAroundSelection("*", "*", "texto em itálico")}><em>I</em></ToolbarButton>
                   <ToolbarButton label="Título" onClick={() => insertBlock("## ")}>H2</ToolbarButton>
-                  <ToolbarButton label="Link" onClick={insertLink}>Link</ToolbarButton>
-                  <ToolbarButton label="Imagem por endereço" onClick={insertImage}>Imagem</ToolbarButton>
+                  <ToolbarButton label="Link" onClick={() => openInsertDialog("link")}>Link</ToolbarButton>
+                  <ToolbarButton label="Imagem por endereço" onClick={() => openInsertDialog("image")}>Imagem</ToolbarButton>
                   <ToolbarButton label="Citação" onClick={() => insertBlock("> ")}>❝</ToolbarButton>
                   <ToolbarButton label="Lista" onClick={() => insertBlock("- ")}>Lista</ToolbarButton>
                 </div>
-                <textarea ref={contentRef} id="content" required rows={18} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder={"# Título do artigo\\n\\nEscreva aqui; selecione um trecho e use os botões de formatação."} className="w-full rounded-b-lg border px-3 py-2.5 bg-white font-mono text-sm leading-relaxed" style={{ borderColor: "var(--parchment-dark)" }} />
+                {insertDialog && (
+                  <div role="group" aria-label={insertDialog === "link" ? "Inserir link" : "Inserir imagem"} onKeyDown={(event) => { if (event.key === "Escape") closeInsertDialog(); }} className="absolute left-2 right-2 top-12 z-20 grid gap-3 rounded-lg border p-3 bg-white shadow-xl sm:grid-cols-[1fr_auto]" style={{ borderColor: "var(--parchment-dark)" }}>
+                    <div className="flex justify-end sm:col-span-2">
+                      <button type="button" aria-label="Fechar painel" title="Fechar" onClick={closeInsertDialog} className="h-8 w-8 rounded-md font-sans text-lg hover:bg-[#f7f3eb]" style={{ color: "var(--ink-light)" }}>×</button>
+                    </div>
+                    <div className="grid gap-3 sm:grid-cols-1">
+                      <label className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
+                        Endereço da {insertDialog === "link" ? "página" : "imagem"}
+                        <input type="url" required autoFocus value={insertUrl} onChange={(event) => { setInsertUrl(event.target.value); setInsertError(""); }} placeholder="https://..." className="mt-1 w-full rounded-lg border px-3 py-2 bg-white" style={{ borderColor: "var(--parchment-dark)" }} />
+                      </label>
+                      {insertDialog === "image" && (
+                        <label className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
+                          Descrição da imagem
+                          <input value={insertAlt} onChange={(event) => setInsertAlt(event.target.value)} className="mt-1 w-full rounded-lg border px-3 py-2 bg-white" style={{ borderColor: "var(--parchment-dark)" }} />
+                        </label>
+                      )}
+                      {insertError && <p role="alert" className="font-sans text-sm" style={{ color: "var(--burgundy)" }}>{insertError}</p>}
+                    </div>
+                    <div className="flex gap-2 sm:items-end">
+                      <button type="button" onClick={closeInsertDialog} className="font-sans text-sm px-3 py-2" style={{ color: "var(--ink-light)" }}>Cancelar</button>
+                      <button type="button" onClick={applyInsert} className="btn-primary">Inserir {insertDialog === "link" ? "link" : "imagem"}</button>
+                    </div>
+                  </div>
+                )}
+                <textarea ref={contentRef} id="content" required rows={18} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} onKeyDown={continueMarkdownList} placeholder={"# Título do artigo\\n\\nEscreva aqui; selecione um trecho e use os botões de formatação."} className="w-full rounded-b-lg border px-3 py-2.5 bg-white font-mono text-sm leading-relaxed" style={{ borderColor: "var(--parchment-dark)" }} />
                 <p className="font-sans text-xs mt-1" style={{ color: "var(--ink-light)" }}>Para inserir uma imagem, use o endereço público dela (URL).</p>
-              </>
+              </div>
             )}
           </div>
           <label className="font-sans text-sm flex items-center gap-2" style={{ color: "var(--ink-light)" }}>
@@ -249,7 +329,7 @@ export default function AdminEditor({ initialArticles, email }: Props) {
 
 function ToolbarButton({ label, onClick, children }: { label: string; onClick: () => void; children: ReactNode }) {
   return (
-    <button type="button" aria-label={label} title={label} onMouseDown={(event) => event.preventDefault()} onClick={onClick} className="min-w-9 h-9 px-2 rounded-md border bg-white font-sans text-sm hover:bg-[#fffaf0]" style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}>
+    <button type="button" aria-label={label} title={label} onMouseDown={(event) => event.preventDefault()} onClick={onClick} className="min-w-8 h-8 shrink-0 px-1.5 rounded-md border bg-white font-sans text-sm hover:bg-[#fffaf0]" style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}>
       {children}
     </button>
   );
