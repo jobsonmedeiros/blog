@@ -1,29 +1,29 @@
 {
-  "name": "conforto-escrituras",
-  "version": "0.1.0",
+  "name": "conforto-das-escrituras",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "node --use-system-ca node_modules/next/dist/bin/next dev",
+    "build": "node --use-system-ca node_modules/next/dist/bin/next build",
+    "start": "node --use-system-ca node_modules/next/dist/bin/next start",
+    "lint": "eslint --no-error-on-unmatched-pattern app components data lib tests scripts next.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --use-system-ca --experimental-strip-types --test tests/*.test.ts"
   },
   "dependencies": {
+    "@neon/auth": "0.8.2",
     "@neondatabase/serverless": "^1.2.1",
-    "bcrypt": "^6.0.0",
-    "bcryptjs": "^3.0.3",
-    "jsonwebtoken": "^9.0.3",
+    "cheerio": "^1.2.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/turbopack": "4.3.3",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -31,5 +31,9 @@
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "type": "module"
 }

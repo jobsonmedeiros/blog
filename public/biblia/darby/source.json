@@ -1,0 +1,15 @@
+{
+  "title": "Darby Translation",
+  "language": "en",
+  "edition": "1890",
+  "source": "https://ebible.org/Scriptures/engDBY_usfm.zip",
+  "rights": "Public Domain",
+  "rightsUrl": "https://ebible.org/engDBY/copyright.htm",
+  "sourceDate": "2019-11-15",
+  "downloaded": "2026-11-17",
+  "sha256": "ebdd506c5cb8c2dccb3e94f834e012123e538ef294556a981f323bd855ab332e",
+  "books": 66,
+  "chapters": 1189,
+  "verses": 31099,
+  "notes": "Texto inglês preservado; notas, Strong, títulos e formatação USFM omitidos. Não inclui tradução portuguesa atribuída a Darby."
+}

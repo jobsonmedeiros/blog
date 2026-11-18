@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPublishedArticle as buscarArtigoPublicado } from '@/lib/articles';
+import ConteudoArtigo from '@/components/ArticleContent';
+import TextoBiblicoComLinks from '@/components/ScriptureText';
 import { notFound } from "next/navigation";
+import { REFLEXOES_BREVES } from '@/data/reflexoesBreves';
 
 type FonteExterna = { nome: string; url: string };
 type Artigo = {
@@ -20,6 +24,10 @@ const FONTES_DARBY: FonteExterna[] = [
 ];
 
 const ARTIGOS: Record<string, Artigo> = {
+  ...Object.fromEntries(REFLEXOES_BREVES.map(reflexao => [`reflexao-${reflexao.slug}`, {
+    titulo: reflexao.titulo, categoria: 'Reflexões Breves', autor: 'Conforto das Escrituras',
+    leitura: '2 min', corpo: reflexao.corpo, fontes: reflexao.referencias,
+  }])),
   "sete-dispensacoes": {
     titulo: "As Sete Dispensações: o Plano de Deus Através das Eras",
     categoria: "Dispensações",
@@ -191,12 +199,22 @@ const ARTIGOS: Record<string, Artigo> = {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const artigo = ARTIGOS[id];
+  const artigoRecebido = ARTIGOS[id] ? null : await buscarArtigoPublicado(id);
+  const artigo = ARTIGOS[id] ?? (artigoRecebido ? { titulo: artigoRecebido.title } : null);
   return { title: artigo ? `${artigo.titulo} | Estudos` : "Artigo não encontrado" };
 }
 
 export default async function ArtigoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const artigoRecebido = ARTIGOS[id] ? null : await buscarArtigoPublicado(id);
+  if (artigoRecebido) return <article className="max-w-3xl mx-auto px-5 py-12">
+    <Link href="/estudos" className="font-sans text-sm" style={{ color: 'var(--gold)' }}>← Voltar aos Estudos</Link>
+    <p className="font-sans text-xs mt-8 mb-4" style={{ color: 'var(--gold)' }}>{artigoRecebido.category}</p>
+    <h1 className="text-4xl md:text-5xl leading-tight mb-4">{artigoRecebido.title}</h1>
+    <p className="font-sans text-sm mb-8" style={{ color: 'var(--ink-light)' }}>{artigoRecebido.author} • {artigoRecebido.reading_time} de leitura</p>
+    <hr className="gold-divider mb-8" />
+    <ConteudoArtigo conteudo={artigoRecebido.content} />
+  </article>;
   const artigo = ARTIGOS[id];
   if (!artigo) notFound();
 
@@ -231,9 +249,9 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
       <hr className="gold-divider" />
 
       <div className="mt-6 flex flex-col gap-5">
-        {artigo.corpo.map((paragrafo, i) => (
+        {artigo.corpo.map((paragrafo, indice) => (
           <p
-            key={i}
+            key={indice}
             className="text-xl leading-relaxed"
             style={{
               color: "var(--ink)",
@@ -241,7 +259,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
               fontStyle: paragrafo.startsWith('"') ? "italic" : "normal",
             }}
           >
-            {paragrafo}
+            <TextoBiblicoComLinks texto={paragrafo} />
           </p>
         ))}
       </div>
@@ -253,10 +271,10 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
           Fontes bíblicas
         </h2>
         <p className="font-sans text-sm mt-2 leading-relaxed" style={{ color: "var(--ink-light)" }}>
-          As afirmações e citações deste estudo devem ser conferidas diretamente nas passagens abaixo. O texto exibido no leitor usa ACF local ou ARA via bolls.life.
+          As afirmações e citações deste estudo podem ser conferidas nas passagens abaixo. Clique em uma referência para abrir o trecho no leitor do site.
         </p>
         <p className="font-sans text-sm mt-3" style={{ color: "var(--ink)" }}>
-          {artigo.fontes.join(" · ")}
+          <TextoBiblicoComLinks texto={artigo.fontes.join(" · ")} />
         </p>
         <a
           href="https://www.sbb.org.br/biblia/"

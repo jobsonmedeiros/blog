@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import hinarPlaylist from "../public/hinar-playlist.json";
+import { usePathname } from 'next/navigation';
+import { createAmbientSession as criarSessaoAmbiente, stopAmbientSession as pararSessaoAmbiente, type AmbientSession as SessaoAudio } from '@/lib/ambient-audio';
+import ambientesGravados from '@/public/ambientes/catalogo.json';
+import Link from 'next/link';
+import catalogoHinar from "../public/hinar-playlist.json";
+import { useFechamentoPainel } from '@/components/useDismissiblePanel';
+import { enderecoDoHino, indiceVizinho, reproduzirHino } from '@/lib/reproducao-hinos';
 
-type HinarTrack = {
+type HinoDoCatalogo = {
   number: number;
   title: string;
   pageUrl: string;
@@ -11,134 +17,18 @@ type HinarTrack = {
   cantadoUrl: string | null;
 };
 
-const HINAR_TRACKS: HinarTrack[] = hinarPlaylist;
+const HINOS_DO_CATALOGO: HinoDoCatalogo[] = catalogoHinar;
 
 const AMBIENTES = [
   { label: "Chuva suave", emoji: "🌧️" },
   { label: "Floresta", emoji: "🌿" },
   { label: "Oceano", emoji: "🌊" },
-  { label: "Instrumental contemplativo", emoji: "🎹" },
+  { label: "Instrumental suave", emoji: "🎹" },
 ] as const;
 
-// "hinar" toca os hinos instrumentais; números 0–3 são os sons gerados no navegador.
+// "hinar" toca os hinos; 0–3 são as gravações de ambiente hospedadas no próprio site.
 type Fonte = "hinar" | 0 | 1 | 2 | 3;
 type TipoAudio = "cantado" | "instrumental";
-
-type AmbientSession = {
-  context: AudioContext;
-  master: GainNode;
-  sources: AudioScheduledSourceNode[];
-};
-
-type Timers = { timeouts: number[]; intervals: number[] };
-
-function createNoise(context: AudioContext, seconds = 2) {
-  const buffer = context.createBuffer(1, context.sampleRate * seconds, context.sampleRate);
-  const data = buffer.getChannelData(0);
-  for (let i = 0; i < data.length; i += 1) {
-    data[i] = Math.random() * 2 - 1;
-  }
-  return buffer;
-}
-
-function createAmbientSession(
-  context: AudioContext,
-  track: number,
-  volume: number,
-  timers: Timers
-): AmbientSession {
-  const master = context.createGain();
-  master.gain.value = volume;
-  master.connect(context.destination);
-  const sources: AudioScheduledSourceNode[] = [];
-
-  if (track === 3) {
-    const notas = [261.63, 329.63, 392, 523.25, 392, 329.63];
-    const tocarMotivo = () => {
-      if (context.state === "closed") return;
-      const inicio = context.currentTime + 0.05;
-      notas.forEach((frequencia, index) => {
-        const oscilador = context.createOscillator();
-        const ganho = context.createGain();
-        const inicioNota = inicio + index * 1.25;
-        oscilador.type = "sine";
-        oscilador.frequency.value = frequencia;
-        ganho.gain.setValueAtTime(0.0001, inicioNota);
-        ganho.gain.exponentialRampToValueAtTime(0.045, inicioNota + 0.08);
-        ganho.gain.exponentialRampToValueAtTime(0.0001, inicioNota + 1.1);
-        oscilador.connect(ganho).connect(master);
-        oscilador.start(inicioNota);
-        oscilador.stop(inicioNota + 1.15);
-      });
-    };
-    tocarMotivo();
-    timers.intervals.push(window.setInterval(tocarMotivo, 7500));
-    return { context, master, sources };
-  }
-
-  // Ruído filtrado: chuva (agudo), floresta (médio), oceano (grave)
-  const noise = context.createBufferSource();
-  noise.buffer = createNoise(context);
-  noise.loop = true;
-  const filter = context.createBiquadFilter();
-  filter.type = track === 0 ? "highpass" : "lowpass";
-  filter.frequency.value = track === 0 ? 1400 : track === 1 ? 900 : 400;
-  const noiseGain = context.createGain();
-  noiseGain.gain.value = track === 0 ? 0.1 : track === 1 ? 0.06 : 0.22;
-  noise.connect(filter).connect(noiseGain).connect(master);
-  noise.start();
-  sources.push(noise);
-
-  if (track === 2) {
-    const lfo = context.createOscillator();
-    const lfoGain = context.createGain();
-    lfo.type = "sine";
-    lfo.frequency.value = 0.07;
-    lfoGain.gain.value = 0.1;
-    lfo.connect(lfoGain).connect(noiseGain.gain);
-    lfo.start();
-    sources.push(lfo);
-  }
-
-  if (track === 1) {
-    const chirp = () => {
-      if (context.state === "closed") return;
-      const t0 = context.currentTime + 0.05;
-      const osc = context.createOscillator();
-      const g = context.createGain();
-      const base = 2200 + Math.random() * 1800;
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(base, t0);
-      const notas = 2 + Math.floor(Math.random() * 3);
-      for (let i = 0; i < notas; i++) {
-        const t = t0 + i * (0.09 + Math.random() * 0.06);
-        osc.frequency.exponentialRampToValueAtTime(base * (1.1 + Math.random() * 0.5), t + 0.05);
-        osc.frequency.exponentialRampToValueAtTime(base * (0.9 + Math.random() * 0.2), t + 0.1);
-      }
-      const dur = notas * 0.14 + 0.1;
-      g.gain.setValueAtTime(0, t0);
-      g.gain.linearRampToValueAtTime(0.035 + Math.random() * 0.02, t0 + 0.04);
-      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-      osc.connect(g).connect(master);
-      osc.start(t0);
-      osc.stop(t0 + dur + 0.05);
-      timers.timeouts.push(window.setTimeout(chirp, 2500 + Math.random() * 6000));
-    };
-    timers.timeouts.push(window.setTimeout(chirp, 1200));
-  }
-
-  return { context, master, sources };
-}
-
-function stopAmbientSession(session: AmbientSession | null) {
-  if (!session) return;
-  session.sources.forEach((source) => {
-    source.stop();
-    source.disconnect();
-  });
-  session.master.disconnect();
-  void session.context.close();
-}
 
 function salvar(chave: string, valor: string) {
   try {
@@ -150,9 +40,9 @@ function salvar(chave: string, valor: string) {
 
 function formatarTempo(segundos: number) {
   if (!Number.isFinite(segundos) || segundos < 0) return "0:00";
-  const m = Math.floor(segundos / 60);
-  const s = Math.floor(segundos % 60);
-  return `${m}:${String(s).padStart(2, "0")}`;
+  const minutos = Math.floor(segundos / 60);
+  const segundosRestantes = Math.floor(segundos % 60);
+  return `${minutos}:${String(segundosRestantes).padStart(2, "0")}`;
 }
 
 function Icone({ nome }: { nome: "play" | "pause" | "prev" | "next" }) {
@@ -169,36 +59,35 @@ function Icone({ nome }: { nome: "play" | "pause" | "prev" | "next" }) {
   );
 }
 
-export default function AmbientPlayer() {
-  const [fonte, setFonte] = useState<Fonte>("hinar");
-  const [tipoAudio, setTipoAudio] = useState<TipoAudio>("cantado");
-  const [volume, setVolume] = useState(0.5);
-  const [hinarIndex, setHinarIndex] = useState(0);
-  const [tocando, setTocando] = useState(false);
-  const [carregandoAudio, setCarregandoAudio] = useState(false);
-  const [erroAudio, setErroAudio] = useState("");
-  const [tempo, setTempo] = useState({ atual: 0, total: 0 });
-  const [aberto, setAberto] = useState(false);
+export default function ReprodutorAmbiente() {
+  const caminhoAtual = usePathname();
+  const naPaginaDeLeitura = caminhoAtual === '/leitura';
+  const [fonte, definirFonte] = useState<Fonte>("hinar");
+  const [tipoAudio, definirTipoAudio] = useState<TipoAudio>("cantado");
+  const [volume, definirVolume] = useState(0.3);
+  const [indiceHino, definirIndiceHino] = useState(0);
+  const [tocando, definirTocando] = useState(false);
+  const [carregandoAudio, definirCarregandoAudio] = useState(false);
+  const [erroAudio, definirErroAudio] = useState("");
+  const [tempo, definirTempo] = useState({ atual: 0, total: 0 });
+  const [aberto, definirAberto] = useState(false);
+  const [abaPainel, definirAbaPainel] = useState<'hinos' | 'ambientes'>('hinos');
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const sessionRef = useRef<AmbientSession | null>(null);
-  const timersRef = useRef<Timers>({ timeouts: [], intervals: [] });
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const tocarAoTrocarRef = useRef(false);
+  const referenciaAudio = useRef<HTMLAudioElement | null>(null);
+  const referenciaSessaoAudio = useRef<SessaoAudio | null>(null);
+  const referenciaReprodutor = useRef<HTMLDivElement | null>(null);
+  useFechamentoPainel(aberto, referenciaReprodutor, definirAberto);
 
-  const hino = HINAR_TRACKS[hinarIndex];
-  const audioUrl = tipoAudio === "cantado" && hino.cantadoUrl ? hino.cantadoUrl : hino.audioUrl;
+  const hino = HINOS_DO_CATALOGO[indiceHino];
+  const enderecoAudio = enderecoDoHino(hino, tipoAudio);
   const cantadoDisponivel = Boolean(hino.cantadoUrl);
 
-  // Restaura preferências só no cliente, evitando diferença entre servidor e navegador.
+  // Só o volume é restaurado: uma nova visita começa no hino 001 cantado.
   /* eslint-disable react-hooks/set-state-in-effect -- localStorage só existe após a hidratação */
   useEffect(() => {
     try {
-      const v = Number(localStorage.getItem("ce-volume"));
-      if (localStorage.getItem("ce-volume") !== null && v >= 0 && v <= 1) setVolume(v);
-      const f = localStorage.getItem("ce-fonte-musica");
-      if (f === "hinar") setFonte("hinar");
-      else if (f !== null && ["0", "1", "2", "3"].includes(f)) setFonte(Number(f) as Fonte);
+      const volumeSalvo = Number(localStorage.getItem("ce-volume"));
+      if (localStorage.getItem("ce-volume") !== null && volumeSalvo >= 0 && volumeSalvo <= 1) definirVolume(volumeSalvo);
     } catch {
       /* ignora */
     }
@@ -206,83 +95,73 @@ export default function AmbientPlayer() {
   /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
-    const timers = timersRef;
     return () => {
-      timers.current.timeouts.forEach((t) => clearTimeout(t));
-      timers.current.intervals.forEach((i) => clearInterval(i));
-      stopAmbientSession(sessionRef.current);
+      pararSessaoAmbiente(referenciaSessaoAudio.current);
     };
   }, []);
 
-  // Ao trocar de hino, toca automaticamente se o anterior estava tocando.
+  // Inicializa a fonte sem reiniciar uma troca que já começou no evento do player.
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.load();
-    if (!tocarAoTrocarRef.current) return;
-    tocarAoTrocarRef.current = false;
-    void tocarHinar();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hinarIndex, tipoAudio]);
+    const elementoAudio = referenciaAudio.current;
+    if (!elementoAudio) return;
+    if (elementoAudio.getAttribute('src') !== enderecoAudio) elementoAudio.setAttribute('src', enderecoAudio);
+  }, [enderecoAudio]);
 
   useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = volume;
-    if (sessionRef.current) sessionRef.current.master.gain.value = volume;
+    if (referenciaAudio.current) referenciaAudio.current.volume = volume;
+    if (referenciaSessaoAudio.current) referenciaSessaoAudio.current.master.gain.value = volume;
   }, [volume]);
 
-  useEffect(() => {
-    if (!aberto) return;
-    const aoTeclar = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setAberto(false);
-    };
-    document.addEventListener("keydown", aoTeclar);
-    return () => {
-      document.removeEventListener("keydown", aoTeclar);
-    };
-  }, [aberto]);
-
-  const limparTimers = () => {
-    timersRef.current.timeouts.forEach((t) => clearTimeout(t));
-    timersRef.current.intervals.forEach((i) => clearInterval(i));
-    timersRef.current = { timeouts: [], intervals: [] };
-  };
-
   const pararAmbiente = () => {
-    limparTimers();
-    stopAmbientSession(sessionRef.current);
-    sessionRef.current = null;
+    pararSessaoAmbiente(referenciaSessaoAudio.current);
+    referenciaSessaoAudio.current = null;
   };
 
   const tocarAmbiente = (trilha: number) => {
-    audioRef.current?.pause();
+    referenciaAudio.current?.pause();
     pararAmbiente();
-    const context = new AudioContext();
-    sessionRef.current = createAmbientSession(context, trilha, volume, timersRef.current);
-    void context.resume();
-    setErroAudio("");
-    setTocando(true);
+    // Desbloqueia o áudio ainda no toque do visitante. O arquivo é baixado depois.
+    const contextoAudio = new AudioContext({ sampleRate: 24000 });
+    const retomada = contextoAudio.resume();
+    const sessao = criarSessaoAmbiente(contextoAudio, trilha, volume);
+    referenciaSessaoAudio.current = sessao;
+    definirErroAudio("");
+    definirCarregandoAudio(true);
+    definirTocando(true);
+    void Promise.all([retomada, sessao.pronta]).then(() => {
+      if (referenciaSessaoAudio.current === sessao && !sessao.encerrada) definirCarregandoAudio(false);
+    }).catch(() => {
+      if (referenciaSessaoAudio.current !== sessao || sessao.encerrada) return;
+      pararAmbiente(); definirCarregandoAudio(false); definirTocando(false);
+      definirErroAudio('Não foi possível carregar o ambiente. Toque novamente para tentar.');
+    });
   };
 
-  async function tocarHinar() {
-    const audio = audioRef.current;
-    if (!audio) return;
+  async function tocarHinar(endereco = enderecoAudio) {
+    const elementoAudio = referenciaAudio.current;
+    if (!elementoAudio) return;
     pararAmbiente();
-    setErroAudio("");
-    audio.volume = volume;
+    definirErroAudio("");
+    definirCarregandoAudio(false);
+    elementoAudio.volume = volume;
     try {
-      await audio.play();
-    } catch (error) {
-      if ((error as DOMException)?.name !== "AbortError") {
-        setTocando(false);
-        setErroAudio("Não foi possível tocar este hino. Tente o próximo.");
+      await reproduzirHino(elementoAudio, endereco);
+    } catch (erroCapturado) {
+      if ((erroCapturado as DOMException)?.name !== "AbortError") {
+        definirTocando(false);
+        definirCarregandoAudio(false);
+        definirErroAudio((erroCapturado as DOMException)?.name === 'NotAllowedError'
+          ? 'O navegador interrompeu a reprodução. Toque em reproduzir para continuar.'
+          : 'Não foi possível tocar este hino. Tente novamente ou avance para o próximo.');
       }
     }
   }
 
   const pausar = () => {
-    audioRef.current?.pause();
+    referenciaAudio.current?.pause();
     pararAmbiente();
-    setTocando(false);
+    definirTocando(false);
+    definirCarregandoAudio(false);
   };
 
   const alternar = () => {
@@ -292,37 +171,34 @@ export default function AmbientPlayer() {
   };
 
   const escolherFonte = (nova: Fonte) => {
-    setFonte(nova);
-    salvar("ce-fonte-musica", String(nova));
+    definirFonte(nova);
     if (nova === "hinar") void tocarHinar();
     else tocarAmbiente(nova);
   };
 
-  const trocarHino = (delta: 1 | -1) => {
-    tocarAoTrocarRef.current = tocando && fonte === "hinar";
-    setTempo({ atual: 0, total: 0 });
-    setHinarIndex((i) => {
-      const proximo = (i + delta + HINAR_TRACKS.length) % HINAR_TRACKS.length;
-      salvar("ce-hino", String(proximo));
-      return proximo;
-    });
+  const trocarHino = (variacao: 1 | -1, continuar = tocando && fonte === "hinar") => {
+    const proximo = indiceVizinho(indiceHino, variacao, HINOS_DO_CATALOGO.length);
+    definirTempo({ atual: 0, total: 0 });
+    definirErroAudio('');
+    definirIndiceHino(proximo);
+    if (continuar) void tocarHinar(enderecoDoHino(HINOS_DO_CATALOGO[proximo], tipoAudio));
   };
 
   const trocarTipoAudio = (novoTipo: TipoAudio) => {
     if (novoTipo === "cantado" && !cantadoDisponivel) return;
-    tocarAoTrocarRef.current = tocando && fonte === "hinar";
-    setTipoAudio(novoTipo);
-    salvar("ce-tipo-audio", novoTipo);
+    if (novoTipo === tipoAudio) return;
+    definirTipoAudio(novoTipo);
+    if (tocando && fonte === 'hinar') void tocarHinar(enderecoDoHino(hino, novoTipo));
   };
 
   const mudarVolume = (novo: number) => {
-    setVolume(novo);
+    definirVolume(novo);
     salvar("ce-volume", String(novo));
   };
 
   const buscarPosicao = (segundos: number) => {
-    const audio = audioRef.current;
-    if (audio && Number.isFinite(audio.duration)) audio.currentTime = segundos;
+    const elementoAudio = referenciaAudio.current;
+    if (elementoAudio && Number.isFinite(elementoAudio.duration)) elementoAudio.currentTime = segundos;
   };
 
   const rotuloAtual =
@@ -332,43 +208,33 @@ export default function AmbientPlayer() {
 
   return (
     <div
-      ref={containerRef}
-      onMouseLeave={() => setAberto(false)}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setAberto(false);
-      }}
+      ref={referenciaReprodutor}
       className="fixed right-5 z-40 flex flex-col items-end gap-2 bottom-24 md:bottom-6"
+      style={naPaginaDeLeitura ? { bottom: 'calc(var(--altura-rodape-leitura, 0px) + var(--altura-navegacao-capitulos, 5rem) + 1rem + env(safe-area-inset-bottom, 0px))' } : undefined}
     >
       {/* Sempre montado: a música continua ao fechar o painel e ao navegar entre páginas. */}
       <audio
-        ref={audioRef}
-        src={audioUrl}
+        ref={referenciaAudio}
         preload="none"
-        onPlay={() => setTocando(true)}
+        onPlay={() => definirTocando(true)}
         onPause={() => {
           // Ao trocar para um som ambiente, o hino pausa mas a música continua.
-          if (!sessionRef.current) setTocando(false);
+          if (!referenciaSessaoAudio.current && referenciaAudio.current?.paused) definirTocando(false);
         }}
-        onWaiting={() => setCarregandoAudio(true)}
-        onPlaying={() => setCarregandoAudio(false)}
-        onCanPlay={() => setCarregandoAudio(false)}
-        onLoadedMetadata={(e) => setTempo({ atual: 0, total: e.currentTarget.duration })}
-        onTimeUpdate={(e) =>
-          setTempo({ atual: e.currentTarget.currentTime, total: e.currentTarget.duration })
+        onWaiting={() => { if (fonte === 'hinar') definirCarregandoAudio(true); }}
+        onPlaying={() => { if (fonte === 'hinar') { definirCarregandoAudio(false); definirTocando(true); } }}
+        onCanPlay={() => { if (fonte === 'hinar') definirCarregandoAudio(false); }}
+        onLoadedMetadata={(evento) => definirTempo({ atual: 0, total: evento.currentTarget.duration })}
+        onTimeUpdate={(evento) =>
+          definirTempo({ atual: evento.currentTarget.currentTime, total: evento.currentTarget.duration })
         }
-        onEnded={() => {
-          tocarAoTrocarRef.current = true;
-          setHinarIndex((i) => {
-            const proximo = (i + 1) % HINAR_TRACKS.length;
-            salvar("ce-hino", String(proximo));
-            return proximo;
-          });
-        }}
+        onEnded={() => { if (fonte === 'hinar') trocarHino(1, true); }}
         onError={() => {
-          setCarregandoAudio(false);
-          if (audioRef.current?.getAttribute("src")) {
-            setTocando(false);
-            setErroAudio("Não foi possível carregar este hino. Tente o próximo.");
+          if (fonte !== 'hinar') return;
+          definirCarregandoAudio(false);
+          if (referenciaAudio.current?.getAttribute("src")) {
+            definirTocando(false);
+            definirErroAudio("Não foi possível carregar este hino. Tente o próximo.");
           }
         }}
         className="hidden"
@@ -379,68 +245,49 @@ export default function AmbientPlayer() {
           id="painel-musica"
           role="dialog"
           aria-label="Música para leitura"
-          className="card w-[min(22rem,calc(100vw-2rem))] max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain p-4 animate-fadeIn"
-          style={{ background: "rgba(245,240,232,0.98)", border: "1px solid var(--parchment-dark)" }}
+          className="card w-[min(20rem,calc(100vw-2rem))] max-h-[60dvh] overflow-y-auto overscroll-contain px-3 pb-2 animate-fadeIn"
+          style={{ background: "rgba(245,240,232,0.98)", border: "1px solid var(--parchment-dark)", ...(naPaginaDeLeitura ? { maxHeight: 'max(6rem, min(60dvh, calc(100dvh - var(--site-nav-height, 4rem) - var(--altura-rodape-leitura, 0px) - var(--altura-navegacao-capitulos, 5rem) - 5rem)))' } : {}) }}
         >
+          <div className="sticky top-0 z-10 -mx-3 mb-2 flex items-center justify-between gap-2 border-b border-[var(--parchment-dark)] bg-[var(--parchment)] pl-3 pr-1">
           <p
-            className="font-sans text-xs font-semibold mb-3"
+            className="font-sans text-xs font-semibold"
             style={{ color: "var(--ink-light)", textTransform: "uppercase", letterSpacing: "0.08em" }}
           >
             Música para leitura
           </p>
+          <button type="button" onClick={() => definirAberto(false)} aria-label="Fechar player" title="Fechar player" className="flex min-h-9 min-w-9 items-center justify-center rounded-full text-xl text-[var(--ink)] hover:bg-[var(--parchment-dark)]">
+            <span aria-hidden="true">×</span>
+          </button>
+          </div>
+
+          <div role="group" aria-label="Escolher controles de áudio" className="grid grid-cols-2 gap-1 mb-2 font-sans text-xs">
+            <button type="button" aria-pressed={abaPainel === 'hinos'} aria-controls="controles-hinos" onClick={() => definirAbaPainel('hinos')} className={`min-h-8 rounded px-2 py-1 ${abaPainel === 'hinos' ? 'bg-[var(--parchment-dark)] text-[var(--gold)]' : 'text-[var(--ink-light)]'}`}>Hinos</button>
+            <button type="button" aria-pressed={abaPainel === 'ambientes'} aria-controls="controles-ambientes" onClick={() => definirAbaPainel('ambientes')} className={`min-h-8 rounded px-2 py-1 ${abaPainel === 'ambientes' ? 'bg-[var(--parchment-dark)] text-[var(--gold)]' : 'text-[var(--ink-light)]'}`}>Sons ambientes</button>
+          </div>
 
           <section
-            aria-label="Hinos instrumentais do Hinar.io"
-            className="rounded-lg p-3 mb-3"
+            id="controles-hinos"
+            hidden={abaPainel !== 'hinos'}
+            aria-label="Hinos do Hinar.io"
+            className="rounded-lg p-2 mb-2"
             style={{
               background: fonte === "hinar" ? "var(--parchment-dark)" : "transparent",
               border: "1px solid var(--parchment-dark)",
             }}
           >
+            <div className="flex items-start justify-between gap-2 mb-1">
             <button
               type="button"
               onClick={() => escolherFonte("hinar")}
-              className="font-sans text-sm text-left w-full mb-1"
+              className="font-sans text-xs text-left shrink-0"
               style={{ color: fonte === "hinar" ? "var(--gold)" : "var(--ink)", fontWeight: 600 }}
               aria-pressed={fonte === "hinar"}
             >
-              🎵 Hinos instrumentais
+              🎵 Hinos
             </button>
-            <p className="font-sans text-xs leading-snug mb-2 capitalize" style={{ color: "var(--ink)" }}>
+            <p className="font-sans text-[11px] leading-snug text-right line-clamp-2 capitalize" style={{ color: "var(--ink)" }}>
               {String(hino.number).padStart(3, "0")} · {hino.title}
             </p>
-
-            <div className="flex gap-2 mb-2" aria-label="Versão do hino">
-              <button
-                type="button"
-                onClick={() => trocarTipoAudio("cantado")}
-                disabled={!cantadoDisponivel}
-                aria-pressed={tipoAudio === "cantado" && cantadoDisponivel}
-                className="font-sans text-xs px-2 py-1 rounded border"
-                style={{
-                  borderColor: "var(--gold)",
-                  color: tipoAudio === "cantado" && cantadoDisponivel ? "white" : "var(--gold)",
-                  background:
-                    tipoAudio === "cantado" && cantadoDisponivel ? "var(--gold)" : "transparent",
-                  opacity: cantadoDisponivel ? 1 : 0.45,
-                }}
-              >
-                Cantado
-              </button>
-              <button
-                type="button"
-                onClick={() => trocarTipoAudio("instrumental")}
-                aria-pressed={tipoAudio === "instrumental" || !cantadoDisponivel}
-                className="font-sans text-xs px-2 py-1 rounded border"
-                style={{
-                  borderColor: "var(--gold)",
-                  color: tipoAudio === "instrumental" || !cantadoDisponivel ? "white" : "var(--gold)",
-                  background:
-                    tipoAudio === "instrumental" || !cantadoDisponivel ? "var(--gold)" : "transparent",
-                }}
-              >
-                Instrumental
-              </button>
             </div>
 
             <label htmlFor="progresso-hino" className="sr-only">
@@ -453,24 +300,35 @@ export default function AmbientPlayer() {
               max={tempo.total || 0}
               step={1}
               value={Math.min(tempo.atual, tempo.total || 0)}
-              onChange={(e) => buscarPosicao(Number(e.target.value))}
+              onChange={(evento) => buscarPosicao(Number(evento.target.value))}
               disabled={!tempo.total}
-              className="w-full accent-amber-700"
+              className="block w-full h-4 accent-amber-700"
             />
             <div
-              className="flex justify-between font-sans text-[11px] mb-2 tabular-nums"
+              className="flex justify-between font-sans text-[10px] mb-1 tabular-nums"
               style={{ color: "var(--ink-light)" }}
             >
               <span>{formatarTempo(tempo.atual)}</span>
               <span>{carregandoAudio ? "carregando…" : formatarTempo(tempo.total)}</span>
             </div>
 
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-1">
+            <div className="flex gap-1" role="group" aria-label="Versão do hino">
+              {(['cantado', 'instrumental'] as const).map(tipo => {
+                const ativo = tipo === 'cantado' ? tipoAudio === 'cantado' && cantadoDisponivel : tipoAudio === 'instrumental' || !cantadoDisponivel;
+                return <button key={tipo} type="button" onClick={() => trocarTipoAudio(tipo)} disabled={tipo === 'cantado' && !cantadoDisponivel} aria-pressed={ativo}
+                  className="min-h-8 font-sans text-[11px] px-1.5 py-1 rounded border"
+                  style={{ borderColor: 'var(--gold)', color: ativo ? 'white' : 'var(--gold)', background: ativo ? 'var(--gold)' : 'transparent' }}>
+                  {tipo === 'cantado' ? 'Cantado' : 'Instrumental'}
+                </button>;
+              })}
+            </div>
+            <div className="flex items-center justify-center gap-1">
               <button
                 type="button"
                 onClick={() => trocarHino(-1)}
                 aria-label="Hino anterior"
-                className="w-8 h-8 rounded-full border flex items-center justify-center"
+                className="w-7 h-8 rounded-full border flex items-center justify-center"
                 style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
               >
                 <Icone nome="prev" />
@@ -479,7 +337,7 @@ export default function AmbientPlayer() {
                 type="button"
                 onClick={() => (tocando && fonte === "hinar" ? pausar() : escolherFonte("hinar"))}
                 aria-label={tocando && fonte === "hinar" ? "Pausar hino" : "Tocar hino"}
-                className="w-10 h-10 rounded-full flex items-center justify-center"
+                className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{ background: "var(--gold)", color: "white" }}
               >
                 <Icone nome={tocando && fonte === "hinar" ? "pause" : "play"} />
@@ -488,57 +346,60 @@ export default function AmbientPlayer() {
                 type="button"
                 onClick={() => trocarHino(1)}
                 aria-label="Próximo hino"
-                className="w-8 h-8 rounded-full border flex items-center justify-center"
+                className="w-7 h-8 rounded-full border flex items-center justify-center"
                 style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
               >
                 <Icone nome="next" />
               </button>
             </div>
-
-            {erroAudio && (
-              <p role="alert" className="font-sans text-xs mt-2" style={{ color: "var(--burgundy)" }}>
-                {erroAudio}
-              </p>
-            )}
+            </div>
 
             <a
               href={hino.pageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-[11px] inline-block mt-2"
+              className="font-sans text-[10px] inline-block mt-1"
               style={{ color: "var(--gold)", textDecoration: "underline" }}
             >
               Ver no Hinar.io ↗
             </a>
           </section>
 
+          <section id="controles-ambientes" aria-label="Sons ambientes" hidden={abaPainel !== 'ambientes'}>
           <p
             className="font-sans text-[11px] font-semibold mb-1"
             style={{ color: "var(--ink-light)", textTransform: "uppercase", letterSpacing: "0.08em" }}
           >
             Sons ambientes
           </p>
-          <div className="flex flex-col gap-1 mb-3">
-            {AMBIENTES.map((item, index) => {
-              const ativo = fonte === index;
+          <div className="grid grid-cols-2 gap-1 mb-2">
+            {AMBIENTES.map((itemAtual, indice) => {
+              const ativo = fonte === indice;
               return (
                 <button
-                  key={item.label}
+                  key={itemAtual.label}
                   type="button"
-                  onClick={() => escolherFonte(index as Fonte)}
+                  onClick={() => escolherFonte(indice as Fonte)}
                   aria-pressed={ativo}
-                  className="font-sans text-sm text-left px-2 py-1 rounded transition-colors"
+                  className="min-h-8 font-sans text-xs text-left px-1.5 py-1 rounded transition-colors"
                   style={{
                     background: ativo ? "var(--parchment-dark)" : "transparent",
                     color: ativo ? "var(--gold)" : "var(--ink)",
                     fontWeight: ativo ? 600 : 400,
                   }}
                 >
-                  {item.emoji} {item.label}
+                  {itemAtual.emoji} {itemAtual.label}
                 </button>
               );
             })}
           </div>
+          {fonte !== 'hinar' && <p className="font-sans text-[10px] text-[var(--ink-light)] mb-2">
+            {carregandoAudio ? <span role="status">Carregando ambiente…</span> : <span>{Math.floor(ambientesGravados[fonte].segundos / 60)} min de gravação · repetição contínua</span>}
+            {' · '}<Link href={`/creditos-dos-sons#${ambientesGravados[fonte].id}`} className="underline">Fontes e créditos</Link>
+          </p>}
+          </section>
+
+          {erroAudio && <p role="alert" className="font-sans text-xs my-2" style={{ color: 'var(--burgundy)' }}>{erroAudio}</p>}
 
           <div className="flex items-center gap-2">
             <span className="font-sans text-xs" style={{ color: "var(--ink-light)" }} aria-hidden>
@@ -550,7 +411,7 @@ export default function AmbientPlayer() {
               max={1}
               step={0.05}
               value={volume}
-              onChange={(event) => mudarVolume(Number(event.target.value))}
+              onChange={(evento) => mudarVolume(Number(evento.target.value))}
               className="flex-1 accent-amber-700"
               aria-label="Volume"
             />
@@ -558,6 +419,11 @@ export default function AmbientPlayer() {
         </div>
       )}
 
+      {!aberto && erroAudio && (
+        <p role="alert" className="card max-w-72 p-3 font-sans text-xs" style={{ color: 'var(--burgundy)' }}>
+          {erroAudio}
+        </p>
+      )}
       <div className="flex items-center gap-2">
         {tocando && !aberto && (
           <span
@@ -579,7 +445,7 @@ export default function AmbientPlayer() {
         </button>
         <button
           type="button"
-          onClick={() => setAberto((v) => !v)}
+          onClick={() => definirAberto((volumeSalvo) => !volumeSalvo)}
           title="Escolher música"
           aria-label="Escolher música"
           aria-expanded={aberto}

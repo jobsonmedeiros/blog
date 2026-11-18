@@ -1,86 +1,87 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { authClient } from "@/lib/auth/client";
+import { destinoAposLogin } from '@/lib/destino-login';
 
-interface Credentials {
-  email: string;
-  password: string;
-}
+export default function PaginaLogin() {
+  const navegador = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [erroCapturado, definirErroCapturado] = useState("");
+  const [carregando, definirCarregando] = useState(false);
 
-export default function LoginPage() {
-  const [credentials, setCredentials] = useState<Credentials>({
-    email: '',
-    password: '',
-  });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      localStorage.setItem('adminToken', data.token);
-      window.location.href = '/admin';
-    } else {
-      setError(data.message || 'Credenciais inválidas');
+  async function enviarFormulario(evento: FormEvent<HTMLFormElement>) {
+    evento.preventDefault();
+    definirErroCapturado("");
+    definirCarregando(true);
+    try {
+      const { error: erroEntrada } = await authClient.signIn.email({ email: email.trim(), password });
+      if (erroEntrada) {
+        definirErroCapturado("E-mail ou senha inválidos. Tente novamente.");
+        return;
+      }
+      const destino = destinoAposLogin(new URLSearchParams(window.location.search).get('retorno'));
+      navegador.replace(destino);
+      navegador.refresh();
+    } catch {
+      definirErroCapturado("Não foi possível entrar agora. Verifique sua conexão e tente novamente.");
+    } finally {
+      definirCarregando(false);
     }
-
-    setLoading(false);
   }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-6">
-          Conforto das Escrituras
+    <div className="max-w-md mx-auto px-4 py-16">
+      <div className="card p-7 md:p-9">
+        <p className="font-sans text-xs uppercase tracking-[0.14em] mb-3" style={{ color: "var(--gold)" }}>
+          Área do autor
+        </p>
+        <h1 className="text-4xl mb-2" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>
+          Entrar
         </h1>
-        <h2 className="text-xl text-center mb-4">Painel Administrativo</h2>
+        <p className="font-sans text-sm mb-7" style={{ color: "var(--ink-light)" }}>
+          Publique seus estudos de qualquer lugar.
+        </p>
 
-        {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Email</label>
+        <form onSubmit={enviarFormulario} className="flex flex-col gap-4">
+          <label className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
+            E-mail
             <input
               type="email"
-              value={credentials.email}
-              onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-              className="w-full p-2 border rounded"
               required
+              autoComplete="email"
+              disabled={carregando}
+              value={email}
+              onChange={(evento) => {
+                setEmail(evento.target.value);
+                if (erroCapturado) definirErroCapturado("");
+              }}
+              className="mt-1 w-full rounded-lg border px-3 py-2.5 bg-white"
+              style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}
             />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-gray-700 mb-2">Senha</label>
+          </label>
+          <label className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
+            Senha
             <input
               type="password"
-              value={credentials.password}
-              onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-              className="w-full p-2 border rounded"
               required
+              autoComplete="current-password"
+              disabled={carregando}
+              value={password}
+              onChange={(evento) => {
+                setPassword(evento.target.value);
+                if (erroCapturado) definirErroCapturado("");
+              }}
+              className="mt-1 w-full rounded-lg border px-3 py-2.5 bg-white"
+              style={{ borderColor: "var(--parchment-dark)", color: "var(--ink)" }}
             />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
-          >
-            {loading ? 'Entrando...' : 'Entrar'}
+          </label>
+          <div className="-mt-2 text-right"><Link href="/forgot-password" className="font-sans text-sm" style={{ color: "var(--gold)" }}>Esqueci minha senha</Link></div>
+          {erroCapturado && <p className="font-sans text-sm" role="alert" style={{ color: "var(--burgundy)" }}>{erroCapturado}</p>}
+          <button type="submit" className="btn-primary mt-2" disabled={carregando}>
+            {carregando ? "Entrando..." : "Entrar"}
           </button>
         </form>
       </div>

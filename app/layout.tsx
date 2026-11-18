@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import AmbientPlayer from "@/components/AmbientPlayer";
+import MenuPrincipal from "@/components/Navbar";
+import ReprodutorAmbiente from "@/components/AmbientPlayer";
+import RodapeSite from '@/components/RodapeSite';
 
 export const metadata: Metadata = {
   title: "Conforto das Escrituras",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function EstruturaPrincipal({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
@@ -26,25 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen" style={{ backgroundColor: "var(--parchment)" }}>
-        <Navbar />
+        <MenuPrincipal />
         <main>{children}</main>
-        <AmbientPlayer />
-        <footer className="text-center py-8 mt-12" style={{ borderTop: "1px solid var(--parchment-dark)" }}>
-          <p className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>
-            © {new Date().getFullYear()} Conforto das Escrituras •{" "}
-            <a
-              href="https://confortodasescrituras.blogspot.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--gold)" }}
-            >
-              Blog
-            </a>
-          </p>
-          <p className="font-sans text-xs mt-1" style={{ color: "var(--gold)" }}>
-            ✦ &ldquo;A tua palavra é lâmpada que ilumina os meus passos&rdquo; — Sl 119:105 ✦
-          </p>
-        </footer>
+        <ReprodutorAmbiente />
+        <RodapeSite ano={new Date().getFullYear()} />
       </body>
     </html>
   );

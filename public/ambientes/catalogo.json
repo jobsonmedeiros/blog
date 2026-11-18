@@ -1,0 +1,84 @@
+[
+  {
+    "id": "chuva",
+    "arquivo": "chuva.mp3",
+    "segundos": 588,
+    "bytes": 7056908,
+    "revisao": "7dc00a4b0ddb7b73",
+    "fontes": [
+      {
+        "titulo": "softly rain",
+        "autor": "ashbrauw",
+        "url": "https://freesound.org/people/ashbrauw/sounds/535026/",
+        "licenca": "CC BY 4.0",
+        "urlLicenca": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "adaptacoes": "Recorte, filtragem de graves e agudos, ajuste de nível, mistura quando aplicável, emenda por sobreposição de potência constante e compressão MP3 mono 96 kbps."
+  },
+  {
+    "id": "floresta",
+    "arquivo": "floresta.mp3",
+    "segundos": 495.237,
+    "bytes": 5943788,
+    "revisao": "af9c6f751875d430",
+    "fontes": [
+      {
+        "titulo": "Forest at dawn with drops falling from the trees (after the rain), birds and crickets in the Sian Ka'an Biosphere Reserve",
+        "autor": "felix.blume",
+        "url": "https://freesound.org/people/felix.blume/sounds/328298/",
+        "licenca": "CC0 1.0",
+        "urlLicenca": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "titulo": "Birdsong In Northern NSW Hinterland",
+        "autor": "Alex_hears_things",
+        "url": "https://freesound.org/people/Alex_hears_things/sounds/812609/",
+        "licenca": "CC0 1.0",
+        "urlLicenca": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "titulo": "Wind and Leaves.wav",
+        "autor": "ecfike",
+        "url": "https://freesound.org/people/ecfike/sounds/183496/",
+        "licenca": "CC0 1.0",
+        "urlLicenca": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "adaptacoes": "Recorte, filtragem de graves e agudos, ajuste de nível, mistura quando aplicável, emenda por sobreposição de potência constante e compressão MP3 mono 96 kbps."
+  },
+  {
+    "id": "oceano",
+    "arquivo": "oceano.mp3",
+    "segundos": 588,
+    "bytes": 7056908,
+    "revisao": "dc672b5f877df42d",
+    "fontes": [
+      {
+        "titulo": "2016-10-11-DR-05-Ocean Waves-EDITED.wav",
+        "autor": "kingsrow",
+        "url": "https://freesound.org/people/kingsrow/sounds/362300/",
+        "licenca": "CC0 1.0",
+        "urlLicenca": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "adaptacoes": "Recorte, filtragem de graves e agudos, ajuste de nível, mistura quando aplicável, emenda por sobreposição de potência constante e compressão MP3 mono 96 kbps."
+  },
+  {
+    "id": "instrumental",
+    "arquivo": "instrumental.mp3",
+    "segundos": 195.673,
+    "bytes": 2349260,
+    "revisao": "b8e0ea38eccc9624",
+    "fontes": [
+      {
+        "titulo": "Reverie",
+        "autor": "Scott Buckley",
+        "url": "https://www.scottbuckley.com.au/library/reverie/",
+        "licenca": "CC BY 4.0",
+        "urlLicenca": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "adaptacoes": "Recorte, filtragem de graves e agudos, ajuste de nível, mistura quando aplicável, emenda por sobreposição de potência constante e compressão MP3 mono 96 kbps."
+  }
+]

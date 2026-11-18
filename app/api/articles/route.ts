@@ -1,71 +1,23 @@
 import { NextResponse } from 'next/server';
-import { sql } from '@/lib/neon';
-import jwt from 'jsonwebtoken';
+import { getAdminUser } from '@/lib/auth/server';
+import { getPublishedArticles } from '@/lib/articles';
+import { saveArticle } from '@/lib/article-repository';
+import { ArticleValidationError, isSameOrigin, parseArticle } from '@/lib/article-utils';
 
-function verifyToken(req: Request) {
-  const auth = req.headers.get('Authorization');
-  if (!auth?.startsWith('Bearer ')) return null;
-
-  try {
-    return jwt.verify(auth.split(' ')[1], process.env.JWT_SECRET!) as any;
-  } catch {
-    return null;
-  }
-}
-
+export const dynamic = 'force-dynamic';
 export async function GET() {
-  const articles = await sql`
-    SELECT id, title, content, slug, created_at 
-    FROM articles 
-    ORDER BY created_at DESC
-  `;
-
-  return NextResponse.json(articles);
+  try { return NextResponse.json(await getPublishedArticles()); }
+  catch { return NextResponse.json({ error: 'Não foi possível carregar os artigos.' }, { status: 503 }); }
 }
-
 export async function POST(request: Request) {
-  const user = verifyToken(request);
-  if (!user) {
-    return NextResponse.json({ message: 'Não autorizado' }, { status: 401 });
+  if (!isSameOrigin(request)) return NextResponse.json({ error: 'Origem não autorizada.' }, { status: 403 });
+  try {
+    const user = await getAdminUser();
+    if (!user) return NextResponse.json({ error: 'Entre com a conta do administrador.' }, { status: 401 });
+    const input = parseArticle(await request.json().catch(() => null));
+    return NextResponse.json(await saveArticle(input, user.id), { status: 201 });
+  } catch (error) {
+    const invalid = error instanceof ArticleValidationError;
+    return NextResponse.json({ error: invalid ? error.message : 'Não foi possível salvar agora. Tente novamente.' }, { status: invalid ? 400 : 503 });
   }
-
-  const { title, content, slug } = await request.json();
-
-  await sql`
-    INSERT INTO articles (title, content, slug) 
-    VALUES (${title}, ${content}, ${slug})
-  `;
-
-  return NextResponse.json({ message: 'Artigo criado' });
-}
-
-export async function PUT(request: Request) {
-  const user = verifyToken(request);
-  if (!user) {
-    return NextResponse.json({ message: 'Não autorizado' }, { status: 401 });
-  }
-
-  const { id, title, content, slug } = await request.json();
-
-  await sql`
-    UPDATE articles 
-    SET title = ${title}, content = ${content}, slug = ${slug} 
-    WHERE id = ${id}
-  `;
-
-  return NextResponse.json({ message: 'Artigo atualizado' });
-}
-
-export async function DELETE(request: Request) {
-  const user = verifyToken(request);
-  if (!user) {
-    return NextResponse.json({ message: 'Não autorizado' }, { status: 401 });
-  }
-
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
-
-  await sql`DELETE FROM articles WHERE id = ${id}`;
-
-  return NextResponse.json({ message: 'Artigo excluído' });
 }

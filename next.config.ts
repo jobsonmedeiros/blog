@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Configurações opcionais */
+  turbopack: { root: process.cwd() },
+  poweredByHeader: false,
 };
 
 export default nextConfig;

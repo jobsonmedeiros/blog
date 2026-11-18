@@ -1,114 +1,126 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
+import { biblePassageHref as criarLinkPassagem } from "@/lib/bible-links";
+import VERSICULOS from "@/data/versiculosDoDia.json";
+import { criarFundoNatureza } from '@/data/fundosNatureza';
+import { dailyVerseIndex as indiceVersiculoDoDia, verseSwipeStep as direcaoGestoVersiculo, wrapVerseIndex as circularIndiceVersiculo } from "@/lib/daily-verses";
 
-// Versículos curados – rotação por dia do mês
-const VERSICULOS = [
-  { texto: "O Senhor é o meu pastor; nada me faltará.", ref: "Salmos 23:1" },
-  { texto: "Pois Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo o que nele crê não pereça, mas tenha a vida eterna.", ref: "João 3:16" },
-  { texto: "Tudo posso naquele que me fortalece.", ref: "Filipenses 4:13" },
-  { texto: "O Senhor é a minha luz e a minha salvação; a quem temerei?", ref: "Salmos 27:1" },
-  { texto: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.", ref: "Provérbios 3:5" },
-  { texto: "Mas os que esperam no Senhor renovam as suas forças.", ref: "Isaías 40:31" },
-  { texto: "A tua palavra é lâmpada que ilumina os meus passos e luz que clareia o meu caminho.", ref: "Salmos 119:105" },
-  { texto: "Alegrem-se sempre no Senhor! Repito: alegrem-se!", ref: "Filipenses 4:4" },
-  { texto: "Deem graças em todas as circunstâncias, pois esta é a vontade de Deus para vocês em Cristo Jesus.", ref: "1 Tessalonicenses 5:18" },
-  { texto: "Sejam fortes e corajosos. Não se apavorem nem desanimem, pois o Senhor, o seu Deus, estará com vocês por onde andarem.", ref: "Josué 1:9" },
-  { texto: "Não vos conformeis com este século, mas transformai-vos pela renovação da vossa mente.", ref: "Romanos 12:2" },
-  { texto: "Porque eu bem sei os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano, planos de dar a vocês esperança e um futuro.", ref: "Jeremias 29:11" },
-  { texto: "O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha.", ref: "1 Coríntios 13:4" },
-  { texto: "Pedi e dar-se-vos-á; buscai e encontrareis; batei e abrir-se-vos-á.", ref: "Mateus 7:7" },
-  { texto: "Não andem ansiosos por coisa alguma, mas em tudo, mediante oração e súplica, apresentem seus pedidos a Deus.", ref: "Filipenses 4:6" },
-  { texto: "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia.", ref: "Salmos 46:1" },
-  { texto: "Porque nele vivemos, nos movemos e existimos.", ref: "Atos 17:28" },
-  { texto: "Bem-aventurados os de coração puro, porque verão a Deus.", ref: "Mateus 5:8" },
-  { texto: "O Senhor guardará a tua saída e a tua entrada, desde agora e para sempre.", ref: "Salmos 121:8" },
-  { texto: "Nenhuma arma forjada contra ti prosperará.", ref: "Isaías 54:17" },
-  { texto: "Humilhai-vos, pois, sob a poderosa mão de Deus, para que ele vos exalte no momento oportuno.", ref: "1 Pedro 5:6" },
-  { texto: "Aguarda o Senhor; tem bom ânimo e ele fortalecerá o teu coração.", ref: "Salmos 27:14" },
-  { texto: "A paz de Deus, que excede todo o entendimento, guardará os vossos corações e as vossas mentes em Cristo Jesus.", ref: "Filipenses 4:7" },
-  { texto: "Mas eu, com a minha oração, dirijo-me a ti, Senhor, no tempo da tua graça.", ref: "Salmos 69:13" },
-  { texto: "O fruto do Espírito, porém, é: amor, alegria, paz, paciência, amabilidade, bondade, fidelidade.", ref: "Gálatas 5:22" },
-  { texto: "Deleita-te no Senhor, e ele te concederá os desejos do teu coração.", ref: "Salmos 37:4" },
-  { texto: "Ora, a fé é o firme fundamento das coisas que se esperam e a prova das coisas que se não veem.", ref: "Hebreus 11:1" },
-  { texto: "Escolhe hoje a quem servirás… quanto a mim e à minha família, serviremos ao Senhor.", ref: "Josué 24:15" },
-  { texto: "Aproximai-vos de Deus, e ele se aproximará de vós.", ref: "Tiago 4:8" },
-  { texto: "A graça do Senhor Jesus Cristo seja com o vosso espírito.", ref: "Filipenses 4:23" },
-  { texto: "Eu sou o caminho, a verdade e a vida.", ref: "João 14:6" },
-];
+const observarDiaAtual = (notificarAtualizacao: () => void) => {
+  const temporizador = setInterval(notificarAtualizacao, 60000);
+  return () => clearInterval(temporizador);
+};
+const obterDiaAtual = () => indiceVersiculoDoDia(new Date());
 
-const IMAGENS_VERSICULOS = [
-  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85",
-];
+export default function VersiculoDoDia({ tituloDaPagina = false }: { tituloDaPagina?: boolean }) {
+  const Titulo = tituloDaPagina ? "h1" : "h2";
+  const gesto = useRef<{ id: number; x: number; y: number } | null>(null);
+  const ignorarCliqueAte = useRef(0);
+  const hoje = useSyncExternalStore(observarDiaAtual, obterDiaAtual, () => 0);
+  const [navegacao, definirNavegacao] = useState({ dia: hoje, deslocamento: 0 });
+  const deslocamento = navegacao.dia === hoje ? navegacao.deslocamento : 0;
+  const indiceVersiculo = circularIndiceVersiculo(hoje + deslocamento, VERSICULOS.length);
+  const versiculo = VERSICULOS[indiceVersiculo];
+  const enderecoLeitura = criarLinkPassagem({ livro: versiculo.livro, capitulo: versiculo.capitulo, versiculo: versiculo.numero, ate: versiculo.numero });
+  // A confirmação fica vinculada ao versículo copiado, inclusive após navegar.
+  const [copiado, definirCopiado] = useState<number | null>(null);
 
-export default function VersiculoDoDia() {
-  const hoje = new Date().getDate(); // 1-31
-  const idx = (hoje - 1) % VERSICULOS.length;
-  const versiculo = VERSICULOS[idx];
-  const imagem = IMAGENS_VERSICULOS[idx % IMAGENS_VERSICULOS.length];
-
-  const [copiado, setCopiado] = useState(false);
-
-  const copiar = () => {
-    navigator.clipboard.writeText(`"${versiculo.texto}" — ${versiculo.ref}`);
-    setCopiado(true);
-    setTimeout(() => setCopiado(false), 2000);
+  const navegar = (passo: number) => {
+    definirCopiado(null);
+    definirNavegacao(anterior => ({ dia: hoje, deslocamento: (anterior.dia === hoje ? anterior.deslocamento : 0) + passo }));
+  };
+  const copiar = async () => {
+    try {
+      await navigator.clipboard.writeText(`"${versiculo.texto}" — ${versiculo.ref} (ACF)`);
+      definirCopiado(indiceVersiculo);
+    } catch { definirCopiado(null); }
   };
 
   return (
-    <div
-      className="rounded-2xl p-8 md:p-14 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
+    <section
+      aria-label="Carrossel de versículos"
+      aria-roledescription="carrossel"
+      onPointerDown={(evento) => {
+        gesto.current = null;
+        if (!evento.isPrimary || evento.pointerType === "mouse") return;
+        const alvo = evento.target as HTMLElement;
+        if (alvo.closest("button, a") && !alvo.closest("[data-carousel-edge], [data-verse-link]")) return;
+        gesto.current = { id: evento.pointerId, x: evento.clientX, y: evento.clientY };
+      }}
+      onPointerUp={(evento) => {
+        const inicio = gesto.current;
+        gesto.current = null;
+        if (!inicio || inicio.id !== evento.pointerId) return;
+        const passo = direcaoGestoVersiculo(evento.clientX - inicio.x, evento.clientY - inicio.y);
+        if (passo) {
+          ignorarCliqueAte.current = Date.now() + 400;
+          navegar(passo);
+        }
+      }}
+      onPointerCancel={() => { gesto.current = null; }}
+      onClickCapture={(evento) => {
+        // Impede que o clique gerado após um gesto avance uma segunda vez.
+        if (Date.now() < ignorarCliqueAte.current) {
+          evento.preventDefault();
+          evento.stopPropagation();
+        }
+      }}
+      className="rounded-2xl px-10 py-4 sm:px-12 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
       style={{
+        touchAction: "pan-y pinch-zoom",
         color: "var(--parchment)",
-        backgroundImage: `linear-gradient(135deg, rgba(24, 31, 36, 0.9), rgba(24, 31, 36, 0.62)), url("${imagem}")`,
+        backgroundColor: '#182124',
+        backgroundImage: criarFundoNatureza(indiceVersiculo),
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Ornamento de fundo */}
-      <div
-        className="absolute -right-10 -top-20 opacity-[0.07] select-none pointer-events-none text-[14rem] leading-none"
-        aria-hidden
-      >
-        “
-      </div>
-
-      <p
-        className="font-sans text-xs uppercase tracking-[0.22em] mb-7"
-        style={{ color: "var(--gold-light)" }}
-      >
-        ✦ Versículo do Dia ✦
-      </p>
-
-      <blockquote
-        className="text-2xl md:text-4xl leading-[1.25] mb-7 max-w-3xl mx-auto"
-        style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
-      >
-        &ldquo;{versiculo.texto}&rdquo;
-      </blockquote>
-
-      <cite
-        className="font-sans text-sm not-italic"
-        style={{ color: "var(--gold-light)", fontWeight: 500 }}
-      >
-        — {versiculo.ref}
-      </cite>
-
-      <hr className="gold-divider w-24 mx-auto mt-6" />
-
-      <button
-        onClick={copiar}
-        className="font-sans text-xs px-4 py-2.5 rounded-full border mt-2 transition-all hover:-translate-y-px"
-        style={{
-          borderColor: "var(--gold)",
-          color: copiado ? "var(--ink)" : "var(--gold-light)",
-          background: copiado ? "var(--gold)" : "transparent",
-        }}
-      >
-        {copiado ? "✓ Copiado!" : "Copiar versículo"}
+      <div className="absolute -right-10 -top-20 opacity-[0.07] select-none pointer-events-none text-[14rem] leading-none" aria-hidden>“</div>
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 mb-3">
+        <Titulo className="text-2xl leading-tight font-light shrink-0" style={{ color: "var(--gold-light)" }}>🕊️ Versículo do Dia</Titulo>
+        <p className="font-sans text-xs opacity-90 sm:text-right">Uma palavra para cada dia — renovação diária pela Escritura</p>
+      </header>
+      <button type="button" data-carousel-edge onClick={() => navegar(-1)} aria-label="Versículo anterior pela lateral esquerda" className="absolute left-0 inset-y-0 w-8 sm:w-10 flex items-center justify-center hover:bg-white/10 focus-visible:bg-white/10 transition-colors">
+        <span aria-hidden="true" className="text-3xl" style={{ color: "var(--gold-light)" }}>‹</span>
       </button>
-    </div>
+      <button type="button" data-carousel-edge onClick={() => navegar(1)} aria-label="Próximo versículo pela lateral direita" className="absolute right-0 inset-y-0 w-8 sm:w-10 flex items-center justify-center hover:bg-white/10 focus-visible:bg-white/10 transition-colors">
+        <span aria-hidden="true" className="text-3xl" style={{ color: "var(--gold-light)" }}>›</span>
+      </button>
+      <div aria-live="polite" aria-atomic="true">
+        <p className="font-sans text-xs mb-2" style={{ color: "var(--gold-light)" }}>{versiculo.tema}</p>
+        <div
+          className="grid text-xl sm:text-2xl leading-[1.35] mb-2 mx-auto break-words"
+          style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
+        >
+          {/* As cópias invisíveis ocupam a mesma célula: o CSS reserva a altura
+              do maior texto na largura e fonte atuais, sem fixar pixels ou cortar. */}
+          <div aria-hidden="true" className="invisible pointer-events-none grid [grid-area:1/1] select-none">
+            {VERSICULOS.map((itemAtual) => (
+              <span key={itemAtual.ref} className="[grid-area:1/1]">&ldquo;{itemAtual.texto}&rdquo;</span>
+            ))}
+          </div>
+          <blockquote className="[grid-area:1/1] self-center">
+            <Link data-verse-link href={enderecoLeitura} title={`Ler ${versiculo.ref} na Bíblia`} className="no-underline transition-colors duration-200 hover:text-[var(--gold-light)] focus-visible:text-[var(--gold-light)]">
+              &ldquo;{versiculo.texto}&rdquo;
+            </Link>
+          </blockquote>
+        </div>
+        <p className="font-sans text-xs" style={{ color: "var(--gold-light)" }}>
+          <Link data-verse-link href={enderecoLeitura} className="underline underline-offset-4" aria-label={`Ler ${versiculo.ref} na Bíblia`}><cite className="not-italic">{versiculo.ref}</cite> · ACF ↗</Link>
+          <span className="ml-3 opacity-80">{indiceVersiculo + 1} de {VERSICULOS.length}</span>
+        </p>
+      </div>
+      <div className="relative mt-3 font-sans text-xs">
+      <div className="grid grid-cols-3 items-center gap-1 mx-auto w-full max-w-md sm:flex sm:w-auto sm:max-w-none sm:justify-center sm:gap-2">
+        <button type="button" onClick={() => navegar(-1)} aria-label="Ver versículo anterior" className="min-h-11 min-w-0 whitespace-nowrap px-1 sm:px-4 py-2 text-[11px] sm:text-xs rounded-full border border-[var(--gold-light)]/60 hover:bg-white/10 transition-colors">← Anterior</button>
+        <button type="button" onClick={copiar} aria-label={copiado === indiceVersiculo ? 'Versículo copiado' : 'Copiar versículo'} className="min-h-11 min-w-0 sm:min-w-40 whitespace-nowrap px-1 sm:px-4 py-2 text-[11px] sm:text-xs rounded-full border border-[var(--gold-light)]/60 hover:bg-white/10 transition-colors" aria-live="polite">
+          <span className="sm:hidden">{copiado === indiceVersiculo ? "✓" : "Copiar"}</span>
+          <span className="hidden sm:inline">{copiado === indiceVersiculo ? "✓ Copiado!" : "Copiar versículo"}</span>
+        </button>
+        <button type="button" onClick={() => navegar(1)} aria-label="Ver próximo versículo" className="min-h-11 min-w-0 whitespace-nowrap px-1 sm:px-4 py-2 text-[11px] sm:text-xs rounded-full border border-[var(--gold-light)]/60 hover:bg-white/10 transition-colors">Próximo →</button>
+      </div>
+        <button type="button" onClick={() => { definirNavegacao({ dia: hoje, deslocamento: 0 }); definirCopiado(null); }} className={`block mx-auto mt-1 lg:absolute lg:right-0 lg:top-0 lg:mt-0 underline underline-offset-4 min-h-8 lg:min-h-11 px-3 ${indiceVersiculo === hoje ? "invisible" : ""}`} style={{ color: "var(--gold-light)" }}>Versículo de hoje</button>
+      </div>
+    </section>
   );
 }
