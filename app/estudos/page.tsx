@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CatalogoEstudos from '@/components/StudyCatalog';
 import { ARTIGOS } from '@/data/studies';
-import { getPublishedArticles as buscarArtigosPublicados } from '@/lib/articles';
+import { getPublishedArticles as buscarArtigosPublicados, type CmsArticle } from '@/lib/articles';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
@@ -49,7 +49,14 @@ const LIVROS = [
 
 
 export default async function EstudosPage() {
-  const publicados = await buscarArtigosPublicados();
+  let publicados: CmsArticle[] = [];
+  let artigosIndisponiveis = false;
+  try {
+    publicados = await buscarArtigosPublicados();
+  } catch {
+    artigosIndisponiveis = true;
+    console.error('[estudos] Não foi possível consultar os artigos publicados.');
+  }
   const artigosAnteriores = ARTIGOS.filter(artigo => !artigo.id.startsWith('reflexao-') && artigo.id !== 'como-ler-citacoes-biblicas' && artigo.id !== 'como-traduzir-a-leitura');
   const artigos = [...publicados.map(artigo => ({ id: artigo.slug, titulo: artigo.title, categoria: artigo.category, resumo: artigo.excerpt, autor: artigo.author, leitura: artigo.reading_time, emoji: artigo.emoji })), ...artigosAnteriores];
   return (
@@ -70,6 +77,11 @@ export default async function EstudosPage() {
 
       {/* Artigos */}
       <section className="mb-14">
+        {artigosIndisponiveis && (
+          <p role="status" className="font-sans text-sm mb-6" style={{ color: 'var(--ink-light)' }}>
+            Os artigos publicados estão temporariamente indisponíveis. Os estudos abaixo continuam disponíveis. Tente recarregar a página em alguns instantes.
+          </p>
+        )}
         <CatalogoEstudos artigos={artigos} />
       </section>
 
