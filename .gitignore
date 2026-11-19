@@ -28,6 +28,9 @@ Iniciar.cmd
 .codex/
 .aws/
 .neon-npm-cache/
+# Textos portugueses importados para consulta local; publicar apenas originais confirmados.
+data/darby/artigos/
+data/darby/livros/
 *.pem
 *.key
 *.pfx

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from 'next/link';
 import CatalogoEstudos from '@/components/StudyCatalog';
 import { ARTIGOS } from '@/data/studies';
 import { getPublishedArticles as buscarArtigosPublicados, type CmsArticle } from '@/lib/articles';
@@ -60,7 +61,7 @@ export default async function EstudosPage() {
   const artigosAnteriores = ARTIGOS.filter(artigo => !artigo.id.startsWith('reflexao-') && artigo.id !== 'como-ler-citacoes-biblicas' && artigo.id !== 'como-traduzir-a-leitura');
   const artigos = [...publicados.map(artigo => ({ id: artigo.slug, titulo: artigo.title, categoria: artigo.category, resumo: artigo.excerpt, autor: artigo.author, leitura: artigo.reading_time, emoji: artigo.emoji })), ...artigosAnteriores];
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
+    <div className="site-container py-10">
       {/* Header */}
       <div className="text-center mb-10">
         <h1
@@ -76,6 +77,14 @@ export default async function EstudosPage() {
       </div>
 
       {/* Artigos */}
+      <section className="mb-8 rounded-xl border border-[var(--parchment-dark)] bg-[var(--surface)] p-5">
+        <h2 className="text-2xl">Escritos de J. N. Darby</h2>
+        <p className="mt-2 text-base text-[var(--ink-light)]">Consulte os artigos reunidos pela Verdades Vivas e os livros do autor, com referências em inglês identificadas.</p>
+        <div className="font-sans mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--gold)]">
+          <Link href="/estudos/darby" className="inline-flex min-h-10 items-center underline">Artigos de Darby →</Link>
+          <Link href="/livros" className="inline-flex min-h-10 items-center underline">Livros →</Link>
+        </div>
+      </section>
       <section className="mb-14">
         {artigosIndisponiveis && (
           <p role="status" className="font-sans text-sm mb-6" style={{ color: 'var(--ink-light)' }}>

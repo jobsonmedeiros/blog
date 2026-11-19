@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Créditos dos sons | Conforto das Es
 const nomes: Record<string, string> = { chuva: 'Chuva suave', floresta: 'Floresta', oceano: 'Oceano', instrumental: 'Instrumental suave' };
 
 export default function CreditosDosSons() {
-  return <article className="max-w-3xl mx-auto px-4 py-8">
+  return <article className="site-container py-8">
     <Link href="/leitura" className="font-sans text-sm text-[var(--gold)] underline">← Voltar à leitura</Link>
     <h1 className="text-3xl mt-5 mb-3">Créditos dos sons</h1>
     <p className="font-sans text-sm leading-relaxed text-[var(--ink-light)]">As faixas do player usam gravações compartilhadas pelos autores sob as licenças abaixo. Foram preparadas para leitura com volume equilibrado e repetição contínua.</p>

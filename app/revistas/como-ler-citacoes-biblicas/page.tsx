@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PostComoLerCitacoesBiblicas() {
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8 md:py-10">
+    <article className="site-container py-8 md:py-10">
       <Link href="/revistas" className="font-sans text-sm text-[var(--gold)]">← Revistas</Link>
       <p className="font-sans text-xs uppercase tracking-wider mt-6 mb-2 text-[var(--gold)]">Como ler a Bíblia</p>
       <h1 className="text-3xl sm:text-4xl leading-tight mb-3">Como ler citações bíblicas</h1>

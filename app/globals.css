@@ -15,6 +15,8 @@
  */
 
 :root {
+  --site-width: 64rem;
+  --site-gutter: 1rem;
   --parchment: #f7f3eb;
   --parchment-dark: #e7deca;
   --surface: #fffdf8;
@@ -28,6 +30,19 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Mesmo eixo e respiro em todas as páginas e no cabeçalho. */
+.site-container {
+  width: 100%;
+  min-width: 0;
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
 }
 
 body {

@@ -17,7 +17,7 @@ export default async function PaginaRevistas() {
     { id: 'ingles', titulo: 'Inglês', descricao: 'Originais em inglês. Expanda os títulos para encontrar os artigos.', itens: revistas.filter(revista => idiomaOriginalRevista(revista.caminho) === 'en') },
     { id: 'espanhol', titulo: 'Espanhol', descricao: 'Originais em espanhol. Expanda os títulos para encontrar os artigos.', itens: revistas.filter(revista => idiomaOriginalRevista(revista.caminho) === 'es') },
   ];
-  return <div className="max-w-5xl mx-auto px-4 py-5">
+  return <div className="site-container py-5">
     <CatalogoRevistas itens={revistas} grupos={grupos} rotuloBusca="Buscar nesta seção" cabecalho={
       <header className="mb-4">
         <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">

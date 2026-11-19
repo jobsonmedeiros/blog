@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function VersiculoPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 pt-4 md:pt-6 pb-10">
+    <div className="site-container pt-4 md:pt-6 pb-10">
       <VersiculoDoDia tituloDaPagina />
 
       <ReflexoesBreves reflexoes={REFLEXOES_BREVES.map(({ slug, titulo, tema, resumo, referencias }) => ({ slug, titulo, tema, resumo, referencia: referencias[0] }))} />

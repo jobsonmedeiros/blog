@@ -5,6 +5,7 @@ import type { PaginaRevista, RascunhoRevista, TextoRevista } from '@/lib/revista
 import { traduzirTextoRevista } from '@/lib/revistas-traducao-cliente';
 import { criarRolagemConjunta } from '@/lib/rolagem-textos';
 import { idiomaOriginalRevista } from '@/lib/revistas-modelo';
+import { useProtecaoRascunho } from '@/components/useProtecaoRascunho';
 
 export default function EditorRevista({ pagina, rascunho }: { pagina: PaginaRevista; rascunho: RascunhoRevista | null }) {
   const idiomaOriginal = [pagina, ...pagina.anteriores].some(item => idiomaOriginalRevista(item.caminho) === 'es') ? 'es' : 'en';
@@ -23,6 +24,7 @@ export default function EditorRevista({ pagina, rascunho }: { pagina: PaginaRevi
   const [progresso, definirProgresso] = useState('');
   const [avisoTraducao, definirAvisoTraducao] = useState('');
   const [rolagemConjunta, definirRolagemConjunta] = useState(true);
+  useProtecaoRascunho(pendente || salvando || traduzindo, () => definirMensagem('Aguarde o salvamento antes de mudar de página. Se houve conflito, copie suas alterações antes de sair.'));
   const campoOriginal = useRef<HTMLTextAreaElement | null>(null);
   const campoTraduzido = useRef<HTMLTextAreaElement | null>(null);
   const ultimoCampoRolado = useRef<HTMLTextAreaElement | null>(null);
@@ -115,7 +117,7 @@ export default function EditorRevista({ pagina, rascunho }: { pagina: PaginaRevi
     return () => clearTimeout(temporizador);
   }, [rascunho?.textoTraduzido, traduzir]);
   const classeCampo = 'w-full rounded-lg border border-[var(--parchment-dark)] bg-[var(--surface)] px-3 py-2';
-  const classeAcao = 'inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap';
+  const classeAcao = 'inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-full border px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-normal sm:whitespace-nowrap';
   return <div>
     <section aria-label="Controles da tradução" className="rounded-xl border border-[var(--parchment-dark)] bg-[var(--surface)] px-4 py-3 mb-5 font-sans">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -135,7 +137,7 @@ export default function EditorRevista({ pagina, rascunho }: { pagina: PaginaRevi
           <p role="status" className={erroSalvar ? 'text-red-700' : 'text-[var(--ink-light)]'}>{mensagem}</p>
           {avisoTraducao && <p role="status" className="text-[var(--ink-light)]">{avisoTraducao}</p>}
         </div>
-        <span className="shrink-0 rounded-full bg-[var(--parchment)] px-2.5 py-1 text-[var(--ink-light)]">{pendente ? 'Alterações pendentes' : publicada ? 'Versão publicada' : 'Rascunho privado'}</span>
+        <span className="shrink-0 rounded-full bg-[var(--parchment)] px-2.5 py-1 text-[var(--ink-light)]">{pendente ? 'Alterações pendentes' : publicada ? 'Há uma versão pública' : 'Rascunho privado'}</span>
       </div>
     </section>
     <div className="grid md:grid-cols-2 gap-5">

@@ -27,8 +27,8 @@ export default function LeitorRevista({ pagina, publicada }: { pagina: PaginaRev
   };
   return <>
     {!publicada && <div className="font-sans text-sm mb-5 space-y-2">
-      <button type="button" disabled={traduzindo} onClick={traduzir} className="btn-secondary disabled:opacity-50">{traduzindo ? `Traduzindo… ${progresso}` : traducao ? 'Tentar tradução automática novamente' : 'Traduzir automaticamente para português'}</button>
-      {traduzindo && <button type="button" className="ml-3 underline" onClick={() => controle.current?.abort()}>Parar</button>}
+      <button type="button" disabled={traduzindo} onClick={traduzir} className="btn-secondary min-h-11 max-w-full whitespace-normal disabled:opacity-50">{traduzindo ? `Traduzindo… ${progresso}` : traducao ? 'Tentar tradução automática novamente' : 'Traduzir automaticamente para português'}</button>
+      {traduzindo && <button type="button" className="min-h-11 ml-3 underline" onClick={() => controle.current?.abort()}>Parar</button>}
       <p className="text-xs text-[var(--ink-light)]">Tradução automática pelo MyMemory, sem revisão, apenas para esta leitura. Ao clicar, o texto é enviado ao tradutor gratuito, sujeito a limite diário.</p>
       {erro && <p role="alert">{erro}</p>}
     </div>}

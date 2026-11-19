@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export default async function PainelRevistas() {
   if (!await getAdminUser()) redirect('/login?retorno=%2Fadmin%2Frevistas');
   const trabalhos = await getDatabase()`SELECT caminho, titulo_original, titulo_traduzido, publicado IS NOT NULL AS publicada, atualizado_em FROM revistas_traducoes ORDER BY atualizado_em DESC`;
-  return <div className="max-w-5xl mx-auto px-4 py-8">
+  return <div className="site-container py-8">
     <Link href="/admin" className="font-sans text-sm underline">← Painel do autor</Link>
     <h1 className="text-4xl mt-5 mb-3">Tradução de revistas</h1>
     <p className="font-sans text-sm text-[var(--ink-light)] mb-7">Abra uma revista → volume → artigo. Salve partes da tradução como rascunho e publique quando terminar.</p>

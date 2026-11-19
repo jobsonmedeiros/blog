@@ -33,8 +33,8 @@ export default function PaginaLogin() {
     }
   }
   return (
-    <div className="max-w-md mx-auto px-4 py-16">
-      <div className="card p-7 md:p-9">
+    <div className="site-container py-16">
+      <div className="card max-w-md mx-auto p-7 md:p-9">
         <p className="font-sans text-xs uppercase tracking-[0.14em] mb-3" style={{ color: "var(--gold)" }}>
           Área do autor
         </p>

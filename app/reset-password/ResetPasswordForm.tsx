@@ -26,8 +26,8 @@ export default function FormularioRedefinicaoSenha({ token }: { token: string })
   }
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16">
-      <div className="card p-7 md:p-9">
+    <div className="site-container py-16">
+      <div className="card max-w-md mx-auto p-7 md:p-9">
         <p className="font-sans text-xs uppercase tracking-[0.14em] mb-3" style={{ color: "var(--gold)" }}>Área do autor</p>
         <h1 className="text-4xl mb-2" style={{ color: "var(--ink)", fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif" }}>Criar nova senha</h1>
         <p className="font-sans text-sm mb-7" style={{ color: "var(--ink-light)" }}>Escolha uma senha com pelo menos 8 caracteres.</p>

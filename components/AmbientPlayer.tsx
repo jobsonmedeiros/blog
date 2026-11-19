@@ -209,7 +209,7 @@ export default function ReprodutorAmbiente() {
   return (
     <div
       ref={referenciaReprodutor}
-      className="fixed right-5 z-40 flex flex-col items-end gap-2 bottom-24 md:bottom-6"
+      className="fixed right-3 md:right-5 z-40 flex flex-col items-end gap-2 bottom-3 md:bottom-6"
       style={naPaginaDeLeitura ? { bottom: 'calc(var(--altura-rodape-leitura, 0px) + var(--altura-navegacao-capitulos, 5rem) + 1rem + env(safe-area-inset-bottom, 0px))' } : undefined}
     >
       {/* Sempre montado: a música continua ao fechar o painel e ao navegar entre páginas. */}

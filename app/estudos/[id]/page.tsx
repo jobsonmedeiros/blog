@@ -207,7 +207,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function ArtigoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const artigoRecebido = ARTIGOS[id] ? null : await buscarArtigoPublicado(id);
-  if (artigoRecebido) return <article className="max-w-3xl mx-auto px-5 py-12">
+  if (artigoRecebido) return <article className="site-container py-12">
     <Link href="/estudos" className="font-sans text-sm" style={{ color: 'var(--gold)' }}>← Voltar aos Estudos</Link>
     <p className="font-sans text-xs mt-8 mb-4" style={{ color: 'var(--gold)' }}>{artigoRecebido.category}</p>
     <h1 className="text-4xl md:text-5xl leading-tight mb-4">{artigoRecebido.title}</h1>
@@ -219,7 +219,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: str
   if (!artigo) notFound();
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-10">
+    <div className="site-container py-10">
       <Link
         href="/estudos"
         className="font-sans text-sm mb-6 inline-block"

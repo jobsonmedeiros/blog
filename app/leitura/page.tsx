@@ -14,7 +14,7 @@ export default async function LeituraPage({ searchParams }: { searchParams: Prom
   const versao = interpretarVersaoBiblica(consulta.traducao);
   const portugues = versao === 'DBY' && consulta.idioma === 'pt';
   return (
-    <div className="w-full min-w-0 max-w-6xl mx-auto px-3 sm:px-4 pt-3">
+    <div className="site-container pt-3">
       <header className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 mb-2">
         <h1
           className="text-xl sm:text-2xl"

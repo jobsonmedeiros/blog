@@ -65,7 +65,7 @@ export default function VersiculoDoDia({ tituloDaPagina = false }: { tituloDaPag
           evento.stopPropagation();
         }
       }}
-      className="rounded-2xl px-10 py-4 sm:px-12 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
+      className="w-full min-w-0 max-w-full rounded-2xl px-9 py-4 sm:px-12 text-center relative overflow-hidden shadow-[0_16px_38px_rgba(45,33,27,0.16)]"
       style={{
         touchAction: "pan-y pinch-zoom",
         color: "var(--parchment)",
@@ -89,17 +89,17 @@ export default function VersiculoDoDia({ tituloDaPagina = false }: { tituloDaPag
       <div aria-live="polite" aria-atomic="true">
         <p className="font-sans text-xs mb-2" style={{ color: "var(--gold-light)" }}>{versiculo.tema}</p>
         <div
-          className="grid text-xl sm:text-2xl leading-[1.35] mb-2 mx-auto break-words"
+          className="grid grid-cols-1 min-w-0 max-w-full text-xl sm:text-2xl leading-[1.35] mb-2 mx-auto break-words"
           style={{ fontFamily: "'Artifakt Element Book', 'Artifakt Element', 'Crimson Pro', serif", fontStyle: "italic", fontWeight: 300 }}
         >
           {/* As cópias invisíveis ocupam a mesma célula: o CSS reserva a altura
               do maior texto na largura e fonte atuais, sem fixar pixels ou cortar. */}
-          <div aria-hidden="true" className="invisible pointer-events-none grid [grid-area:1/1] select-none">
+          <div aria-hidden="true" className="invisible pointer-events-none grid grid-cols-1 min-w-0 max-w-full [grid-area:1/1] select-none">
             {VERSICULOS.map((itemAtual) => (
               <span key={itemAtual.ref} className="[grid-area:1/1]">&ldquo;{itemAtual.texto}&rdquo;</span>
             ))}
           </div>
-          <blockquote className="[grid-area:1/1] self-center">
+          <blockquote className="min-w-0 max-w-full [grid-area:1/1] self-center">
             <Link data-verse-link href={enderecoLeitura} title={`Ler ${versiculo.ref} na Bíblia`} className="no-underline transition-colors duration-200 hover:text-[var(--gold-light)] focus-visible:text-[var(--gold-light)]">
               &ldquo;{versiculo.texto}&rdquo;
             </Link>

@@ -18,7 +18,7 @@ export default async function EditarRevista({ params }: { params: Promise<{ cami
     if (!rascunho) throw erro;
     return { caminho, titulo: rascunho.tituloOriginal, texto: rascunho.textoOriginal, autor: '', anteriores: [], itens: [] };
   });
-  return <div className="max-w-6xl mx-auto px-4 pt-4 pb-8">
+  return <div className="site-container pt-4 pb-8">
     <CaminhoRevistas anteriores={pagina.anteriores} titulo={pagina.titulo} editor />
     <header className="mb-4"><h1 className="text-2xl sm:text-3xl leading-tight mb-2">{pagina.titulo}</h1><div className="flex gap-5 font-sans text-xs text-[var(--ink-light)]"><Link href="/admin/revistas" className="underline">Meus trabalhos</Link><a href={`${ORIGEM_REVISTAS}${caminho}`} target="_blank" rel="noopener noreferrer" className="underline">Fonte original ↗</a></div></header>
     {pagina.itens.length ? <CatalogoRevistas itens={pagina.itens} editor /> : <EditorRevista pagina={pagina} rascunho={rascunho} />}

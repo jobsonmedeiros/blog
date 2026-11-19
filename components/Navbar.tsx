@@ -12,6 +12,7 @@ const enderecos: ItemNavegacao[] = [
   { href: "/leitura", rotulo: "Bíblias" },
   { href: "/versiculo", rotulo: "Versículo do Dia" },
   { href: "/estudos", rotulo: "Estudos" },
+  { href: "/livros", rotulo: "Livros" },
   { href: "/revistas", rotulo: "Revistas" },
   { href: "/admin", rotulo: "Área do autor" },
 ];
@@ -60,7 +61,7 @@ export default function MenuPrincipal() {
         boxShadow: "0 2px 12px rgba(67, 45, 28, 0.05)",
       }}
     >
-      <div className="w-full min-w-0 max-w-5xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="site-container py-3 flex items-center justify-between gap-2 sm:gap-4">
         {/* Logo */}
         <div className="flex items-start gap-2 min-w-0 flex-1">
           <span className="h-2 w-2 mt-2.5 shrink-0 rounded-full" style={{ background: "var(--gold)" }} aria-hidden />
@@ -100,7 +101,7 @@ export default function MenuPrincipal() {
 
         {/* Mobile menu toggle */}
         <button
-          className="lg:hidden shrink-0 font-sans text-lg"
+          className="lg:hidden min-h-11 shrink-0 font-sans text-lg"
           style={{ color: "var(--ink)" }}
           onClick={() => definirAberto(!aberto)}
           aria-label="Menu"
@@ -112,7 +113,7 @@ export default function MenuPrincipal() {
 
       {/* Mobile menu */}
       {aberto && (
-        <ul className="lg:hidden max-w-5xl mx-auto px-4 pb-4 pt-1 flex flex-col gap-1 font-sans text-sm">
+        <ul className="lg:hidden site-container pb-4 pt-1 flex flex-col gap-1 font-sans text-sm">
           {enderecos.map((itemNavegacao) => (
             <li key={itemNavegacao.href}>
               <Link
@@ -130,7 +131,7 @@ export default function MenuPrincipal() {
           </li>}
         </ul>
       )}
-      {erroSaida && <p role="alert" className="max-w-5xl mx-auto px-4 pb-2 font-sans text-xs text-red-700">{erroSaida}</p>}
+      {erroSaida && <p role="alert" className="site-container pb-2 font-sans text-xs text-red-700">{erroSaida}</p>}
     </nav>
   );
 }

@@ -28,7 +28,7 @@ export default async function TemaVersiculoPage({ params }: Propriedades) {
   if (!tema) notFound();
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-10">
+    <article className="site-container py-10">
       <Link
         href="/versiculo"
         className="font-sans text-sm"

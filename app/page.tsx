@@ -5,7 +5,7 @@ import { criarFundoNatureza } from '@/data/fundosNatureza';
 
 export default function PaginaInicial() {
   return (
-    <div className="max-w-5xl mx-auto px-4 pt-4 pb-0">
+    <div className="site-container pt-4 pb-0">
 
       {/* Versículo do Dia */}
       <section className="mb-4" aria-label="Versículo do dia">

@@ -251,7 +251,7 @@ export default function EditorAdministrativo({ artigosIniciais, email }: Proprie
     finally { definirSaindo(false); }
   }
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="site-container py-10">
       <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
         <div>
           <p className="font-sans text-xs uppercase tracking-[0.14em]" style={{ color: "var(--gold)" }}>Painel do autor</p>
@@ -260,6 +260,7 @@ export default function EditorAdministrativo({ artigosIniciais, email }: Proprie
         </div>
         <div className="flex gap-3 items-center">
           <Link href="/admin/revistas" onClick={(evento) => { if (alteracoesPendentes && !window.confirm('Descartar as alterações ainda não salvas?')) evento.preventDefault(); }} className="font-sans text-sm text-[var(--gold)]">Traduzir revistas</Link>
+          <Link href="/admin/livros" onClick={(evento) => { if (alteracoesPendentes && !window.confirm('Descartar as alterações ainda não salvas?')) evento.preventDefault(); }} className="font-sans text-sm text-[var(--gold)]">Traduzir livros</Link>
           <Link href="/estudos" onClick={(evento) => { if (alteracoesPendentes && !window.confirm('Descartar as alterações ainda não salvas?')) evento.preventDefault(); }} className="font-sans text-sm" style={{ color: "var(--gold)" }}>Ver estudos ↗</Link>
           <button disabled={saindo || salvando} onClick={sairDaConta} className="font-sans text-sm" style={{ color: "var(--ink-light)" }}>Sair</button>
         </div>
