@@ -1,18 +1,26 @@
-import { auth } from "@/lib/auth/server";
+import { getAuth } from "@/lib/auth/server";
 import { NextResponse } from 'next/server';
 import { isAdminEmail } from '@/lib/article-utils';
 
-const handlers = auth.handler();
+type Context = { params: Promise<{ path: string[] }> };
+
+async function forwardAuth(request: Request, context: Context, method: 'GET' | 'POST') {
+  try {
+    return await getAuth().handler()[method](request, context);
+  } catch {
+    return NextResponse.json({ message: 'A autenticação está indisponível. Tente novamente mais tarde.' }, { status: 503 });
+  }
+}
 const allowed = new Set(['get-session', 'sign-in/email', 'sign-out', 'request-password-reset', 'reset-password', 'verify-email']);
 function isAllowed(request: Request) {
   const path = new URL(request.url).pathname.replace(/^\/api\/auth\//, '');
   return allowed.has(path) || /^reset-password\/[^/]+$/.test(path);
 }
-export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
+export async function GET(request: Request, context: Context) {
   if (!isAllowed(request)) return NextResponse.json({ error: 'Rota não disponível.' }, { status: 404 });
-  return handlers.GET(request, context);
+  return forwardAuth(request, context, 'GET');
 }
-export async function POST(request: Request, context: { params: Promise<{ path: string[] }> }) {
+export async function POST(request: Request, context: Context) {
   if (!isAllowed(request)) return NextResponse.json({ error: 'Rota não disponível.' }, { status: 404 });
   const path = new URL(request.url).pathname;
   if (path.endsWith('/sign-in/email')) {
@@ -21,5 +29,5 @@ export async function POST(request: Request, context: { params: Promise<{ path: 
       return NextResponse.json({ message: 'E-mail ou senha inválidos.' }, { status: 401 });
     }
   }
-  return handlers.POST(request, context);
+  return forwardAuth(request, context, 'POST');
 }
